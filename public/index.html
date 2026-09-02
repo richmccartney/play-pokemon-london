@@ -3,7 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pokémon TCG League Events Calendar</title>
+  <title>Pokémon TCG League London Events | Subscribable Calendar</title>
+  <meta name="description" content="A free, auto-updating subscribable calendar of Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases near London. Add it to Google Calendar, Apple Calendar or Outlook and never miss an event." />
+  <meta name="keywords" content="Pokemon TCG, Pokemon League, London Pokemon events, League Cup, League Challenge, Pokemon Friendlies, Pre-release, Pokemon calendar, subscribable calendar, ics feed" />
+  <meta name="author" content="Richard McCartney" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://playpokemonlondon.netlify.app/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://playpokemonlondon.netlify.app/" />
+  <meta property="og:title" content="Pokémon TCG League London Events" />
+  <meta property="og:description" content="A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Pokémon TCG League London Events" />
+  <meta name="twitter:description" content="A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+
+  <meta name="theme-color" content="#2a75bb" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Pokémon TCG League London Events",
+    "url": "https://playpokemonlondon.netlify.app/",
+    "description": "A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly."
+  }
+  </script>
+
   <style>
     body {
       font-family: system-ui, -apple-system, sans-serif;
@@ -53,6 +83,12 @@
 
   <h2>Status</h2>
   <p id="status-line">Checking when the data was last refreshed…</p>
+
+  <h2>Coming soon</h2>
+  <p>
+    🗓️ A full browsable calendar view, 🔎 filters by event type and
+    distance, and 🗺️ an interactive map of upcoming events.
+  </p>
 
   <script>
     const host = window.location.host;
