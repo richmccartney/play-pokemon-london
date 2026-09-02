@@ -28,12 +28,17 @@
   }
 }
 
+/* Matches the site nav height so the drawer header lines up with it. */
 .event-drawer__header {
   position: sticky;
   top: 0;
+  display: flex;
+  align-items: center;
+  height: var(--nav-height);
+  box-sizing: border-box;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 1rem 1.25rem;
+  padding: 0 1.25rem;
   z-index: 1;
 }
 
