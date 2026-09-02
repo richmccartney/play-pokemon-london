@@ -31,6 +31,7 @@ export default function CalendarView({ events, status }) {
   const [radiusKm, setRadiusKm] = useState(40);
   const [typeFilter, setTypeFilter] = useState("all");
   const [cityFilter, setCityFilter] = useState("all");
+  const [venueFilter, setVenueFilter] = useState("all");
 
   const typeOptions = useMemo(() => {
     const labels = new Set(events.map((e) => e.typeLabel).filter(Boolean));
@@ -42,15 +43,21 @@ export default function CalendarView({ events, status }) {
     return Array.from(cities).sort();
   }, [events]);
 
+  const venueOptions = useMemo(() => {
+    const venues = new Set(events.map((e) => e.shop).filter(Boolean));
+    return Array.from(venues).sort();
+  }, [events]);
+
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
       if (typeFilter !== "all" && event.typeLabel !== typeFilter) return false;
       if (cityFilter !== "all" && event.city !== cityFilter) return false;
+      if (venueFilter !== "all" && event.shop !== venueFilter) return false;
       if (radiusKm >= 999) return true;
       const km = distanceKm(origin.latitude, origin.longitude, event.latitude, event.longitude);
       return km <= radiusKm;
     });
-  }, [events, typeFilter, cityFilter, radiusKm]);
+  }, [events, typeFilter, cityFilter, venueFilter, radiusKm]);
 
   const weekStart = startOfWeek(cursor);
 
@@ -94,6 +101,9 @@ export default function CalendarView({ events, status }) {
         cityFilter={cityFilter}
         onCityFilterChange={setCityFilter}
         cityOptions={cityOptions}
+        venueFilter={venueFilter}
+        onVenueFilterChange={setVenueFilter}
+        venueOptions={venueOptions}
       />
 
       <div className="calendar-view__header">

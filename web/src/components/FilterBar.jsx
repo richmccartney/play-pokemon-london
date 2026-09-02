@@ -12,6 +12,9 @@ export default function FilterBar({
   cityFilter,
   onCityFilterChange,
   cityOptions,
+  venueFilter,
+  onVenueFilterChange,
+  venueOptions,
 }) {
   return (
     <div className="filter-bar" role="group" aria-label="Filter events">
@@ -38,6 +41,25 @@ export default function FilterBar({
           {cityOptions.map((city) => (
             <option key={city} value={city}>
               {city}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="filter-bar__group">
+        <label className="filter-bar__label" htmlFor="venue-select">
+          Event venue
+        </label>
+        <select
+          id="venue-select"
+          className="filter-bar__select"
+          value={venueFilter}
+          onChange={(e) => onVenueFilterChange(e.target.value)}
+        >
+          <option value="all">All venues</option>
+          {venueOptions.map((venue) => (
+            <option key={venue} value={venue}>
+              {venue}
             </option>
           ))}
         </select>

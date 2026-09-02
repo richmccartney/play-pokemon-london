@@ -132,6 +132,9 @@
 
 .event-drawer__official-link {
   text-align: center;
+  white-space: normal;
+  width: 100%;
+  padding: 0.85rem 1.25rem;
 }
 
 @media (max-width: 640px) {
