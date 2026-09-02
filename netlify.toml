@@ -1,0 +1,23 @@
+[build]
+  publish = "public"
+  command = "echo 'no build step needed'"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Nightly at 02:00 UTC (03:00 or 04:00 BST depending on time of year, since
+# Netlify schedules always run in UTC).
+[functions."sync-events"]
+  schedule = "0 2 * * *"
+
+# Friendly public URLs.
+[[redirects]]
+  from = "/calendar.ics"
+  to = "/.netlify/functions/calendar"
+  status = 200
+
+[[redirects]]
+  from = "/status"
+  to = "/.netlify/functions/status"
+  status = 200
