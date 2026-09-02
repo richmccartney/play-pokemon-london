@@ -8,6 +8,7 @@ import { getStore } from "@netlify/blobs";
 const STORE_NAME = "pokemon-events";
 const EVENTS_KEY = "events.json";
 const META_KEY = "meta.json";
+const VENUES_KEY = "venues.json";
 
 function store() {
   return getStore(STORE_NAME);
@@ -93,4 +94,20 @@ export async function getMeta() {
       freshCount: 0,
     }
   );
+}
+
+/**
+ * Get the persistent venue-name registry, used to converge on one
+ * canonical (name, address) per venue across repeated sightings over time.
+ * @returns {Promise<object>}
+ */
+export async function getVenueRegistry() {
+  const s = store();
+  return (await s.get(VENUES_KEY, { type: "json" })) ?? {};
+}
+
+/** Persist the (mutated) venue registry after a sync run. */
+export async function saveVenueRegistry(registry) {
+  const s = store();
+  await s.setJSON(VENUES_KEY, registry);
 }

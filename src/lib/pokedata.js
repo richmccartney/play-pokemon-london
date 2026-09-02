@@ -4,6 +4,8 @@
 // endpoint client-side via fetch(). We call it directly server-side instead
 // of scraping rendered HTML, since it returns clean, structured JSON.
 
+import { resolveVenue, titleCase } from "./venues.js";
+
 const API_URL = "https://www.pokedata.ovh/events/leagues/getevents.php";
 
 // Search locations to sweep so we get full coverage instead of relying on
@@ -76,12 +78,27 @@ export async function fetchEventsForPoint(point, filters = DEFAULT_FILTERS) {
  * Normalise a raw event record from the API into our internal shape.
  * @param {object} raw
  * @param {string} searchLabel - which search point produced this result
+ * @param {object} [venueRegistry] - mutable venue registry (see venues.js);
+ *   when provided, shop name and address are cleaned up and converged on a
+ *   single canonical spelling across repeated sightings of the same venue.
  */
-export function normaliseEvent(raw, searchLabel) {
+export function normaliseEvent(raw, searchLabel, venueRegistry) {
   // "when" looks like "2026-09-05 11:00:00" with no explicit timezone.
   // All observed events are UK shops, so we treat this as Europe/London
   // local time (the ICS file encodes this explicitly with a VTIMEZONE).
   const startsAt = raw.when.replace(" ", "T");
+
+  // pokedata.ovh's shop/address fields are raw, inconsistent ALL CAPS data
+  // (e.g. "DO OR DICE ADDLESTONE" vs "DO OR DICE - ADDLESTONE", or the same
+  // venue with two differently-formatted addresses). Clean these up and, if
+  // a registry is supplied, converge on one canonical spelling per venue
+  // over time (the most-frequently-seen raw form wins).
+  const cleanedVenue = venueRegistry
+    ? resolveVenue(
+        { shop: raw.shop, address: raw.street_address },
+        venueRegistry
+      )
+    : { name: titleCase(raw.shop), address: titleCase(raw.street_address) };
 
   // pokedata.ovh leaves `name` blank for most events (especially Friendlies),
   // in which case it falls back to the raw `type` code (e.g. "nonpremier
@@ -90,18 +107,18 @@ export function normaliseEvent(raw, searchLabel) {
   const typeLabel = TYPE_LABELS[raw.type] || raw.type || "TCG Event";
   const title = raw.name && raw.name.trim()
     ? raw.name.trim()
-    : `${raw.shop} - Pokémon TCG ${typeLabel}`;
+    : `${cleanedVenue.name} - Pokémon TCG ${typeLabel}`;
 
   return {
     id: raw.guid,
     name: title,
     type: raw.type,
     typeLabel,
-    shop: raw.shop,
-    city: raw.city,
+    shop: cleanedVenue.name,
+    city: titleCase(raw.city),
     state: raw.state,
     countryCode: raw.country_code,
-    address: raw.street_address,
+    address: cleanedVenue.address,
     latitude: Number(raw.latitude),
     longitude: Number(raw.longitude),
     startsAt,
@@ -139,10 +156,14 @@ function dedupeKey(event) {
 /**
  * Fetch and normalise events across every configured search point,
  * de-duplicating by guid (events near multiple search points can repeat).
+ * @param {object} [options]
+ * @param {object} [options.venueRegistry] - mutable venue registry to
+ *   converge venue names/addresses across sightings (see venues.js).
  */
 export async function fetchAllEvents({
   points = DEFAULT_SEARCH_POINTS,
   filters = DEFAULT_FILTERS,
+  venueRegistry,
 } = {}) {
   const byId = new Map();
   const byContentKey = new Map(); // guards against pokedata.ovh returning the
@@ -151,7 +172,7 @@ export async function fetchAllEvents({
   for (const point of points) {
     const data = await fetchEventsForPoint(point, filters);
     for (const raw of data.events ?? []) {
-      const event = normaliseEvent(raw, point.label);
+      const event = normaliseEvent(raw, point.label, venueRegistry);
 
       const contentKey = dedupeKey(event);
       const existingByContent = byContentKey.get(contentKey);

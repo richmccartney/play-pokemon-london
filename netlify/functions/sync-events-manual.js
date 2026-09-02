@@ -7,7 +7,11 @@
 //     -H "x-write-key: $SYNC_WRITE_KEY"
 
 import { fetchAllEvents } from "../../src/lib/pokedata.js";
-import { upsertEvents } from "../../src/lib/store.js";
+import {
+  upsertEvents,
+  getVenueRegistry,
+  saveVenueRegistry,
+} from "../../src/lib/store.js";
 
 export default async (req) => {
   const providedKey = req.headers.get("x-write-key");
@@ -21,7 +25,9 @@ export default async (req) => {
   }
 
   try {
-    const events = await fetchAllEvents();
+    const venueRegistry = await getVenueRegistry();
+    const events = await fetchAllEvents({ venueRegistry });
+    await saveVenueRegistry(venueRegistry);
     const merged = await upsertEvents(events);
     return new Response(
       JSON.stringify({

@@ -4,11 +4,17 @@
 // Can also be triggered manually (see README) for testing/backfills.
 
 import { fetchAllEvents } from "../../src/lib/pokedata.js";
-import { upsertEvents } from "../../src/lib/store.js";
+import {
+  upsertEvents,
+  getVenueRegistry,
+  saveVenueRegistry,
+} from "../../src/lib/store.js";
 
 export default async (req) => {
   try {
-    const events = await fetchAllEvents();
+    const venueRegistry = await getVenueRegistry();
+    const events = await fetchAllEvents({ venueRegistry });
+    await saveVenueRegistry(venueRegistry);
     const merged = await upsertEvents(events);
 
     console.log(

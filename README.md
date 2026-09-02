@@ -28,6 +28,16 @@ pokedata.ovh getevents.php API  ──►  normalise  ──►  Netlify Blobs (
 - **Storage**: [Netlify Blobs](https://docs.netlify.com/blobs/overview/) —
   a built-in key/value store, so no external database is required. See
   [src/lib/store.js](src/lib/store.js).
+- **Venue data cleanup**: pokedata.ovh's raw shop/address fields are messy
+  (ALL CAPS, inconsistent punctuation — e.g. "DO OR DICE ADDLESTONE" vs
+  "DO OR DICE - ADDLESTONE" — and the same venue sometimes has two
+  differently-formatted addresses). [src/lib/venues.js](src/lib/venues.js)
+  title-cases names/addresses and groups near-duplicate spellings of the
+  same venue (ignoring case/punctuation/spacing) into one canonical form.
+  A persistent registry (`venues.json` in Blobs) remembers every raw
+  variant seen for each venue and its sighting count, so the canonical
+  spelling converges on whichever raw form is seen most often — and gets
+  more consistent over time as more nightly syncs run.
 - **Scheduling**: a
   [Netlify Scheduled Function](https://docs.netlify.com/functions/scheduled-functions/)
   runs nightly. See [netlify/functions/sync-events.js](netlify/functions/sync-events.js)

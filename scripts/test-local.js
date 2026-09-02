@@ -6,9 +6,12 @@ import { writeFileSync } from "node:fs";
 import { fetchAllEvents } from "../src/lib/pokedata.js";
 import { buildCalendar } from "../src/lib/calendar.js";
 
-const events = await fetchAllEvents();
+const venueRegistry = {};
+const events = await fetchAllEvents({ venueRegistry });
 console.log(`Fetched ${events.length} events`);
 console.log(events.slice(0, 3));
+console.log("Sample venue registry entries:");
+console.log(JSON.stringify(Object.values(venueRegistry).slice(0, 3), null, 2));
 
 const ics = buildCalendar(events);
 writeFileSync(new URL("../tmp-preview.ics", import.meta.url), ics);
