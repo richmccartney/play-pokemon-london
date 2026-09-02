@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pokémon TCG League London Events | Subscribable Calendar</title>
-  <meta name="description" content="A free, auto-updating subscribable calendar of Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases near London. Add it to Google Calendar, Apple Calendar or Outlook and never miss an event." />
-  <meta name="keywords" content="Pokemon TCG, Pokemon League, London Pokemon events, League Cup, League Challenge, Pokemon Friendlies, Pre-release, Pokemon calendar, subscribable calendar, ics feed" />
+  <title>PokeLeagues London | Subscribable TCG League Calendar</title>
+  <meta name="description" content="A free, auto-updating subscribable calendar of TCG League Cups, Challenges, Friendlies and Pre-releases near London. Add it to Google Calendar, Apple Calendar or Outlook and never miss an event." />
+  <meta name="keywords" content="TCG League, London TCG events, League Cup, League Challenge, TCG Friendlies, Pre-release, TCG calendar, subscribable calendar, ics feed" />
   <meta name="author" content="Richard McCartney" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://playpokemonlondon.netlify.app/" />
@@ -13,14 +13,14 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://playpokemonlondon.netlify.app/" />
-  <meta property="og:title" content="Pokémon TCG League London Events" />
-  <meta property="og:description" content="A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+  <meta property="og:title" content="PokeLeagues London" />
+  <meta property="og:description" content="A subscribable calendar of nearby TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
   <meta property="og:locale" content="en_GB" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Pokémon TCG League London Events" />
-  <meta name="twitter:description" content="A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+  <meta name="twitter:title" content="PokeLeagues London" />
+  <meta name="twitter:description" content="A subscribable calendar of nearby TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
 
   <meta name="theme-color" content="#E3350D" />
 
@@ -40,9 +40,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Pokémon TCG League London Events",
+    "name": "PokeLeagues London",
     "url": "https://playpokemonlondon.netlify.app/",
-    "description": "A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly."
+    "description": "A subscribable calendar of nearby TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly."
   }
   </script>
 
@@ -217,6 +217,12 @@
       color: #FFFFFF;
     }
     .btn:hover { background-color: var(--accent-hover); text-decoration: none; }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background-color: var(--surface-muted); }
 
     section.card-grid {
       display: grid;
@@ -267,6 +273,7 @@
       padding: 1.5rem;
       margin-bottom: 1.5rem;
       text-align: left;
+      scroll-margin-top: 100px;
     }
     .subscribe-block h2, .status-block h2 {
       font-size: 1.125rem;
@@ -274,6 +281,41 @@
     }
     .subscribe-block p, .status-block p { font-size: 0.9375rem; color: var(--text-muted); }
     .subscribe-block code, .status-block code { display: block; margin: 0.5rem 0 1rem; }
+
+    .platform-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .platform-buttons .btn { padding: 0.6rem 1.1rem; font-size: 0.9rem; }
+    .copy-label { margin-top: 0.5rem; }
+    .copy-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0 0.25rem;
+    }
+    .copy-row code { flex: 1 1 auto; margin: 0; }
+    .copy-btn {
+      flex: 0 0 auto;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-muted);
+      color: var(--text);
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .copy-btn:hover { background-color: var(--border); }
+    .copy-hint {
+      font-size: 0.8125rem;
+      color: var(--accent);
+      min-height: 1.2em;
+    }
 
     footer {
       text-align: center;
@@ -286,7 +328,7 @@
 </head>
 <body>
   <nav>
-    <a class="brand" href="/">🎴 Pokémon TCG League London Events</a>
+    <a class="brand" href="/">🎴 PokeLeagues London</a>
     <button id="theme-toggle" type="button" aria-label="Switch theme">🌙</button>
   </nav>
 
@@ -294,10 +336,10 @@
     <div class="hero-emoji">🎴</div>
     <h1>League Events</h1>
     <p class="tagline">
-      A subscribable calendar of nearby Pokémon TCG League Cups,
+      A subscribable calendar of nearby TCG League Cups,
       Challenges, Friendlies and Pre-releases, refreshed nightly.
     </p>
-    <a class="btn" id="webcal-link" href="#">📅 Subscribe Now</a>
+    <a class="btn" id="webcal-link" href="#subscribe">📅 Subscribe Now</a>
 
     <section class="card-grid">
       <div class="card">
@@ -336,12 +378,22 @@
       </div>
     </section>
 
-    <div class="subscribe-block">
+    <div class="subscribe-block" id="subscribe">
       <h2>Subscribe</h2>
-      <p>Add this URL to your calendar app:</p>
-      <code id="webcal-url">webcal://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code>
-      <p>Or copy the HTTPS version into Google Calendar / Outlook / Apple Calendar manually:</p>
-      <code id="https-url">https://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code>
+      <p>Pick your platform for one-tap setup, or copy the link manually below.</p>
+
+      <div class="platform-buttons">
+        <a class="btn btn-outline" id="apple-link" href="#" target="_blank" rel="noopener">🍏 Apple Calendar (Mac/iPhone)</a>
+        <a class="btn btn-outline" id="google-link" href="#" target="_blank" rel="noopener">🟢 Google Calendar</a>
+        <a class="btn btn-outline" id="outlook-link" href="#" target="_blank" rel="noopener">🟦 Outlook</a>
+      </div>
+
+      <p class="copy-label">Or copy this link and add it manually (Settings → Add calendar → From URL):</p>
+      <div class="copy-row">
+        <code id="https-url">https://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code>
+        <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+      </div>
+      <p class="copy-hint" id="copy-hint" aria-live="polite"></p>
     </div>
 
     <div class="status-block">
@@ -351,16 +403,43 @@
   </main>
 
   <footer>
-    © 2026 Pokémon TCG League London Events — data refreshed nightly
+    © 2026 PokeLeagues London — data refreshed nightly
   </footer>
 
   <script>
     const host = window.location.host;
     const httpsUrl = `https://${host}/calendar.ics`;
     const webcalUrl = `webcal://${host}/calendar.ics`;
-    document.getElementById("webcal-url").textContent = webcalUrl;
     document.getElementById("https-url").textContent = httpsUrl;
-    document.getElementById("webcal-link").href = webcalUrl;
+
+    // Main hero CTA just scrolls to the subscribe section (works everywhere).
+    document.getElementById("webcal-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("subscribe").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Apple Calendar (macOS/iOS) understands webcal:// directly.
+    document.getElementById("apple-link").href = webcalUrl;
+
+    // Google Calendar has a dedicated "add by URL" endpoint.
+    document.getElementById("google-link").href =
+      `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(httpsUrl)}`;
+
+    // Outlook (web) has a similar subscribe-by-URL endpoint.
+    document.getElementById("outlook-link").href =
+      `https://outlook.live.com/calendar/0/addcalendar?url=${encodeURIComponent(httpsUrl)}&name=${encodeURIComponent("PokeLeagues London")}`;
+
+    // Copy-to-clipboard for the manual link (works on Windows/any platform).
+    const copyBtn = document.getElementById("copy-btn");
+    const copyHint = document.getElementById("copy-hint");
+    copyBtn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(httpsUrl);
+        copyHint.textContent = "✅ Copied! Paste it into your calendar app's \"Subscribe by URL\" option.";
+      } catch (e) {
+        copyHint.textContent = "Couldn't copy automatically — please select and copy the link above.";
+      }
+    });
 
     // Theme toggle: defaults to system preference, remembers manual choice.
     const THEME_KEY = "theme-preference";
