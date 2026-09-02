@@ -9,7 +9,10 @@ import { buildCalendar } from "../../src/lib/calendar.js";
 
 export default async (req) => {
   try {
-    const events = await getUpcomingEvents();
+    // Include cancelled events: they're published with STATUS:CANCELLED so
+    // subscribers' calendar clients actually remove them. Omitting them
+    // entirely would leave stale copies in already-synced calendars.
+    const events = await getUpcomingEvents({ includeCancelled: true });
     const ics = buildCalendar(events);
 
     return new Response(ics, {

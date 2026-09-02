@@ -76,12 +76,31 @@ export async function getAllEvents() {
   return (await s.get(EVENTS_KEY, { type: "json" })) ?? {};
 }
 
-/** Returns only non-cancelled, future (or currently happening) events. */
-export async function getUpcomingEvents() {
+/**
+ * Returns future (or currently happening) events.
+ *
+ * Cancelled events are excluded by default, which is what the web UI wants -
+ * there's no value in cluttering the calendar grid with events that aren't
+ * happening.
+ *
+ * The .ics feed needs the opposite: quietly dropping a VEVENT does *not*
+ * reliably remove it from an already-subscribed calendar, since many clients
+ * keep the last-known copy. Publishing the event with STATUS:CANCELLED is what
+ * actually tells a client to strike it through or remove it, so the feed
+ * passes `includeCancelled: true` (see calendar.js).
+ *
+ * @param {object} [options]
+ * @param {boolean} [options.includeCancelled=false]
+ */
+export async function getUpcomingEvents({ includeCancelled = false } = {}) {
   const all = await getAllEvents();
   const now = Date.now();
   return Object.values(all)
-    .filter((e) => !e.cancelled && new Date(e.startsAt).getTime() >= now - 3 * 60 * 60 * 1000)
+    .filter(
+      (e) =>
+        (includeCancelled || !e.cancelled) &&
+        new Date(e.startsAt).getTime() >= now - 3 * 60 * 60 * 1000
+    )
     .sort((a, b) => a.startsAt.localeCompare(b.startsAt));
 }
 
