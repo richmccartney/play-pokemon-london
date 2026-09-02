@@ -32,9 +32,6 @@ function toIcsEvent(event) {
   // it prominently and tell subscribers what they'll find there.
   const descriptionLines = [
     event.typeLabel ? `Type: ${event.typeLabel}` : null,
-    event.distanceKm != null
-      ? `Distance from search point: ${Math.round(event.distanceKm)} km`
-      : null,
     event.pokemonUrl
       ? `\nFull details (admission cost, organizer contact, registration link): ${event.pokemonUrl}`
       : null,
