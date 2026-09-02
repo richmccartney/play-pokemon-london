@@ -58,7 +58,7 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 0.55rem 0.75rem;
+  padding: 0.55rem 0.9rem;
   min-width: 180px;
   height: 2.75rem;
   box-sizing: border-box;
@@ -81,20 +81,30 @@
   text-decoration: underline;
 }
 
-@media (max-width: 640px) {
+/* Below 920px the 5-column grid squeezes the controls until they overflow,
+   so stack them and let every control take the full width instead. */
+@media (max-width: 920px) {
   .filter-bar {
+    display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: stretch;
-    display: flex;
   }
   .filter-bar__heading {
     margin-right: 0;
+  }
+  .filter-bar__location {
+    line-height: 1.4;
   }
   .filter-bar__group {
     width: 100%;
   }
   .filter-bar__select {
     width: 100%;
+    min-width: 0;
+  }
+  .filter-bar__clear {
+    align-self: start;
+    padding-left: 0;
   }
 }

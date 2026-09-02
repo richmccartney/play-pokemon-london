@@ -63,7 +63,9 @@
   .calendar-cell__header-btn {
     font-size: 0.75rem;
   }
-  .event-pill__name {
+  /* Scoped to the month grid only: its 7 narrow columns can't fit event
+     names, but the week and day views are full width and must keep them. */
+  .month-view__grid .event-pill__name {
     display: none;
   }
 }

@@ -18,7 +18,7 @@
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 0.55rem 0.75rem;
+  padding: 0.55rem 0.9rem;
   min-width: 180px;
   height: 2.75rem;
   box-sizing: border-box;

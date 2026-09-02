@@ -52,9 +52,9 @@
   text-decoration: line-through;
 }
 
-/* Keep the venue classes for stable markup while the visual treatment remains
-   monochromatic in both light and dark themes. */
-.event-pill--c0 { --pill-hue: 210; }
+/* Deterministic per-venue colour coding. Hues chosen to be visually distinct
+   and to keep sufficient contrast in both light and dark themes; the pill
+   keeps using --text for label colour so it always stays readable. */.event-pill--c0 { --pill-hue: 210; }
 .event-pill--c1 { --pill-hue: 150; }
 .event-pill--c2 { --pill-hue: 35; }
 .event-pill--c3 { --pill-hue: 280; }
@@ -78,3 +78,45 @@
 .event-pill--c21 { --pill-hue: 180; }
 .event-pill--c22 { --pill-hue: 305; }
 .event-pill--c23 { --pill-hue: 80; }
+
+.event-pill[class*="event-pill--c"] {
+  background: hsl(var(--pill-hue) 65% 92% / 1);
+  border-color: hsl(var(--pill-hue) 45% 80%);
+  border-left-color: hsl(var(--pill-hue) 55% 45%);
+}
+
+.event-pill[class*="event-pill--c"] .event-pill__time {
+  color: hsl(var(--pill-hue) 55% 32%);
+}
+
+.event-pill[class*="event-pill--c"]:hover {
+  background: hsl(var(--pill-hue) 65% 87% / 1);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] {
+  background: hsl(var(--pill-hue) 35% 20% / 1);
+  border-color: hsl(var(--pill-hue) 30% 32%);
+  border-left-color: hsl(var(--pill-hue) 60% 60%);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__time {
+  color: hsl(var(--pill-hue) 65% 72%);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"]:hover {
+  background: hsl(var(--pill-hue) 35% 26% / 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] {
+    background: hsl(var(--pill-hue) 35% 20% / 1);
+    border-color: hsl(var(--pill-hue) 30% 32%);
+    border-left-color: hsl(var(--pill-hue) 60% 60%);
+  }
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__time {
+    color: hsl(var(--pill-hue) 65% 72%);
+  }
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"]:hover {
+    background: hsl(var(--pill-hue) 35% 26% / 1);
+  }
+}

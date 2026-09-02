@@ -2,10 +2,12 @@ import { useMemo, useState } from "react";
 import {
   addDays,
   addMonths,
+  endOfMonth,
   formatMonthLabel,
   formatWeekRangeLabel,
   parseLocal,
   startOfDay,
+  startOfMonth,
   startOfWeek,
 } from "../lib/date";
 import { distanceKm } from "../lib/geo";
@@ -56,6 +58,25 @@ export default function CalendarView({ events, status }) {
 
   const weekStart = startOfWeek(cursor);
 
+  // The count reflects only the period currently on screen (the visible
+  // month, week or day), so it updates both when filters change and when
+  // the user navigates between periods.
+  const visibleEvents = useMemo(() => {
+    const rangeStart =
+      view === "month" ? startOfMonth(cursor) : view === "week" ? weekStart : startOfDay(cursor);
+    const rangeEnd =
+      view === "month"
+        ? addDays(endOfMonth(cursor), 1)
+        : view === "week"
+        ? addDays(weekStart, 7)
+        : addDays(startOfDay(cursor), 1);
+
+    return filteredEvents.filter((event) => {
+      const when = parseLocal(event.startsAt);
+      return when >= rangeStart && when < rangeEnd;
+    });
+  }, [filteredEvents, view, cursor, weekStart]);
+
   const handlePrev = () => {
     if (view === "month") setCursor((c) => addMonths(c, -1));
     else if (view === "week") setCursor((c) => addDays(c, -7));
@@ -91,8 +112,8 @@ export default function CalendarView({ events, status }) {
           </p>
         </div>
         <p className="calendar-view__count" aria-live="polite">
-          <strong>{filteredEvents.length}</strong>
-          <span>{filteredEvents.length === 1 ? "event" : "events"} shown</span>
+          <strong>{visibleEvents.length}</strong>
+          <span>{visibleEvents.length === 1 ? "event" : "events"} shown</span>
         </p>
       </div>
 

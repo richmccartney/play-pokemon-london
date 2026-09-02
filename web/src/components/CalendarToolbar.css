@@ -31,10 +31,13 @@
   background: var(--surface-muted);
 }
 
+/* Scale the period label fluidly so long labels like "Thursday 3 September"
+   stay on one line as the viewport narrows instead of wrapping or clipping. */
 .calendar-toolbar__label {
-  font-size: 1.35rem;
+  font-size: clamp(1rem, 2.2vw, 1.35rem);
   font-weight: 800;
   margin: 0;
+  min-width: 0;
 }
 
 .calendar-toolbar__nav .btn {
@@ -43,7 +46,6 @@
 
 @media (max-width: 640px) {
   .calendar-toolbar__label {
-    font-size: 1.0625rem;
     order: -1;
     width: 100%;
   }
