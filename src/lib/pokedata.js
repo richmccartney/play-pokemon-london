@@ -95,7 +95,12 @@ export function normaliseEvent(raw, searchLabel, venueRegistry) {
   // over time (the most-frequently-seen raw form wins).
   const cleanedVenue = venueRegistry
     ? resolveVenue(
-        { shop: raw.shop, address: raw.street_address },
+        {
+          shop: raw.shop,
+          address: raw.street_address,
+          latitude: raw.latitude,
+          longitude: raw.longitude,
+        },
         venueRegistry
       )
     : { name: titleCase(raw.shop), address: titleCase(raw.street_address) };

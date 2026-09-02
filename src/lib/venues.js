@@ -79,17 +79,37 @@ export function titleCase(str) {
 }
 
 /**
- * Resolve a raw (shop, address, city, state) tuple to a canonical venue,
- * updating the mutable `registry` in place so repeated venues converge on
- * one name/address over time (the most-frequently-seen raw form wins).
+ * Round a coordinate to ~111m precision (3 decimal places), coarse enough to
+ * absorb tiny GPS jitter for the same physical venue, but fine enough to
+ * separate two different branches of a chain that share the same name
+ * (e.g. two different "Bad Moon Cafe" shops in different parts of London).
+ */
+function roundCoord(n) {
+  const num = Number(n);
+  return Number.isFinite(num) ? num.toFixed(3) : "?";
+}
+
+/**
+ * Resolve a raw (shop, address, city, state, latitude, longitude) tuple to a
+ * canonical venue, updating the mutable `registry` in place so repeated
+ * sightings of the *same physical venue* converge on one name/address over
+ * time (the most-frequently-seen raw form wins).
  *
- * @param {{shop:string,address:string,city:string,state:string}} raw
+ * Venues are grouped by name AND location together, not name alone — two
+ * different branches of a chain that happen to share a name (e.g. two
+ * "Bad Moon Cafe" locations) must never be merged into one venue, or one
+ * branch's events would end up displaying the other branch's address/map
+ * pin.
+ *
+ * @param {{shop:string,address:string,city:string,state:string,latitude?:number,longitude?:number}} raw
  * @param {object} registry - mutable venue registry (see store.js), shape:
  *   { [normalisedKey]: { canonicalName, canonicalAddress, variants: { [rawShop+"|"+rawAddress]: count } } }
  * @returns {{name:string,address:string}}
  */
 export function resolveVenue(raw, registry) {
-  const key = normaliseKey(raw.shop);
+  const key = `${normaliseKey(raw.shop)}@${roundCoord(raw.latitude)},${roundCoord(
+    raw.longitude
+  )}`;
   const variantKey = `${raw.shop}|${raw.address}`;
 
   let entry = registry[key];
@@ -117,6 +137,38 @@ export function resolveVenue(raw, registry) {
 
   entry.canonicalName = titleCase(bestShop);
   entry.canonicalAddress = titleCase(bestAddress);
+  entry.baseNameKey = normaliseKey(raw.shop);
 
-  return { name: entry.canonicalName, address: entry.canonicalAddress };
+  // If another registry entry has the same base name but a different
+  // location, it's a different physical branch of a same-named venue (e.g.
+  // two "Bad Moon Cafe" locations) — disambiguate both display names by
+  // appending a distinguishing fragment from their address so the UI (venue
+  // filter, calendar pills, drawer) never conflates the two.
+  const siblingKeys = Object.keys(registry).filter(
+    (k) => k !== key && registry[k].baseNameKey === entry.baseNameKey
+  );
+  if (siblingKeys.length > 0) {
+    entry.displayName = disambiguatedName(entry.canonicalName, entry.canonicalAddress);
+    for (const sibKey of siblingKeys) {
+      const sib = registry[sibKey];
+      sib.displayName = disambiguatedName(sib.canonicalName, sib.canonicalAddress);
+    }
+  } else {
+    entry.displayName = entry.canonicalName;
+  }
+
+  return { name: entry.displayName, address: entry.canonicalAddress };
+}
+
+/**
+ * Build a disambiguated display name by appending the first distinguishing
+ * fragment of the address (e.g. street name) to the base venue name, e.g.
+ * "Bad Moon Cafe (Holloway Road)".
+ */
+function disambiguatedName(name, address) {
+  const firstFragment = (address || "").split(",")[0].trim();
+  if (!firstFragment) return name;
+  // Avoid double-appending if the name already contains the fragment.
+  if (normaliseKey(name).includes(normaliseKey(firstFragment))) return name;
+  return `${name} (${firstFragment})`;
 }
