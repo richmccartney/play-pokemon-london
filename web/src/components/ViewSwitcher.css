@@ -1,0 +1,29 @@
+.view-switcher {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3px;
+  background: var(--surface-muted);
+}
+
+.view-switcher__btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.view-switcher__btn--active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+.view-switcher__btn:hover:not(.view-switcher__btn--active) {
+  color: var(--text);
+}

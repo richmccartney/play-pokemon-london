@@ -1,0 +1,33 @@
+.calendar-view {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+.calendar-view__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.calendar-view__message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted);
+  background: var(--surface-muted);
+  border-radius: 0.75rem;
+}
+
+.calendar-view__message--error {
+  color: var(--warn);
+}
+
+@media (max-width: 640px) {
+  .calendar-view {
+    padding: 0 1rem 2rem;
+  }
+}

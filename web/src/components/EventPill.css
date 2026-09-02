@@ -1,0 +1,116 @@
+.event-pill {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.75rem;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.event-pill:hover {
+  background: color-mix(in srgb, var(--accent) 22%, var(--surface));
+}
+
+.event-pill__time {
+  font-weight: 700;
+  color: var(--accent);
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.event-pill__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-pill--week,
+.event-pill--day {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.875rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.event-pill--week .event-pill__name,
+.event-pill--day .event-pill__name {
+  white-space: normal;
+  font-weight: 600;
+}
+
+.event-pill--cancelled {
+  opacity: 0.55;
+  text-decoration: line-through;
+}
+
+/* Deterministic per-venue colour coding. Hues chosen to be visually distinct
+   and to keep sufficient contrast in both light and dark themes; the pill
+   keeps using --text for label colour so it always stays readable. */
+.event-pill--c0 { --pill-hue: 210; }
+.event-pill--c1 { --pill-hue: 150; }
+.event-pill--c2 { --pill-hue: 35; }
+.event-pill--c3 { --pill-hue: 280; }
+.event-pill--c4 { --pill-hue: 0; }
+.event-pill--c5 { --pill-hue: 190; }
+.event-pill--c6 { --pill-hue: 95; }
+.event-pill--c7 { --pill-hue: 320; }
+.event-pill--c8 { --pill-hue: 55; }
+.event-pill--c9 { --pill-hue: 250; }
+.event-pill--c10 { --pill-hue: 170; }
+.event-pill--c11 { --pill-hue: 15; }
+.event-pill--c12 { --pill-hue: 230; }
+.event-pill--c13 { --pill-hue: 130; }
+.event-pill--c14 { --pill-hue: 300; }
+.event-pill--c15 { --pill-hue: 70; }
+.event-pill--c16 { --pill-hue: 200; }
+.event-pill--c17 { --pill-hue: 340; }
+.event-pill--c18 { --pill-hue: 110; }
+.event-pill--c19 { --pill-hue: 265; }
+.event-pill--c20 { --pill-hue: 25; }
+.event-pill--c21 { --pill-hue: 180; }
+.event-pill--c22 { --pill-hue: 305; }
+.event-pill--c23 { --pill-hue: 80; }
+
+.event-pill[class*="event-pill--c"] {
+  background: hsl(var(--pill-hue) 65% 92% / 1);
+}
+
+.event-pill[class*="event-pill--c"] .event-pill__time {
+  color: hsl(var(--pill-hue) 55% 32%);
+}
+
+.event-pill[class*="event-pill--c"]:hover {
+  background: hsl(var(--pill-hue) 65% 87% / 1);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] {
+  background: hsl(var(--pill-hue) 35% 20% / 1);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__time {
+  color: hsl(var(--pill-hue) 65% 72%);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"]:hover {
+  background: hsl(var(--pill-hue) 35% 26% / 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] {
+    background: hsl(var(--pill-hue) 35% 20% / 1);
+  }
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__time {
+    color: hsl(var(--pill-hue) 65% 72%);
+  }
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"]:hover {
+    background: hsl(var(--pill-hue) 35% 26% / 1);
+  }
+}

@@ -1,9 +1,10 @@
 [build]
-  publish = "public"
-  command = "echo 'no build step needed'"
+  base = "web"
+  publish = "dist"
+  command = "npm install && npm run build"
 
 [functions]
-  directory = "netlify/functions"
+  directory = "../netlify/functions"
   node_bundler = "esbuild"
 
 # Nightly at 02:00 UTC (03:00 or 04:00 BST depending on time of year, since
@@ -20,4 +21,15 @@
 [[redirects]]
   from = "/status"
   to = "/.netlify/functions/status"
+  status = 200
+
+[[redirects]]
+  from = "/api/events"
+  to = "/.netlify/functions/events"
+  status = 200
+
+# SPA fallback so client-side routes don't 404 on refresh.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
