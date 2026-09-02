@@ -109,7 +109,14 @@ export function normaliseEvent(raw, searchLabel, venueRegistry) {
   // in which case it falls back to the raw `type` code (e.g. "nonpremier
   // TCG") which is meaningless to subscribers. Build a readable title
   // instead: "{Shop} - {friendly type label}".
-  const typeLabel = TYPE_LABELS[raw.type] || raw.type || "TCG Event";
+  //
+  // pokedata.ovh's raw `type` only ever distinguishes "League Cup",
+  // "League Challenge", or a single catch-all "nonpremier TCG" bucket that
+  // covers Prereleases, Friendly Tournaments, and regular League Locals
+  // alike. When an event has its own organiser-provided title, sniff it for
+  // keywords to recover the more specific type instead of defaulting every
+  // one of them to "League (Locals)".
+  const typeLabel = refineTypeLabel(raw.type, raw.name);
   const title = raw.name && raw.name.trim()
     ? raw.name.trim()
     : `${cleanedVenue.name} - Pokémon TCG ${typeLabel}`;
@@ -146,6 +153,39 @@ const TYPE_LABELS = {
   "League Cup": "League Cup",
   "Pre-release": "Pre-release",
 };
+
+// Keyword hints for sniffing a more specific event type out of an
+// organiser-provided event name, tried in priority order. pokedata.ovh's
+// "nonpremier TCG" raw type is a catch-all covering Prereleases, Friendly
+// Tournaments and plain League Locals alike, so this is the only signal we
+// have to tell them apart when the API itself doesn't distinguish them.
+const NAME_TYPE_HINTS = [
+  { label: "Pre-release", pattern: /pre[\s-]?release/i },
+  { label: "League Cup", pattern: /\bcup\b/i },
+  { label: "League Challenge", pattern: /\bchallenge\b/i },
+  { label: "Friendly Tournament", pattern: /friendly/i },
+  { label: "Play Session", pattern: /play\s*session/i },
+];
+
+/**
+ * Resolve the most specific type label we can for an event: pokedata.ovh's
+ * raw `type` code is trusted when it's already specific (League
+ * Cup/Challenge/Pre-release), but "nonpremier TCG" is a catch-all, so for
+ * that case we sniff the organiser-provided event name (when present) for
+ * keywords before falling back to the generic "League (Locals)" label.
+ * @param {string} rawType
+ * @param {string} [rawName]
+ */
+function refineTypeLabel(rawType, rawName) {
+  const baseLabel = TYPE_LABELS[rawType] || rawType || "TCG Event";
+  if (rawType !== "nonpremier TCG" || !rawName || !rawName.trim()) {
+    return baseLabel;
+  }
+  for (const hint of NAME_TYPE_HINTS) {
+    if (hint.pattern.test(rawName)) return hint.label;
+  }
+  return baseLabel;
+}
 
 /**
  * Build a stable de-duplication key for an event: pokedata.ovh sometimes
