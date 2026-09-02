@@ -4,7 +4,7 @@
 // endpoint client-side via fetch(). We call it directly server-side instead
 // of scraping rendered HTML, since it returns clean, structured JSON.
 
-import { resolveVenue, titleCase } from "./venues.js";
+import { resolveVenue, titleCase, finaliseVenueNames } from "./venues.js";
 import {
   fetchAuthoritativeTypes,
   authoritativeTypeFor,
@@ -136,6 +136,9 @@ export function normaliseEvent(raw, searchLabel, venueRegistry, authoritativeTyp
     type: raw.type,
     typeLabel,
     shop: cleanedVenue.name,
+    // Which registry entry this event's venue resolved to, so display names
+    // can be applied after every event is seen (see finaliseVenueNames).
+    venueKey: cleanedVenue.key,
     city: titleCase(raw.city),
     state: raw.state,
     countryCode: raw.country_code,
@@ -250,6 +253,26 @@ export async function fetchAllEvents({
       const existing = byId.get(event.id);
       if (!existing || event.distanceKm < existing.distanceKm) {
         byId.set(event.id, event);
+      }
+    }
+  }
+
+  // Display names can only be settled once every venue is known, since
+  // whether a venue needs a locality suffix depends on its siblings.
+  if (venueRegistry) {
+    finaliseVenueNames(venueRegistry);
+    for (const event of byId.values()) {
+      const entry = event.venueKey ? venueRegistry[event.venueKey] : null;
+      if (entry?.displayName) event.shop = entry.displayName;
+      // Address is settled here too: the canonical form isn't known until
+      // every variant has been counted, so events resolved early in the run
+      // would otherwise keep a losing spelling.
+      if (entry?.canonicalAddress) event.address = entry.canonicalAddress;
+      // Pin every event at the venue's anchor coordinates so the same shop
+      // doesn't render two map pins a few metres apart.
+      if (Number.isFinite(entry?.lat) && Number.isFinite(entry?.lng)) {
+        event.latitude = entry.lat;
+        event.longitude = entry.lng;
       }
     }
   }

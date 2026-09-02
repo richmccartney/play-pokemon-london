@@ -25,6 +25,7 @@ const KEEP_UPPER = new Set([
   "CIC",
   "LLP",
   "P9",
+  "FP",
 ]);
 
 // Small words that stay lower-case in title case (unless first/last word).
@@ -45,6 +46,23 @@ const LOWER_WORDS = new Set([
  */
 export function normaliseKey(str) {
   return (str || "").toUpperCase().replace(/[^A-Z0-9]+/g, "");
+}
+
+// Legal-entity suffixes that carry no meaning for identifying a venue.
+// pokedata.ovh mixes these in inconsistently ("BAD MOON CAFE" vs "BAD MOON
+// CAFE LTD."), which would otherwise split one venue into two.
+const LEGAL_SUFFIXES = /\b(LTD|LIMITED|LLP|PLC|CIC|INC|CO|COMPANY)\b\.?/g;
+// Stateless counterpart for one-off tests (a /g regex's lastIndex makes
+// .test() stateful across calls).
+const HAS_LEGAL_SUFFIX = new RegExp(LEGAL_SUFFIXES.source, "i");
+
+/**
+ * Build the *identity* key for a venue name: like normaliseKey, but also
+ * strips legal-entity suffixes so "Bad Moon Cafe" and "Bad Moon Cafe Ltd."
+ * resolve to the same venue.
+ */
+export function venueNameKey(str) {
+  return normaliseKey((str || "").toUpperCase().replace(LEGAL_SUFFIXES, " "));
 }
 
 /**
@@ -79,14 +97,34 @@ export function titleCase(str) {
 }
 
 /**
- * Round a coordinate to ~111m precision (3 decimal places), coarse enough to
- * absorb tiny GPS jitter for the same physical venue, but fine enough to
- * separate two different branches of a chain that share the same name
- * (e.g. two different "Bad Moon Cafe" shops in different parts of London).
+ * Round a coordinate to ~111m precision (3 decimal places). Used only as a
+ * coarse bucket key; actual venue matching uses `withinVenueRadius` below,
+ * because rounding alone splits venues whose GPS jitter straddles a boundary
+ * (e.g. 51.7705 and 51.7708 round to different values but are 33m apart).
  */
 function roundCoord(n) {
   const num = Number(n);
   return Number.isFinite(num) ? num.toFixed(3) : "?";
+}
+
+// Two sightings within this distance are treated as the same physical venue.
+// Comfortably absorbs geocoding jitter (the same shop returned with slightly
+// different coordinates) while staying far below the separation between
+// genuinely different branches (the two Bad Moon Cafes are ~6km apart).
+const VENUE_MATCH_METRES = 200;
+
+/** Approximate distance in metres between two lat/lng pairs. */
+function metresBetween(aLat, aLng, bLat, bLng) {
+  const latMetres = (aLat - bLat) * 111_320;
+  const lngMetres =
+    (aLng - bLng) * 111_320 * Math.cos(((aLat + bLat) / 2) * (Math.PI / 180));
+  return Math.hypot(latMetres, lngMetres);
+}
+
+function withinVenueRadius(entry, lat, lng) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return false;
+  if (!Number.isFinite(entry.lat) || !Number.isFinite(entry.lng)) return false;
+  return metresBetween(entry.lat, entry.lng, lat, lng) <= VENUE_MATCH_METRES;
 }
 
 /**
@@ -107,9 +145,42 @@ function roundCoord(n) {
  * @returns {{name:string,address:string}}
  */
 export function resolveVenue(raw, registry) {
-  const key = `${normaliseKey(raw.shop)}@${roundCoord(raw.latitude)},${roundCoord(
-    raw.longitude
-  )}`;
+  const lat = Number(raw.latitude);
+  const lng = Number(raw.longitude);
+  const nameKey = venueNameKey(raw.shop);
+
+  // Backfill entries written before venues carried explicit coordinates:
+  // their key encodes the rounded lat/lng, so recover it rather than letting
+  // the entry become permanently unmatchable (which would fork the venue).
+  for (const [k, entry] of Object.entries(registry)) {
+    if (Number.isFinite(entry.lat) && Number.isFinite(entry.lng)) continue;
+    const match = /@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)$/.exec(k);
+    if (!match) continue;
+    entry.lat = Number(match[1]);
+    entry.lng = Number(match[2]);
+    entry.nameKey = entry.nameKey ?? venueNameKey(k.slice(0, k.lastIndexOf("@")));
+  }
+
+  // Match against an existing venue when the name is the same (or one is an
+  // extension of the other, e.g. "BAD MOON CAFE" vs "BAD MOON CAFE HOLLOWAY
+  // ROAD") *and* the location is within VENUE_MATCH_METRES.
+  //
+  // The distance check is what makes the prefix rule safe: two genuinely
+  // different branches that share a name sit far apart (the two Bad Moon
+  // Cafes are ~6km apart) and so keep their own entries, while the same shop
+  // reported with jittery coordinates converges on one.
+  const key =
+    Object.keys(registry).find((k) => {
+      const existing = registry[k];
+      if (!existing.nameKey) return false;
+      if (!withinVenueRadius(existing, lat, lng)) return false;
+      return (
+        existing.nameKey === nameKey ||
+        existing.nameKey.startsWith(nameKey) ||
+        nameKey.startsWith(existing.nameKey)
+      );
+    }) ?? `${nameKey}@${roundCoord(lat)},${roundCoord(lng)}`;
+
   const variantKey = `${raw.shop}|${raw.address}`;
 
   let entry = registry[key];
@@ -117,6 +188,18 @@ export function resolveVenue(raw, registry) {
     entry = { canonicalName: null, canonicalAddress: null, variants: {} };
     registry[key] = entry;
   }
+  // Anchor the venue on the first coordinates seen so the match radius is
+  // measured from a stable point rather than drifting with each sighting.
+  if (!Number.isFinite(entry.lat) || !Number.isFinite(entry.lng)) {
+    entry.lat = lat;
+    entry.lng = lng;
+  }
+  // Keep the shortest name seen as the venue's identity, so a longer
+  // branch-suffixed variant doesn't stop a later plain sighting matching.
+  entry.nameKey =
+    entry.nameKey && entry.nameKey.length < nameKey.length
+      ? entry.nameKey
+      : nameKey;
 
   entry.variants[variantKey] = (entry.variants[variantKey] || 0) + 1;
 
@@ -137,38 +220,117 @@ export function resolveVenue(raw, registry) {
 
   entry.canonicalName = titleCase(bestShop);
   entry.canonicalAddress = titleCase(bestAddress);
-  entry.baseNameKey = normaliseKey(raw.shop);
+  entry.baseNameKey = entry.nameKey;
 
-  // If another registry entry has the same base name but a different
-  // location, it's a different physical branch of a same-named venue (e.g.
-  // two "Bad Moon Cafe" locations) — disambiguate both display names by
-  // appending a distinguishing fragment from their address so the UI (venue
-  // filter, calendar pills, drawer) never conflates the two.
-  const siblingKeys = Object.keys(registry).filter(
-    (k) => k !== key && registry[k].baseNameKey === entry.baseNameKey
-  );
-  if (siblingKeys.length > 0) {
-    entry.displayName = disambiguatedName(entry.canonicalName, entry.canonicalAddress);
-    for (const sibKey of siblingKeys) {
-      const sib = registry[sibKey];
-      sib.displayName = disambiguatedName(sib.canonicalName, sib.canonicalAddress);
-    }
-  } else {
-    entry.displayName = entry.canonicalName;
-  }
+  // Display names are resolved in a separate pass once every event has been
+  // seen (see finaliseVenueNames): whether a venue needs disambiguating
+  // depends on the other venues in the registry, which isn't fully known
+  // while events are still streaming in.
+  entry.displayName = entry.displayName ?? entry.canonicalName;
 
-  return { name: entry.displayName, address: entry.canonicalAddress };
+  return { key, name: entry.canonicalName, address: entry.canonicalAddress };
 }
 
 /**
- * Build a disambiguated display name by appending the first distinguishing
- * fragment of the address (e.g. street name) to the base venue name, e.g.
+ * Resolve final display names for every venue in the registry. Must run after
+ * all events have been processed.
+ *
+ * Venues sharing a base name are different branches of the same shop (e.g.
+ * two "Bad Moon Cafe" sites), so each gets a locality appended. They're also
+ * given a *common* base name — the shortest canonical form seen across the
+ * group — so one branch doesn't render as "Bad Moon Cafe Ltd. (Great Dover
+ * St)" while its sibling is "Bad Moon Cafe Holloway Road (Holloway Rd)".
+ *
+ * @param {object} registry - mutable venue registry, updated in place
+ */
+export function finaliseVenueNames(registry) {
+  const groups = new Map();
+  for (const [key, entry] of Object.entries(registry)) {
+    if (!entry.baseNameKey) continue;
+    if (!groups.has(entry.baseNameKey)) groups.set(entry.baseNameKey, []);
+    groups.get(entry.baseNameKey).push([key, entry]);
+  }
+
+  for (const members of groups.values()) {
+    if (members.length === 1) {
+      const [, entry] = members[0];
+      entry.displayName = entry.canonicalName;
+      continue;
+    }
+
+    // Build the shared base name by stripping legal suffixes and any branch
+    // label that's already embedded in one variant's name ("Bad Moon Cafe
+    // Holloway Road" -> "Bad Moon Cafe"), so siblings render consistently
+    // before their locality is appended.
+    const cleaned = members
+      .map(([, e]) => cleanBaseName(e.canonicalName))
+      .filter(Boolean)
+      .sort((a, b) => a.length - b.length);
+    const sharedName = cleaned[0];
+
+    for (const [, entry] of members) {
+      entry.displayName = disambiguatedName(
+        sharedName ?? entry.canonicalName,
+        entry.canonicalAddress
+      );
+    }
+  }
+}
+
+/**
+ * Strip trailing legal-entity suffixes from a display name, e.g.
+ * "Bad Moon Cafe LTD." -> "Bad Moon Cafe".
+ */
+function cleanBaseName(name) {
+  if (!name) return name;
+  return name
+    .replace(new RegExp(`\\s*${HAS_LEGAL_SUFFIX.source}\\s*$`, "i"), "")
+    .trim();
+}
+
+/**
+ * Build a disambiguated display name for two branches that share a name, e.g.
  * "Bad Moon Cafe (Holloway Road)".
+ *
+ * Addresses look like "Arch 5, 303 Holloway Rd, London N7 8HS, UK", so the
+ * first comma-fragment is often a unit/arch number ("Arch 5", "Unit 8") which
+ * tells a human nothing about *where* the venue is. Prefer the first fragment
+ * that reads like a street or locality, and fall back to the postcode district
+ * so we always produce something meaningful.
  */
 function disambiguatedName(name, address) {
-  const firstFragment = (address || "").split(",")[0].trim();
-  if (!firstFragment) return name;
-  // Avoid double-appending if the name already contains the fragment.
-  if (normaliseKey(name).includes(normaliseKey(firstFragment))) return name;
-  return `${name} (${firstFragment})`;
+  const fragments = (address || "")
+    .split(",")
+    .map((f) => f.trim())
+    .filter(Boolean);
+
+  // Unit/floor/arch designators carry no locational meaning on their own.
+  const isUnitFragment = (f) =>
+    /^(unit|arch|suite|shop|floor|flat|no\.?|building|block)\b/i.test(f) ||
+    /^\d+[a-z]?$/i.test(f);
+  // Country codes and generic region names aren't distinguishing either.
+  const isGeneric = (f) => /^(uk|gb|england|scotland|wales|london)$/i.test(f);
+
+  const candidate = fragments.find(
+    (f) => !isUnitFragment(f) && !isGeneric(f) && /[a-z]/i.test(f)
+  );
+
+  let label = candidate;
+  if (label) {
+    // Trim a trailing postcode/city off e.g. "303 Holloway Rd" style
+    // fragments, and drop a leading street number: "303 Holloway Rd" reads
+    // better as "Holloway Rd".
+    label = label.replace(/^\d+[a-z]?\s+/i, "").trim();
+  }
+
+  if (!label) {
+    // Last resort: the outward postcode ("N7 8HS" -> "N7").
+    const postcode = (address || "").match(/\b([A-Z]{1,2}\d[A-Z\d]?)\s*\d[A-Z]{2}\b/i);
+    label = postcode ? postcode[1].toUpperCase() : null;
+  }
+
+  if (!label) return name;
+  // Avoid double-appending if the name already says it.
+  if (normaliseKey(name).includes(normaliseKey(label))) return name;
+  return `${name} (${label})`;
 }
