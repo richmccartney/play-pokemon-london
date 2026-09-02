@@ -31,7 +31,7 @@ function toIcsEvent(event) {
   // bot protection we can't scrape server-side — so instead we link out to
   // it prominently and tell subscribers what they'll find there.
   const descriptionLines = [
-    event.type ? `Type: ${event.type}` : null,
+    event.typeLabel ? `Type: ${event.typeLabel}` : null,
     event.distanceKm != null
       ? `Distance from search point: ${Math.round(event.distanceKm)} km`
       : null,
@@ -56,7 +56,7 @@ function toIcsEvent(event) {
       Number.isFinite(event.latitude) && Number.isFinite(event.longitude)
         ? { lat: event.latitude, lon: event.longitude }
         : undefined,
-    categories: event.type ? [event.type] : undefined,
+    categories: event.typeLabel ? [event.typeLabel] : undefined,
     status: event.cancelled ? "CANCELLED" : "CONFIRMED",
   };
 }

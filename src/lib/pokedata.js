@@ -83,10 +83,20 @@ export function normaliseEvent(raw, searchLabel) {
   // local time (the ICS file encodes this explicitly with a VTIMEZONE).
   const startsAt = raw.when.replace(" ", "T");
 
+  // pokedata.ovh leaves `name` blank for most events (especially Friendlies),
+  // in which case it falls back to the raw `type` code (e.g. "nonpremier
+  // TCG") which is meaningless to subscribers. Build a readable title
+  // instead: "{Shop} - {friendly type label}".
+  const typeLabel = TYPE_LABELS[raw.type] || raw.type || "TCG Event";
+  const title = raw.name && raw.name.trim()
+    ? raw.name.trim()
+    : `${raw.shop} - Pokémon TCG ${typeLabel}`;
+
   return {
     id: raw.guid,
-    name: raw.name || raw.type,
+    name: title,
     type: raw.type,
+    typeLabel,
     shop: raw.shop,
     city: raw.city,
     state: raw.state,
@@ -107,6 +117,25 @@ export function normaliseEvent(raw, searchLabel) {
   };
 }
 
+// Human-readable labels for pokedata.ovh's raw `type` codes.
+const TYPE_LABELS = {
+  "nonpremier TCG": "Friendly",
+  "League Challenge": "League Challenge",
+  "League Cup": "League Cup",
+  "Pre-release": "Pre-release",
+};
+
+/**
+ * Build a stable de-duplication key for an event: pokedata.ovh sometimes
+ * returns the exact same event twice with two different guids (same shop,
+ * time and address). We treat those as one event.
+ */
+function dedupeKey(event) {
+  return [event.shop, event.startsAt, event.type, event.address]
+    .join("|")
+    .toLowerCase();
+}
+
 /**
  * Fetch and normalise events across every configured search point,
  * de-duplicating by guid (events near multiple search points can repeat).
@@ -116,11 +145,22 @@ export async function fetchAllEvents({
   filters = DEFAULT_FILTERS,
 } = {}) {
   const byId = new Map();
+  const byContentKey = new Map(); // guards against pokedata.ovh returning the
+  // same event twice under different guids (same shop/time/type/address).
 
   for (const point of points) {
     const data = await fetchEventsForPoint(point, filters);
     for (const raw of data.events ?? []) {
       const event = normaliseEvent(raw, point.label);
+
+      const contentKey = dedupeKey(event);
+      const existingByContent = byContentKey.get(contentKey);
+      if (existingByContent && existingByContent.id !== event.id) {
+        // True duplicate from the API itself - skip, keep the first one seen.
+        continue;
+      }
+      byContentKey.set(contentKey, event);
+
       // Keep the closest-distance copy if seen from multiple search points.
       const existing = byId.get(event.id);
       if (!existing || event.distanceKm < existing.distanceKm) {
