@@ -24,6 +24,18 @@
 
   <meta name="theme-color" content="#E3350D" />
 
+  <script>
+    // Apply saved theme before first paint to avoid a flash of the wrong theme.
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme-preference");
+        if (stored === "light" || stored === "dark") {
+          document.documentElement.setAttribute("data-theme", stored);
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -67,6 +79,32 @@
         --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
     }
+    :root[data-theme="dark"] {
+      --accent: #FF6B4A;
+      --accent-hover: #FF8566;
+      --bg: #0F0F0F;
+      --surface: #1A1A1A;
+      --surface-muted: #262626;
+      --text: #F5F5F5;
+      --text-muted: #9CA3AF;
+      --border: #333333;
+      --warn: #FBBF24;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    :root[data-theme="light"] {
+      --accent: #E3350D;
+      --accent-hover: #C42D0B;
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --surface-muted: #F0F0F0;
+      --text: #1A1A1A;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --warn: #F59E0B;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    }
 
     * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { height: 100%; }
@@ -95,21 +133,19 @@
 
     nav {
       position: fixed;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1.5rem;
       background-color: color-mix(in srgb, var(--surface) 80%, transparent);
-      border-radius: var(--radius-lg);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      max-width: 720px;
-      margin: 0 auto;
+      width: 100%;
     }
     nav .brand {
       display: inline-flex;
@@ -118,8 +154,24 @@
       font-size: 0.875rem;
       font-weight: 700;
       color: var(--accent);
+      margin-right: auto;
     }
     nav .brand:hover { text-decoration: none; }
+    #theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-lg);
+      background-color: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.15rem;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    #theme-toggle:hover { background-color: var(--surface-muted); }
 
     main {
       max-width: 640px;
@@ -235,6 +287,7 @@
 <body>
   <nav>
     <a class="brand" href="/">🎴 Pokémon TCG League London Events</a>
+    <button id="theme-toggle" type="button" aria-label="Switch theme">🌙</button>
   </nav>
 
   <main>
@@ -308,6 +361,35 @@
     document.getElementById("webcal-url").textContent = webcalUrl;
     document.getElementById("https-url").textContent = httpsUrl;
     document.getElementById("webcal-link").href = webcalUrl;
+
+    // Theme toggle: defaults to system preference, remembers manual choice.
+    const THEME_KEY = "theme-preference";
+    const root = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function currentTheme() {
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === "light" || stored === "dark") return stored;
+      return systemPrefersDark.matches ? "dark" : "light";
+    }
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      toggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+      toggleBtn.setAttribute(
+        "aria-label",
+        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+      );
+    }
+
+    applyTheme(currentTheme());
+
+    toggleBtn.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+    });
 
     fetch("/status")
       .then((res) => res.json())
