@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import "./Hero.css";
 
-// Roughly how long the catch animation runs, and the window between plays.
-const CATCH_DURATION_MS = 2600;
+// Roughly how long the wiggle runs, and the window between plays.
+const CATCH_DURATION_MS = 1400;
 const MIN_GAP_MS = 6000;
 const MAX_GAP_MS = 14000;
 
 export default function Hero() {
   const [catching, setCatching] = useState(false);
 
-  // Replay the catch animation at random intervals so the hero feels alive
+  // Replay the wiggle at random intervals so the hero feels alive
   // without being predictable. Respects reduced-motion by never scheduling.
   useEffect(() => {
     const reduced =

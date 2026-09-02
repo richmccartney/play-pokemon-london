@@ -17,58 +17,34 @@
   transform-origin: 50% 100%;
 }
 
-/* A caught-Pokemon sequence starting from rest: the ball hops up, falls and
-   bounces twice with decreasing height, then rocks side to side before
-   settling. Rotation and translation only, so the ball never distorts. */
+/* The wiggle of a pokeball settling after a catch: it rocks side to side
+   with decaying amplitude. Rotation only, so the ball never moves or
+   distorts. Pivots near the base so it rocks rather than spins. */
 .hero__logo--catching svg {
-  animation: pokeball-catch 2.6s both;
+  animation: pokeball-wiggle 1.4s ease-in-out both;
 }
 
-@keyframes pokeball-catch {
+@keyframes pokeball-wiggle {
   0% {
-    transform: translateY(0) rotate(0deg);
-    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.35);
+    transform: rotate(0deg);
   }
-  12% {
-    transform: translateY(-70%) rotate(-8deg);
-    animation-timing-function: cubic-bezier(0.33, 0.65, 0.66, 1);
-  }
-  24% {
-    transform: translateY(0) rotate(0deg);
-    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.35);
+  15% {
+    transform: rotate(-15deg);
   }
   33% {
-    transform: translateY(-34%) rotate(5deg);
-    animation-timing-function: cubic-bezier(0.33, 0.65, 0.66, 1);
+    transform: rotate(15deg);
   }
-  42% {
-    transform: translateY(0) rotate(0deg);
-    animation-timing-function: cubic-bezier(0.33, 0, 0.66, 0.35);
+  50% {
+    transform: rotate(-11deg);
   }
-  48% {
-    transform: translateY(-12%) rotate(-2deg);
-    animation-timing-function: cubic-bezier(0.33, 0.65, 0.66, 1);
+  66% {
+    transform: rotate(8deg);
   }
-  53% {
-    transform: translateY(0) rotate(0deg);
-  }
-  61% {
-    transform: translateY(0) rotate(-15deg);
-  }
-  69% {
-    transform: translateY(0) rotate(15deg);
-  }
-  77% {
-    transform: translateY(0) rotate(-11deg);
-  }
-  85% {
-    transform: translateY(0) rotate(8deg);
-  }
-  92% {
-    transform: translateY(0) rotate(-4deg);
+  83% {
+    transform: rotate(-4deg);
   }
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 
