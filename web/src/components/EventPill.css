@@ -4,10 +4,11 @@
   gap: 0.35rem;
   width: 100%;
   text-align: left;
-  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
-  border: none;
-  border-radius: 0.375rem;
-  padding: 0.2rem 0.4rem;
+  background: color-mix(in srgb, var(--text) 7%, var(--surface));
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text);
+  border-radius: 0.45rem;
+  padding: 0.3rem 0.45rem;
   font-size: 0.75rem;
   color: var(--text);
   cursor: pointer;
@@ -15,7 +16,7 @@
 }
 
 .event-pill:hover {
-  background: color-mix(in srgb, var(--accent) 22%, var(--surface));
+  background: color-mix(in srgb, var(--text) 14%, var(--surface));
 }
 
 .event-pill__time {
@@ -51,9 +52,8 @@
   text-decoration: line-through;
 }
 
-/* Deterministic per-venue colour coding. Hues chosen to be visually distinct
-   and to keep sufficient contrast in both light and dark themes; the pill
-   keeps using --text for label colour so it always stays readable. */
+/* Keep the venue classes for stable markup while the visual treatment remains
+   monochromatic in both light and dark themes. */
 .event-pill--c0 { --pill-hue: 210; }
 .event-pill--c1 { --pill-hue: 150; }
 .event-pill--c2 { --pill-hue: 35; }
@@ -78,39 +78,3 @@
 .event-pill--c21 { --pill-hue: 180; }
 .event-pill--c22 { --pill-hue: 305; }
 .event-pill--c23 { --pill-hue: 80; }
-
-.event-pill[class*="event-pill--c"] {
-  background: hsl(var(--pill-hue) 65% 92% / 1);
-}
-
-.event-pill[class*="event-pill--c"] .event-pill__time {
-  color: hsl(var(--pill-hue) 55% 32%);
-}
-
-.event-pill[class*="event-pill--c"]:hover {
-  background: hsl(var(--pill-hue) 65% 87% / 1);
-}
-
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"] {
-  background: hsl(var(--pill-hue) 35% 20% / 1);
-}
-
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__time {
-  color: hsl(var(--pill-hue) 65% 72%);
-}
-
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"]:hover {
-  background: hsl(var(--pill-hue) 35% 26% / 1);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] {
-    background: hsl(var(--pill-hue) 35% 20% / 1);
-  }
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__time {
-    color: hsl(var(--pill-hue) 65% 72%);
-  }
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"]:hover {
-    background: hsl(var(--pill-hue) 35% 26% / 1);
-  }
-}

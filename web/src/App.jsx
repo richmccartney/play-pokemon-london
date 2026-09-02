@@ -28,7 +28,7 @@ export default function App() {
       <footer className="app__footer">
         © 2026 PokeLeagues London — data refreshed nightly ·{" "}
         <a href="https://buymeacoffee.com/pokemacca" target="_blank" rel="noopener noreferrer">
-          ☕ Buy Me a Coffee
+          Buy Me a Coffee
         </a>
       </footer>
     </>

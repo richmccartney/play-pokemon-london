@@ -52,6 +52,8 @@ export default function CalendarView({ events, status }) {
     });
   }, [events, typeFilter, venueFilter, radiusKm]);
 
+  const hasFilters = radiusKm !== 40 || typeFilter !== "all" || venueFilter.length > 0;
+
   const weekStart = startOfWeek(cursor);
 
   const handlePrev = () => {
@@ -80,9 +82,19 @@ export default function CalendarView({ events, status }) {
 
   return (
     <section className="calendar-view" id="calendar" aria-labelledby="calendar-heading">
-      <h2 id="calendar-heading" className="visually-hidden">
-        League Events Calendar
-      </h2>
+      <div className="calendar-view__intro">
+        <div>
+          <p className="calendar-view__eyebrow">Plan your next match</p>
+          <h2 id="calendar-heading">London league events</h2>
+          <p className="calendar-view__description">
+            Find a nearby event, then open it for venue details and directions.
+          </p>
+        </div>
+        <p className="calendar-view__count" aria-live="polite">
+          <strong>{filteredEvents.length}</strong>
+          <span>{filteredEvents.length === 1 ? "event" : "events"} shown</span>
+        </p>
+      </div>
 
       <FilterBar
         origin={origin}
@@ -94,6 +106,12 @@ export default function CalendarView({ events, status }) {
         venueFilter={venueFilter}
         onVenueFilterChange={setVenueFilter}
         venueOptions={venueOptions}
+        hasFilters={hasFilters}
+        onClear={() => {
+          setRadiusKm(40);
+          setTypeFilter("all");
+          setVenueFilter([]);
+        }}
       />
 
       <div className="calendar-view__header">

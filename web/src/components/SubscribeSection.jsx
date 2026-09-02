@@ -14,7 +14,7 @@ export default function SubscribeSection() {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(httpsUrl);
-      setCopyHint("✅ Copied! Paste it into your calendar app's \"Subscribe by URL\" option.");
+      setCopyHint("Copied. Paste it into your calendar app's \"Subscribe by URL\" option.");
     } catch {
       setCopyHint("Couldn't copy automatically — please select and copy the link above.");
     }
@@ -27,13 +27,13 @@ export default function SubscribeSection() {
 
       <div className="platform-buttons">
         <a className="btn btn-outline" href={webcalUrl} target="_blank" rel="noopener noreferrer">
-          🍏 Apple Calendar (Mac/iPhone)
+          Apple Calendar (Mac/iPhone)
         </a>
         <a className="btn btn-outline" href={googleUrl} target="_blank" rel="noopener noreferrer">
-          🟢 Google Calendar
+          Google Calendar
         </a>
         <a className="btn btn-outline" href={outlookUrl} target="_blank" rel="noopener noreferrer">
-          🟦 Outlook
+          Outlook
         </a>
       </div>
 
