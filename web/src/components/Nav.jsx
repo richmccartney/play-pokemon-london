@@ -13,7 +13,7 @@ export default function Nav({ theme, onToggleTheme }) {
           aria-hidden="true"
         >
           <circle cx="32" cy="32" r="30" stroke="var(--text)" strokeWidth="3" fill="none" />
-          <path d="M2 32 A30 30 0 0 1 62 32" fill="var(--accent)" stroke="var(--text)" strokeWidth="3" />
+          <path d="M2 32 A30 30 0 0 1 62 32" fill="var(--accent-strong)" stroke="var(--text)" strokeWidth="3" />
           <path d="M2 32 A30 30 0 0 0 62 32" fill="var(--surface)" stroke="var(--text)" strokeWidth="3" />
           <line x1="2" y1="32" x2="62" y2="32" stroke="var(--text)" strokeWidth="3" />
           <circle cx="32" cy="32" r="10" fill="var(--surface)" stroke="var(--text)" strokeWidth="3" />
@@ -31,7 +31,7 @@ export default function Nav({ theme, onToggleTheme }) {
           onClick={onToggleTheme}
           aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
-          <span aria-hidden="true">{theme === "dark" ? "☀️" : "🌙"}</span>
+          <span aria-hidden="true">{theme === "dark" ? "☼" : "◐"}</span>
         </button>
       </div>
     </nav>

@@ -13,18 +13,15 @@ export default function FilterBar({
   venueFilter,
   onVenueFilterChange,
   venueOptions,
+  hasFilters,
+  onClear,
 }) {
   return (
     <div className="filter-bar" role="group" aria-label="Filter events">
-      <div className="filter-bar__group">
-        <span className="filter-bar__label" id="location-label">
-          Location
-        </span>
-        <p className="filter-bar__location-value" aria-labelledby="location-label">
-          {origin.label}
-        </p>
+      <div className="filter-bar__heading">
+        <span className="filter-bar__kicker">Refine results</span>
+        <span className="filter-bar__location">{origin.label}</span>
       </div>
-
       <div className="filter-bar__group">
         <MultiSelect
           id="venue-select"
@@ -71,6 +68,11 @@ export default function FilterBar({
           ))}
         </select>
       </div>
+      {hasFilters && (
+        <button type="button" className="filter-bar__clear" onClick={onClear}>
+          Clear filters
+        </button>
+      )}
     </div>
   );
 }

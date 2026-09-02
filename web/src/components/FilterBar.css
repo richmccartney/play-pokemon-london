@@ -1,19 +1,45 @@
 .filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: flex-start;
-  padding: 1.25rem 1.5rem;
-  background: var(--surface-muted);
+  max-width: 1180px;
+  margin: 0 auto 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(170px, 1.1fr) repeat(3, minmax(160px, 1fr)) auto;
+  gap: 0.75rem 1rem;
+  align-items: stretch;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 1rem;
-  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-bar__heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding-bottom: 0.1rem;
+}
+
+.filter-bar__kicker {
+  color: var(--accent-strong);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.filter-bar__location {
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 2.75rem;
 }
 
 .filter-bar__group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  min-width: 180px;
+  min-width: 0;
 }
 
 .filter-bar__label {
@@ -22,12 +48,6 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-muted);
-}
-
-.filter-bar__location-value {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  padding-top: 0.35rem;
 }
 
 .filter-bar__select {
@@ -45,10 +65,31 @@
   cursor: pointer;
 }
 
+.filter-bar__clear {
+  align-self: end;
+  border: none;
+  background: transparent;
+  color: var(--accent-strong);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 0.55rem 0.25rem;
+}
+
+.filter-bar__clear:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .filter-bar {
     flex-direction: column;
     gap: 1rem;
+    align-items: stretch;
+    display: flex;
+  }
+  .filter-bar__heading {
+    margin-right: 0;
   }
   .filter-bar__group {
     width: 100%;
