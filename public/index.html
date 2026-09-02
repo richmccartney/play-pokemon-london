@@ -22,7 +22,7 @@
   <meta name="twitter:title" content="Pokémon TCG League London Events" />
   <meta name="twitter:description" content="A subscribable calendar of nearby Pokémon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
 
-  <meta name="theme-color" content="#2a75bb" />
+  <meta name="theme-color" content="#E3350D" />
 
   <script type="application/ld+json">
   {
@@ -35,60 +35,271 @@
   </script>
 
   <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 640px;
-      margin: 4rem auto;
-      padding: 0 1.5rem;
-      line-height: 1.6;
-      color: #1a1a1a;
+    :root {
+      --accent: #E3350D;
+      --accent-hover: #C42D0B;
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --surface-muted: #F0F0F0;
+      --text: #1A1A1A;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --warn: #F59E0B;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --radius-sm: 0.5rem;
+      --radius-lg: 9999px;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
     }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent: #FF6B4A;
+        --accent-hover: #FF8566;
+        --bg: #0F0F0F;
+        --surface: #1A1A1A;
+        --surface-muted: #262626;
+        --text: #F5F5F5;
+        --text-muted: #9CA3AF;
+        --border: #333333;
+        --warn: #FBBF24;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+        --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+    body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.6;
+      min-height: 100%;
+      padding-top: 96px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3 { font-family: var(--font-sans); font-weight: 700; line-height: 1.2; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     code {
-      background: #f0f0f0;
+      background: var(--surface-muted);
       padding: 0.15rem 0.4rem;
       border-radius: 4px;
       font-size: 0.9em;
       word-break: break-all;
+      color: var(--text);
     }
+
+    nav {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background-color: color-mix(in srgb, var(--surface) 80%, transparent);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    nav .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    nav .brand:hover { text-decoration: none; }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      text-align: center;
+    }
+
+    .hero-emoji { font-size: 3.5rem; line-height: 1; margin-bottom: 1rem; }
+    h1 {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .tagline {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
     .btn {
-      display: inline-block;
-      background: #2a75bb;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-top: 0.5rem;
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: var(--accent);
+      color: #FFFFFF;
     }
-    .btn:hover { background: #1c5a94; }
+    .btn:hover { background-color: var(--accent-hover); text-decoration: none; }
+
+    section.card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      padding: 3rem 0;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+      text-align: left;
+    }
+    @media (max-width: 640px) {
+      section.card-grid { grid-template-columns: 1fr; }
+    }
+    .card {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+    .card .icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+    .badge {
+      display: inline-block;
+      padding: 2px 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--warn);
+      border: 1px solid var(--warn);
+      border-radius: var(--radius-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .subscribe-block, .status-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    .subscribe-block h2, .status-block h2 {
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+    }
+    .subscribe-block p, .status-block p { font-size: 0.9375rem; color: var(--text-muted); }
+    .subscribe-block code, .status-block code { display: block; margin: 0.5rem 0 1rem; }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
   </style>
 </head>
 <body>
-  <h1>🎴 Pokémon TCG League London Events</h1>
-  <p>
-    A subscribable calendar of nearby Pokémon TCG League Cups, Challenges,
-    Friendlies and Pre-releases, refreshed nightly.
-  </p>
+  <nav>
+    <a class="brand" href="/">🎴 Pokémon TCG League London Events</a>
+  </nav>
 
-  <h2>Subscribe</h2>
-  <p>Add this URL to your calendar app:</p>
-  <p><code id="webcal-url">webcal://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code></p>
-  <a class="btn" id="webcal-link" href="#">📅 Subscribe now</a>
+  <main>
+    <div class="hero-emoji">🎴</div>
+    <h1>League Events</h1>
+    <p class="tagline">
+      A subscribable calendar of nearby Pokémon TCG League Cups,
+      Challenges, Friendlies and Pre-releases, refreshed nightly.
+    </p>
+    <a class="btn" id="webcal-link" href="#">📅 Subscribe Now</a>
 
-  <p>
-    Or copy the HTTPS version into Google Calendar / Outlook / Apple
-    Calendar manually:
-  </p>
-  <p><code id="https-url">https://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code></p>
+    <section class="card-grid">
+      <div class="card">
+        <div class="icon">📅</div>
+        <h3>Auto-updating Calendar</h3>
+        <p>
+          Subscribe once and your calendar app stays in sync — new events
+          appear and cancelled ones disappear automatically, every night.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">🔗</div>
+        <h3>Official Event Links</h3>
+        <p>
+          Every event links to its official Pokémon.com tournament page
+          for admission cost, organizer contact and registration details.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">🗓️</div>
+        <h3>Full Calendar View</h3>
+        <span class="badge">Coming Soon</span>
+        <p>
+          A full browsable calendar page on this site, so you can see
+          upcoming events without opening a separate calendar app.
+        </p>
+      </div>
+      <div class="card">
+        <div class="icon">🗺️</div>
+        <h3>Filters &amp; Map</h3>
+        <span class="badge">Coming Soon</span>
+        <p>
+          Filter by event type and distance, and browse events on an
+          interactive map of London and the surrounding area.
+        </p>
+      </div>
+    </section>
 
-  <h2>Status</h2>
-  <p id="status-line">Checking when the data was last refreshed…</p>
+    <div class="subscribe-block">
+      <h2>Subscribe</h2>
+      <p>Add this URL to your calendar app:</p>
+      <code id="webcal-url">webcal://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code>
+      <p>Or copy the HTTPS version into Google Calendar / Outlook / Apple Calendar manually:</p>
+      <code id="https-url">https://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code>
+    </div>
 
-  <h2>Coming soon</h2>
-  <p>
-    🗓️ A full browsable calendar view, 🔎 filters by event type and
-    distance, and 🗺️ an interactive map of upcoming events.
-  </p>
+    <div class="status-block">
+      <h2>Status</h2>
+      <p id="status-line">Checking when the data was last refreshed…</p>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 Pokémon TCG League London Events — data refreshed nightly
+  </footer>
 
   <script>
     const host = window.location.host;
