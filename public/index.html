@@ -36,10 +36,8 @@
 <body>
   <h1>🎴 Pokémon TCG League Events</h1>
   <p>
-    A subscribable calendar of nearby Pokémon TCG League Cups, Challenges
-    and Pre-releases, sourced from
-    <a href="https://www.pokedata.ovh/events/leagues/" target="_blank" rel="noopener">pokedata.ovh</a>
-    and refreshed nightly.
+    A subscribable calendar of nearby Pokémon TCG League Cups, Challenges,
+    Friendlies and Pre-releases, refreshed nightly.
   </p>
 
   <h2>Subscribe</h2>
@@ -54,7 +52,7 @@
   <p><code id="https-url">https://REPLACE_WITH_YOUR_SITE.netlify.app/calendar.ics</code></p>
 
   <h2>Status</h2>
-  <p>Check when the data was last refreshed: <a href="/status">/status</a></p>
+  <p id="status-line">Checking when the data was last refreshed…</p>
 
   <script>
     const host = window.location.host;
@@ -63,6 +61,24 @@
     document.getElementById("webcal-url").textContent = webcalUrl;
     document.getElementById("https-url").textContent = httpsUrl;
     document.getElementById("webcal-link").href = webcalUrl;
+
+    fetch("/status")
+      .then((res) => res.json())
+      .then((data) => {
+        const statusEl = document.getElementById("status-line");
+        if (!data.lastSyncAt) {
+          statusEl.textContent = "No sync has run yet.";
+          return;
+        }
+        const lastSync = new Date(data.lastSyncAt);
+        statusEl.textContent =
+          `Last updated: ${lastSync.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })} ` +
+          `(${data.eventCount} events tracked)`;
+      })
+      .catch(() => {
+        document.getElementById("status-line").textContent =
+          "Unable to check status right now.";
+      });
   </script>
 </body>
 </html>
