@@ -24,18 +24,6 @@
   overflow: hidden;
 }
 
-.month-view__cell {
-  border: 1px solid var(--border);
-  border-radius: 0.7rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.month-view__cell.calendar-cell--today {
-  outline: 2px solid var(--accent);
-  outline-offset: -2px;
-  box-shadow: none;
-}
-
 .month-view__more {
   background: transparent;
   border: none;

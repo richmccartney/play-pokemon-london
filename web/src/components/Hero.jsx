@@ -24,7 +24,7 @@ export default function Hero() {
         Browse the Calendar
       </a>
       <div className="hero__trust">
-        Refreshed nightly · Cleaned venue data · No sign-up required
+        Refreshed nightly · No sign-up required
       </div>
     </section>
   );

@@ -8,6 +8,7 @@
 }
 
 .event-drawer {
+  position: relative;
   width: min(480px, 100vw);
   height: 100%;
   background: var(--surface);
@@ -137,11 +138,39 @@
   padding: 0.85rem 1.25rem;
 }
 
+/* Swipe affordance: only meaningful on touch, where the drag gesture is
+   available, so it stays hidden on pointer devices. */
+.event-drawer__grabber {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .event-drawer-overlay {
     justify-content: stretch;
   }
   .event-drawer {
     width: 100%;
+    /* Let vertical scrolling stay native while horizontal drags are
+       handled by the swipe-to-dismiss gesture. */
+    touch-action: pan-y;
+  }
+  .event-drawer__grabber {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0.4rem;
+    width: 4px;
+    height: 44px;
+    margin-top: -22px;
+    border-radius: 999px;
+    background: var(--border);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .event-drawer {
+    animation: none;
   }
 }

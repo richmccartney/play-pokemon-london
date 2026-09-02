@@ -3,7 +3,9 @@
    differently-styled layouts. */
 .calendar-cell {
   background: var(--surface);
-  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  box-shadow: var(--shadow-sm);
   padding: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -18,14 +20,16 @@
 
 .calendar-cell--today {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 /* In week view the cursor day is the one the navigation acts on, so it needs
    to be visibly picked out even when it isn't today. */
 .calendar-cell--selected {
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-  box-shadow: 0 0 0 2px var(--accent);
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .calendar-cell--selected .calendar-cell__header {
