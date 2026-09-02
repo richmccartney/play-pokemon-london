@@ -71,8 +71,9 @@ export function titleCase(str) {
       if (index !== 0 && LOWER_WORDS.has(word.toLowerCase())) {
         return word.toLowerCase();
       }
-      // Handle words with apostrophes, e.g. "st john's".
-      return word.replace(/(^|')([a-z])/g, (m, sep, ch) => sep + ch.toUpperCase());
+      // Capitalise only the first letter; keep any letter after an
+      // apostrophe lowercase (e.g. "john's" -> "John's", not "John'S").
+      return word.charAt(0).toUpperCase() + word.slice(1);
     })
     .join("");
 }
