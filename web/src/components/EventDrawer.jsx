@@ -214,12 +214,6 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
                 <dd>{area}</dd>
               </div>
             )}
-            {Number.isFinite(event.distanceKm) && (
-              <div className="event-drawer__fact">
-                <dt>Distance</dt>
-                <dd>{event.distanceKm} km from central London</dd>
-              </div>
-            )}
             <div className="event-drawer__fact">
               <dt>Listing</dt>
               <dd>
