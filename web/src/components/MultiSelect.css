@@ -55,16 +55,27 @@
 .multi-select__clear {
   display: block;
   width: 100%;
-  text-align: left;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  color: var(--accent);
-  font-weight: 700;
+  text-align: center;
+  background: var(--surface-muted);
+  border: 1px solid var(--border-strong, var(--text-muted));
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-weight: 800;
   font-size: 0.8125rem;
-  padding: 0.4rem 0.5rem 0.6rem;
-  margin-bottom: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
   cursor: pointer;
+}
+
+.multi-select__clear:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.multi-select__clear:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 .multi-select__option {

@@ -2,7 +2,7 @@
   max-width: 1180px;
   margin: 0 auto 1.5rem;
   display: grid;
-  grid-template-columns: minmax(170px, 1.1fr) repeat(3, minmax(160px, 1fr)) auto;
+  grid-template-columns: repeat(2, minmax(160px, 1fr)) auto;
   gap: 0.75rem 1rem;
   align-items: stretch;
   padding: 1rem 1.25rem;
@@ -10,29 +10,6 @@
   border: 1px solid var(--border);
   border-radius: 1rem;
   box-shadow: var(--shadow-sm);
-}
-
-.filter-bar__heading {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
-  padding-bottom: 0.1rem;
-}
-
-.filter-bar__kicker {
-  color: var(--accent-strong);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.filter-bar__location {
-  color: var(--text);
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: 2.75rem;
 }
 
 .filter-bar__group {
@@ -65,20 +42,36 @@
   cursor: pointer;
 }
 
+/* Sits in the control row, so it is styled as a real button matched to the
+   height of the selects rather than a low-contrast text link. */
 .filter-bar__clear {
   align-self: end;
-  border: none;
-  background: transparent;
-  color: var(--accent-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border: 1px solid var(--border-strong, var(--text-muted));
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
   font-size: 0.8125rem;
   font-weight: 800;
   cursor: pointer;
-  padding: 0.55rem 0.25rem;
+  padding: 0 1rem;
+  height: 2.75rem;
+  box-sizing: border-box;
 }
 
 .filter-bar__clear:hover {
-  text-decoration: underline;
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.filter-bar__clear:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 /* Below 920px the 5-column grid squeezes the controls until they overflow,
@@ -90,12 +83,6 @@
     gap: 1rem;
     align-items: stretch;
   }
-  .filter-bar__heading {
-    margin-right: 0;
-  }
-  .filter-bar__location {
-    line-height: 1.4;
-  }
   .filter-bar__group {
     width: 100%;
   }
@@ -104,7 +91,7 @@
     min-width: 0;
   }
   .filter-bar__clear {
-    align-self: start;
-    padding-left: 0;
+    align-self: stretch;
+    width: 100%;
   }
 }

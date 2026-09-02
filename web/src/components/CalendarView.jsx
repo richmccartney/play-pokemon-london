@@ -10,8 +10,6 @@ import {
   startOfMonth,
   startOfWeek,
 } from "../lib/date";
-import { distanceKm } from "../lib/geo";
-import { DEFAULT_ORIGIN } from "../hooks/useLocation";
 import FilterBar from "./FilterBar";
 import ViewSwitcher from "./ViewSwitcher";
 import CalendarToolbar from "./CalendarToolbar";
@@ -24,13 +22,11 @@ import "./CalendarView.css";
 const TODAY = startOfDay(new Date());
 
 // Location is fixed to Central London — not user-changeable.
-const origin = DEFAULT_ORIGIN;
 
 export default function CalendarView({ events, status }) {
   const [view, setView] = useState("month");
   const [cursor, setCursor] = useState(TODAY);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [radiusKm, setRadiusKm] = useState(40);
   const [typeFilter, setTypeFilter] = useState("all");
   const [venueFilter, setVenueFilter] = useState([]);
 
@@ -48,13 +44,11 @@ export default function CalendarView({ events, status }) {
     return events.filter((event) => {
       if (typeFilter !== "all" && event.typeLabel !== typeFilter) return false;
       if (venueFilter.length > 0 && !venueFilter.includes(event.shop)) return false;
-      if (radiusKm >= 999) return true;
-      const km = distanceKm(origin.latitude, origin.longitude, event.latitude, event.longitude);
-      return km <= radiusKm;
+      return true;
     });
-  }, [events, typeFilter, venueFilter, radiusKm]);
+  }, [events, typeFilter, venueFilter]);
 
-  const hasFilters = radiusKm !== 40 || typeFilter !== "all" || venueFilter.length > 0;
+  const hasFilters = typeFilter !== "all" || venueFilter.length > 0;
 
   const weekStart = startOfWeek(cursor);
 
@@ -118,9 +112,6 @@ export default function CalendarView({ events, status }) {
       </div>
 
       <FilterBar
-        origin={origin}
-        radiusKm={radiusKm}
-        onRadiusChange={setRadiusKm}
         typeFilter={typeFilter}
         onTypeFilterChange={setTypeFilter}
         typeOptions={typeOptions}
@@ -129,7 +120,6 @@ export default function CalendarView({ events, status }) {
         venueOptions={venueOptions}
         hasFilters={hasFilters}
         onClear={() => {
-          setRadiusKm(40);
           setTypeFilter("all");
           setVenueFilter([]);
         }}
