@@ -115,11 +115,11 @@
       background-color: var(--bg);
       line-height: 1.6;
       min-height: 100%;
-      padding-top: 96px;
+      padding-top: 88px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
-    h1, h2, h3 { font-family: var(--font-sans); font-weight: 700; line-height: 1.2; }
+    h1, h2, h3 { font-family: var(--font-sans); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     code {
@@ -131,6 +131,7 @@
       color: var(--text);
     }
 
+    /* ---- Pleo-inspired full-width pill nav ---- */
     nav {
       position: fixed;
       top: 0;
@@ -139,30 +140,48 @@
       z-index: 100;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background-color: color-mix(in srgb, var(--surface) 80%, transparent);
-      backdrop-filter: blur(12px);
+      gap: 0.75rem;
+      padding: 0.9rem 2rem;
+      background-color: color-mix(in srgb, var(--surface) 85%, transparent);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       width: 100%;
     }
     nav .brand {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--accent);
+      gap: 8px;
+      font-size: 1.0625rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text);
       margin-right: auto;
     }
     nav .brand:hover { text-decoration: none; }
+    nav .brand svg { display: block; flex: 0 0 auto; }
+    nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background-color: var(--text);
+      border-radius: var(--radius-lg);
+      transition: opacity 0.15s ease;
+    }
+    nav .nav-cta:hover { opacity: 0.85; text-decoration: none; }
     #theme-toggle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: var(--radius-lg);
       background-color: transparent;
       border: 1px solid var(--border);
@@ -174,27 +193,28 @@
     #theme-toggle:hover { background-color: var(--surface-muted); }
 
     main {
-      max-width: 640px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 3.5rem 1.5rem 4rem;
       text-align: center;
     }
 
-    .hero-emoji { font-size: 3.5rem; line-height: 1; margin-bottom: 1rem; }
+    .hero-logo { margin-bottom: 1.5rem; display: flex; justify-content: center; }
+    .hero-logo svg { width: 64px; height: 64px; }
     h1 {
-      font-size: 3rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      line-height: 1;
+      font-size: clamp(2.5rem, 6vw, 3.75rem);
+      color: var(--text);
+      margin-bottom: 1.25rem;
     }
+    h1 .accent-word { color: var(--accent); }
     .tagline {
-      font-size: 1.25rem;
+      font-size: 1.1875rem;
       color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 500px;
+      margin-bottom: 2.25rem;
+      max-width: 520px;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .btn {
@@ -202,33 +222,42 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.75rem;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       font-family: var(--font-sans);
       line-height: 1.5;
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-lg);
       border: none;
       cursor: pointer;
       transition: all 0.2s ease;
       text-decoration: none;
       white-space: nowrap;
-      background-color: var(--accent);
-      color: #FFFFFF;
+      background-color: var(--text);
+      color: var(--bg);
     }
-    .btn:hover { background-color: var(--accent-hover); text-decoration: none; }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
     .btn-outline {
       background-color: transparent;
       color: var(--text);
       border: 1px solid var(--border);
     }
-    .btn-outline:hover { background-color: var(--surface-muted); }
+    .btn-outline:hover { background-color: var(--surface-muted); opacity: 1; }
+
+    .trust-strip {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
 
     section.card-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 3rem 0;
+      gap: 1.25rem;
+      padding: 3.5rem 0 2.5rem;
       max-width: 960px;
       margin: 0 auto;
       width: 100%;
@@ -238,19 +267,31 @@
       section.card-grid { grid-template-columns: 1fr; }
     }
     .card {
-      text-align: center;
-      padding: 1.5rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      box-shadow: var(--shadow-sm);
+      text-align: left;
+      padding: 1.75rem;
+      background: var(--surface-muted);
+      border: 1px solid transparent;
+      border-radius: 1.25rem;
+      transition: border-color 0.15s ease;
     }
-    .card .icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card:hover { border-color: var(--border); }
+    .card .icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border-radius: 0.75rem;
+    }
     .card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
+      font-size: 1.0625rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
       color: var(--text);
+      letter-spacing: -0.01em;
     }
     .card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
     .badge {
@@ -267,16 +308,16 @@
     }
 
     .subscribe-block, .status-block {
-      background: var(--surface);
+      background: var(--surface-muted);
       border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1.5rem;
+      border-radius: 1.25rem;
+      padding: 1.75rem;
       margin-bottom: 1.5rem;
       text-align: left;
       scroll-margin-top: 100px;
     }
     .subscribe-block h2, .status-block h2 {
-      font-size: 1.125rem;
+      font-size: 1.25rem;
       margin-bottom: 0.75rem;
     }
     .subscribe-block p, .status-block p { font-size: 0.9375rem; color: var(--text-muted); }
@@ -288,7 +329,8 @@
       gap: 0.75rem;
       margin: 1rem 0 1.5rem;
     }
-    .platform-buttons .btn { padding: 0.6rem 1.1rem; font-size: 0.9rem; }
+    .platform-buttons .btn { padding: 0.6rem 1.1rem; font-size: 0.9rem; background-color: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .platform-buttons .btn:hover { background-color: var(--border); opacity: 1; }
     .copy-label { margin-top: 0.5rem; }
     .copy-row {
       display: flex;
@@ -303,9 +345,9 @@
       font-size: 0.8125rem;
       font-weight: 600;
       font-family: var(--font-sans);
-      border-radius: var(--radius-sm);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      background: var(--surface-muted);
+      background: var(--surface);
       color: var(--text);
       cursor: pointer;
       transition: background-color 0.15s ease;
@@ -328,18 +370,42 @@
 </head>
 <body>
   <nav>
-    <a class="brand" href="/">🎴 PokeLeagues London</a>
-    <button id="theme-toggle" type="button" aria-label="Switch theme">🌙</button>
+    <a class="brand" href="/">
+      <svg width="26" height="26" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" stroke="var(--text)" stroke-width="3" fill="none"></circle>
+        <path d="M2 32 A30 30 0 0 1 62 32" fill="var(--accent)" stroke="var(--text)" stroke-width="3"></path>
+        <path d="M2 32 A30 30 0 0 0 62 32" fill="var(--surface)" stroke="var(--text)" stroke-width="3"></path>
+        <line x1="2" y1="32" x2="62" y2="32" stroke="var(--text)" stroke-width="3"></line>
+        <circle cx="32" cy="32" r="10" fill="var(--surface)" stroke="var(--text)" stroke-width="3"></circle>
+        <circle cx="32" cy="32" r="5" fill="var(--surface)" stroke="var(--text)" stroke-width="2"></circle>
+      </svg>
+      PokeLeagues London
+    </a>
+    <div class="nav-links">
+      <a class="nav-cta" href="#subscribe">Subscribe</a>
+      <button id="theme-toggle" type="button" aria-label="Switch theme">🌙</button>
+    </div>
   </nav>
 
   <main>
-    <div class="hero-emoji">🎴</div>
-    <h1>League Events</h1>
+    <div class="hero-logo">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Pokeball logo">
+        <circle cx="32" cy="32" r="30" stroke="var(--text)" stroke-width="3" fill="none"></circle>
+        <path d="M2 32 A30 30 0 0 1 62 32" fill="var(--accent)" stroke="var(--text)" stroke-width="3"></path>
+        <path d="M2 32 A30 30 0 0 0 62 32" fill="var(--surface)" stroke="var(--text)" stroke-width="3"></path>
+        <line x1="2" y1="32" x2="62" y2="32" stroke="var(--text)" stroke-width="3"></line>
+        <circle cx="32" cy="32" r="10" fill="var(--surface)" stroke="var(--text)" stroke-width="3"></circle>
+        <circle cx="32" cy="32" r="5" fill="var(--surface)" stroke="var(--text)" stroke-width="2"></circle>
+      </svg>
+    </div>
+    <h1>The League calendar that <span class="accent-word">stays in sync</span></h1>
     <p class="tagline">
       A subscribable calendar of nearby Pokemon TCG League Cups,
       Challenges, Friendlies and Pre-releases, refreshed nightly.
     </p>
     <a class="btn" id="webcal-link" href="#subscribe">📅 Subscribe Now</a>
+
+    <div class="trust-strip">Refreshed nightly · Cleaned venue data · No sign-up required</div>
 
     <section class="card-grid">
       <div class="card">
