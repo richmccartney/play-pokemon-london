@@ -62,8 +62,36 @@ const HAS_LEGAL_SUFFIX = new RegExp(LEGAL_SUFFIXES.source, "i");
  * resolve to the same venue.
  */
 export function venueNameKey(str) {
-  return normaliseKey((str || "").toUpperCase().replace(LEGAL_SUFFIXES, " "));
+  const key = normaliseKey((str || "").toUpperCase().replace(LEGAL_SUFFIXES, " "));
+  return VENUE_ALIASES[key] ?? key;
 }
+
+// Manual aliases for venues the source files under two unrelated names.
+//
+// These can't be inferred: the names share no words, and the sites are close
+// enough that a pure distance rule would also merge genuinely different
+// venues (The Ludoquist and FP Croydon are 252m apart, less than the 293m
+// between The Movie Shack's two listings).
+//
+// `preferAddressFrom` names the variant whose address/coordinates are the
+// real venue. The Movie Shack's registered address on Mayplace Rd is a former
+// shop unit; all their events - locals, league nights and Challenges - run at
+// Bexleyheath Library, so events must point people at the library.
+const VENUE_ALIASES = {
+  THEMOVIESHACK: "BEXLEYHEATHLIBRARY",
+};
+
+// Which variant's address wins, keyed by the resolved (aliased) name key.
+const PREFERRED_ADDRESS_SOURCE = {
+  BEXLEYHEATHLIBRARY: "BEXLEYHEATHLIBRARY",
+};
+
+// Display name to use for an aliased group, keyed by resolved name key.
+// Without this the group would be named after whichever variant is most
+// common, and the shop name is what people recognise.
+const PREFERRED_DISPLAY_NAME = {
+  BEXLEYHEATHLIBRARY: "The Movie Shack",
+};
 
 /**
  * Title-case a raw ALL-CAPS (or mixed-case) string, preserving known
@@ -111,7 +139,16 @@ function roundCoord(n) {
 // Comfortably absorbs geocoding jitter (the same shop returned with slightly
 // different coordinates) while staying far below the separation between
 // genuinely different branches (the two Bad Moon Cafes are ~6km apart).
+//
+// It deliberately stays under the closest pair of *genuinely different*
+// venues in the data (The Ludoquist and FP Croydon, 252m apart).
 const VENUE_MATCH_METRES = 200;
+
+// Explicitly aliased venues are known to be the same place, so they're
+// allowed a wider radius: a shop's registered address can sit a few streets
+// from where it actually runs events (The Movie Shack's listed address is
+// 293m from Bexleyheath Library, where its events are held).
+const ALIASED_MATCH_METRES = 1000;
 
 /** Approximate distance in metres between two lat/lng pairs. */
 function metresBetween(aLat, aLng, bLat, bLng) {
@@ -121,10 +158,10 @@ function metresBetween(aLat, aLng, bLat, bLng) {
   return Math.hypot(latMetres, lngMetres);
 }
 
-function withinVenueRadius(entry, lat, lng) {
+function withinVenueRadius(entry, lat, lng, limit = VENUE_MATCH_METRES) {
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) return false;
   if (!Number.isFinite(entry.lat) || !Number.isFinite(entry.lng)) return false;
-  return metresBetween(entry.lat, entry.lng, lat, lng) <= VENUE_MATCH_METRES;
+  return metresBetween(entry.lat, entry.lng, lat, lng) <= limit;
 }
 
 /**
@@ -169,11 +206,18 @@ export function resolveVenue(raw, registry) {
   // different branches that share a name sit far apart (the two Bad Moon
   // Cafes are ~6km apart) and so keep their own entries, while the same shop
   // reported with jittery coordinates converges on one.
+  // Aliased venues (see VENUE_ALIASES) are known to be the same place under
+  // two unrelated names, so they get a wider matching radius.
+  const isAliased =
+    VENUE_ALIASES[normaliseKey(raw.shop)] !== undefined ||
+    Object.values(VENUE_ALIASES).includes(nameKey);
+  const radius = isAliased ? ALIASED_MATCH_METRES : VENUE_MATCH_METRES;
+
   const key =
     Object.keys(registry).find((k) => {
       const existing = registry[k];
       if (!existing.nameKey) return false;
-      if (!withinVenueRadius(existing, lat, lng)) return false;
+      if (!withinVenueRadius(existing, lat, lng, radius)) return false;
       return (
         existing.nameKey === nameKey ||
         existing.nameKey.startsWith(nameKey) ||
@@ -206,21 +250,45 @@ export function resolveVenue(raw, registry) {
   // Pick the most-frequently-seen raw (shop, address) pair as canonical.
   // Ties keep the existing canonical (stability) or fall back to the first
   // variant seen.
+  //
+  // Where an alias declares which variant holds the real address (see
+  // PREFERRED_ADDRESS_SOURCE), that variant wins outright regardless of
+  // frequency — otherwise the more numerous listing would point people at the
+  // wrong place.
+  const preferredSource = PREFERRED_ADDRESS_SOURCE[entry.nameKey];
   let bestVariantKey = null;
   let bestCount = -1;
+  let preferredVariantKey = null;
   for (const [vKey, count] of Object.entries(entry.variants)) {
     if (count > bestCount) {
       bestCount = count;
       bestVariantKey = vKey;
     }
+    if (
+      preferredSource &&
+      !preferredVariantKey &&
+      normaliseKey(vKey.slice(0, vKey.indexOf("|"))) === preferredSource
+    ) {
+      preferredVariantKey = vKey;
+    }
   }
+  bestVariantKey = preferredVariantKey ?? bestVariantKey;
+
   const sepIndex = bestVariantKey.indexOf("|");
   const bestShop = bestVariantKey.slice(0, sepIndex);
   const bestAddress = bestVariantKey.slice(sepIndex + 1);
 
-  entry.canonicalName = titleCase(bestShop);
+  entry.canonicalName =
+    PREFERRED_DISPLAY_NAME[entry.nameKey] ?? titleCase(bestShop);
   entry.canonicalAddress = titleCase(bestAddress);
   entry.baseNameKey = entry.nameKey;
+
+  // The venue's map pin must follow the preferred address too, so events
+  // don't plot at the shop's registered address instead of the real venue.
+  if (preferredSource && normaliseKey(raw.shop) === preferredSource) {
+    entry.lat = lat;
+    entry.lng = lng;
+  }
 
   // Display names are resolved in a separate pass once every event has been
   // seen (see finaliseVenueNames): whether a venue needs disambiguating
@@ -244,11 +312,26 @@ export function resolveVenue(raw, registry) {
  * @param {object} registry - mutable venue registry, updated in place
  */
 export function finaliseVenueNames(registry) {
+  const entries = Object.entries(registry).filter(([, e]) => e.baseNameKey);
+
+  // Group venues that are branches of the same shop. An exact key match isn't
+  // enough: one branch is often filed under the bare shop name while another
+  // carries a location suffix ("BADGERBADGER" in Deptford vs
+  // "BADGERBADGERWESTNORWOOD"), which would otherwise leave both looking like
+  // standalone venues and neither getting disambiguated.
+  //
+  // Venues are grouped under the shortest name that the others extend, so the
+  // group is keyed on the shared root rather than whichever was seen first.
+  const roots = entries
+    .map(([, e]) => e.baseNameKey)
+    .sort((a, b) => a.length - b.length);
+
   const groups = new Map();
-  for (const [key, entry] of Object.entries(registry)) {
-    if (!entry.baseNameKey) continue;
-    if (!groups.has(entry.baseNameKey)) groups.set(entry.baseNameKey, []);
-    groups.get(entry.baseNameKey).push([key, entry]);
+  for (const [key, entry] of entries) {
+    const root =
+      roots.find((r) => entry.baseNameKey.startsWith(r)) ?? entry.baseNameKey;
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push([key, entry]);
   }
 
   for (const members of groups.values()) {
