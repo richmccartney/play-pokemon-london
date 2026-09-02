@@ -114,6 +114,13 @@ export default function EventDrawer({ event, onClose }) {
     event.latitude + 0.01
   }&layer=mapnik&marker=${event.latitude}%2C${event.longitude}`;
   const bigMapHref = `https://www.openstreetmap.org/?mlat=${event.latitude}&mlon=${event.longitude}#map=15/${event.latitude}/${event.longitude}`;
+  // City and region are often the same word ("London", "London") in the
+  // source, so de-duplicate before showing them as one line.
+  const area = [event.city, event.state].filter(Boolean).filter((v, i, a) => a.indexOf(v) === i).join(", ");
+  // Locals have no organiser-supplied name, so their title is a synthesised
+  // "<venue> - Pokémon TCG <type>" which would only repeat the type shown
+  // above and the venue listed below. Lead with the venue instead.
+  const heading = event.hasOrganiserName === false ? event.shop : event.name;
 
   return (
     <div className="event-drawer-overlay" onClick={onClose}>
@@ -159,7 +166,7 @@ export default function EventDrawer({ event, onClose }) {
           )}
           <p className="event-drawer__type">{event.typeLabel}</p>
           <h2 id="event-drawer-title" className="event-drawer__title">
-            {event.name}
+            {heading}
           </h2>
           <dl className="event-drawer__facts">
             <div className="event-drawer__fact">
@@ -170,13 +177,35 @@ export default function EventDrawer({ event, onClose }) {
               <dt>Time</dt>
               <dd>{formatTimeLabel(start)}</dd>
             </div>
-            <div className="event-drawer__fact">
-              <dt>Venue</dt>
-              <dd>{event.shop}</dd>
-            </div>
+            {event.shop !== heading && (
+              <div className="event-drawer__fact">
+                <dt>Venue</dt>
+                <dd>{event.shop}</dd>
+              </div>
+            )}
             <div className="event-drawer__fact">
               <dt>Address</dt>
               <dd>{event.address}</dd>
+            </div>
+            {area && (
+              <div className="event-drawer__fact">
+                <dt>Area</dt>
+                <dd>{area}</dd>
+              </div>
+            )}
+            {Number.isFinite(event.distanceKm) && (
+              <div className="event-drawer__fact">
+                <dt>Distance</dt>
+                <dd>{event.distanceKm} km from central London</dd>
+              </div>
+            )}
+            <div className="event-drawer__fact">
+              <dt>Listing</dt>
+              <dd>
+                {event.pokemonUrl
+                  ? "Officially sanctioned Play! Pokémon event"
+                  : "Regular league night — check with the store before travelling"}
+              </dd>
             </div>
           </dl>
 

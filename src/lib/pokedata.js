@@ -126,13 +126,18 @@ export function normaliseEvent(raw, searchLabel, venueRegistry, authoritativeTyp
   const typeLabel =
     authoritativeTypeFor(raw, authoritativeTypes) ??
     refineTypeLabel(raw.type, raw.name);
-  const title = raw.name && raw.name.trim()
+  // pokedata.ovh leaves `name` empty for most locals, so we synthesise a
+  // title for the calendar feed. The UI flags these because it already shows
+  // the venue and type alongside, where a synthesised title just repeats it.
+  const hasOrganiserName = Boolean(raw.name && raw.name.trim());
+  const title = hasOrganiserName
     ? raw.name.trim()
     : `${cleanedVenue.name} - Pokémon TCG ${typeLabel}`;
 
   return {
     id: raw.guid,
     name: title,
+    hasOrganiserName,
     type: raw.type,
     typeLabel,
     shop: cleanedVenue.name,

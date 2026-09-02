@@ -19,11 +19,42 @@
   background: color-mix(in srgb, var(--text) 14%, var(--surface));
 }
 
+.event-pill__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
+}
+
 .event-pill__time {
   font-weight: 700;
   color: var(--accent);
   flex: 0 0 auto;
   white-space: nowrap;
+}
+
+/* Event type and venue give each pill enough context to be useful without
+   opening the drawer. Both are secondary to the event name, so they sit at a
+   smaller size and lower emphasis. */
+.event-pill__type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.event-pill__venue {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .event-pill__name {
@@ -86,6 +117,10 @@
 }
 
 .event-pill[class*="event-pill--c"] .event-pill__time {
+  color: hsl(var(--pill-hue) 55% 32%);
+}
+
+.event-pill[class*="event-pill--c"] .event-pill__type {
   color: hsl(var(--pill-hue) 55% 32%);
 }
 

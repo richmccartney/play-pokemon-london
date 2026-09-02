@@ -24,7 +24,9 @@ const TODAY = startOfDay(new Date());
 // Location is fixed to Central London — not user-changeable.
 
 export default function CalendarView({ events, status }) {
-  const [view, setView] = useState("month");
+  // Week is the default: it's dense enough to show each event's venue and
+  // type inline, which the month grid has no room for.
+  const [view, setView] = useState("week");
   const [cursor, setCursor] = useState(TODAY);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [typeFilter, setTypeFilter] = useState("all");
