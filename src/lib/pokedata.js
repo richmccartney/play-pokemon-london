@@ -119,7 +119,7 @@ export function normaliseEvent(raw, searchLabel) {
 
 // Human-readable labels for pokedata.ovh's raw `type` codes.
 const TYPE_LABELS = {
-  "nonpremier TCG": "Friendly",
+  "nonpremier TCG": "League (Locals)",
   "League Challenge": "League Challenge",
   "League Cup": "League Cup",
   "Pre-release": "Pre-release",
