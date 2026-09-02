@@ -3,7 +3,7 @@ import EventPill from "./EventPill";
 import "./CalendarCell.css";
 import "./WeekView.css";
 
-export default function WeekView({ weekStart, events, onSelectEvent, today }) {
+export default function WeekView({ weekStart, events, onSelectEvent, today, selectedDay }) {
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   const eventsByDay = new Map();
   for (const event of events) {
@@ -16,6 +16,7 @@ export default function WeekView({ weekStart, events, onSelectEvent, today }) {
     <div className="week-view" role="grid" aria-label="Week view">
       {days.map((day) => {
         const isToday = isSameDay(day, today);
+        const isSelected = selectedDay ? isSameDay(day, selectedDay) : false;
         const dayEvents = (eventsByDay.get(day.toDateString()) || []).sort((a, b) =>
           a.startsAt.localeCompare(b.startsAt)
         );
@@ -23,15 +24,15 @@ export default function WeekView({ weekStart, events, onSelectEvent, today }) {
           <div
             key={day.toISOString()}
             role="gridcell"
-            className={`calendar-cell${isToday ? " calendar-cell--today" : ""}`}
+            className={`calendar-cell${isToday ? " calendar-cell--today" : ""}${
+              isSelected ? " calendar-cell--selected" : ""
+            }`}
+            aria-current={isSelected ? "date" : undefined}
           >
             <div className="calendar-cell__header">
               <span>{formatDayLabel(day)}</span>
             </div>
             <div className="calendar-cell__events">
-              {dayEvents.length === 0 && (
-                <p className="calendar-cell__empty">No events</p>
-              )}
               {dayEvents.map((event) => (
                 <EventPill key={event.id} event={event} onSelect={onSelectEvent} variant="week" />
               ))}

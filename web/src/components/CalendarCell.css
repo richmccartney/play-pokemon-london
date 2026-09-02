@@ -21,6 +21,24 @@
   box-shadow: 0 0 0 1px var(--accent);
 }
 
+/* In week view the cursor day is the one the navigation acts on, so it needs
+   to be visibly picked out even when it isn't today. */
+.calendar-cell--selected {
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.calendar-cell--selected .calendar-cell__header {
+  color: var(--accent);
+}
+
+/* Day view shows a single cell, so it needs enough height not to collapse
+   into a squashed strip when the day has no events. */
+.calendar-cell--day {
+  min-height: 260px;
+  padding: 1rem;
+}
+
 .calendar-cell__header {
   font-weight: 700;
   font-size: 0.8125rem;
@@ -53,15 +71,18 @@
   background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
+/* --accent-strong flips to near-white in dark mode, so the badge text must
+   use --bg rather than a hardcoded white or it becomes unreadable. */
 .calendar-cell--today .calendar-cell__header-btn {
   background: var(--accent-strong);
-  color: #fff;
+  color: var(--bg);
   border-radius: 999px;
 }
 
 .calendar-cell--today .calendar-cell__header-btn:hover {
   opacity: 0.85;
   background: var(--accent);
+  color: var(--bg);
 }
 
 .calendar-cell__events {
@@ -69,11 +90,18 @@
   flex-direction: column;
   gap: 0.3rem;
   min-width: 0;
+  flex: 1;
 }
 
+/* Only day view still renders an empty message; month and week cells are
+   left blank so a sparse calendar isn't filled with repeated "No events". */
 .calendar-cell__empty {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   text-align: center;
-  padding-top: 0.5rem;
+  margin: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

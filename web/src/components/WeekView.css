@@ -4,6 +4,17 @@
   gap: 0.75rem;
 }
 
+/* Keep columns aligned and stop event-free days collapsing to just a header. */
+.week-view .calendar-cell {
+  min-height: 180px;
+}
+
+@media (max-width: 900px) {
+  .week-view .calendar-cell {
+    min-height: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .week-view {
     grid-template-columns: 1fr;

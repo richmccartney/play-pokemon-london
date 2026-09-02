@@ -13,7 +13,7 @@ export default function DayView({ day, events, onSelectEvent, today }) {
     <div className="day-view" role="grid" aria-label="Day view">
       <div
         role="gridcell"
-        className={`calendar-cell${isToday ? " calendar-cell--today" : ""}`}
+        className={`calendar-cell calendar-cell--day${isToday ? " calendar-cell--today" : ""}`}
       >
         <div className="calendar-cell__header">
           <span>{formatDayLabel(day)}</span>
@@ -23,7 +23,7 @@ export default function DayView({ day, events, onSelectEvent, today }) {
             <p className="calendar-cell__empty">No events on this day.</p>
           ) : (
             dayEvents.map((event) => (
-              <EventPill key={event.id} event={event} onSelect={onSelectEvent} variant="week" />
+              <EventPill key={event.id} event={event} onSelect={onSelectEvent} variant="day" />
             ))
           )}
         </div>
