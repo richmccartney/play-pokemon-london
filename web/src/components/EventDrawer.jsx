@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { formatFullDateLabel, formatTimeLabel, parseLocal } from "../lib/date";
+import { eventIcon } from "../lib/eventIcon";
 import "./EventDrawer.css";
 
-export default function EventDrawer({ event, onClose }) {
+export default function EventDrawer({ event, allEvents = [], onSelectEvent, onClose }) {
   const closeButtonRef = useRef(null);
   const drawerRef = useRef(null);
   const touchStart = useRef(null);
@@ -122,6 +123,21 @@ export default function EventDrawer({ event, onClose }) {
   // above and the venue listed below. Lead with the venue instead.
   const heading = event.hasOrganiserName === false ? event.shop : event.name;
 
+  const icon = eventIcon(event.typeLabel);
+
+  // Other upcoming dates at the same venue, so someone who can't make this
+  // one can find the next. Matched on venueKey rather than the display name
+  // so a venue renamed by disambiguation still groups correctly.
+  const alsoHere = allEvents
+    .filter(
+      (e) =>
+        e.id !== event.id &&
+        (event.venueKey ? e.venueKey === event.venueKey : e.shop === event.shop) &&
+        parseLocal(e.startsAt) >= start
+    )
+    .sort((a, b) => a.startsAt.localeCompare(b.startsAt))
+    .slice(0, 6);
+
   return (
     <div className="event-drawer-overlay" onClick={onClose}>
       <div
@@ -166,6 +182,11 @@ export default function EventDrawer({ event, onClose }) {
           )}
           <p className="event-drawer__type">{event.typeLabel}</p>
           <h2 id="event-drawer-title" className="event-drawer__title">
+            {icon && (
+              <span className="event-drawer__icon" aria-label={icon.label} role="img">
+                {icon.icon}
+              </span>
+            )}
             {heading}
           </h2>
           <dl className="event-drawer__facts">
@@ -233,8 +254,42 @@ export default function EventDrawer({ event, onClose }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Official event page (admission, organizer contact, registration) ↗
+              Official event page ↗
             </a>
+          )}
+
+          {alsoHere.length > 0 && (
+            <section className="event-drawer__also">
+              <h3 className="event-drawer__also-title">
+                More at {event.shop}
+              </h3>
+              <ul className="event-drawer__also-list">
+                {alsoHere.map((other) => {
+                  const otherStart = parseLocal(other.startsAt);
+                  return (
+                    <li key={other.id}>
+                      <button
+                        type="button"
+                        className="event-drawer__also-item"
+                        onClick={() => onSelectEvent?.(other)}
+                      >
+                        <span className="event-drawer__also-when">
+                          {formatFullDateLabel(otherStart)} ·{" "}
+                          {formatTimeLabel(otherStart)}
+                        </span>
+                        <span className="event-drawer__also-type">
+                          {(() => {
+                            const otherIcon = eventIcon(other.typeLabel);
+                            return otherIcon ? `${otherIcon.icon} ` : "";
+                          })()}
+                          {other.typeLabel}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
           )}
         </div>
       </div>

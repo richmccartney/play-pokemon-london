@@ -24,8 +24,14 @@
   align-items: baseline;
   gap: 0.4rem;
   flex-wrap: wrap;
-  width: 100%;
   min-width: 0;
+}
+
+/* Month pills are a single row, so the head must not stretch or it would
+   push the event name to the far edge of the cell. */
+.event-pill--week .event-pill__head,
+.event-pill--day .event-pill__head {
+  width: 100%;
 }
 
 .event-pill__time {
@@ -45,9 +51,10 @@
   text-transform: uppercase;
   opacity: 0.75;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.event-pill__icon {
+  margin-right: 0.25rem;
 }
 
 .event-pill__venue {
@@ -65,11 +72,12 @@
 
 .event-pill--week,
 .event-pill--day {
-  padding: 0.45rem 0.6rem;
+  padding: 0.6rem 0.7rem;
   font-size: 0.875rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.15rem;
+  gap: 0.3rem;
+  line-height: 1.4;
 }
 
 .event-pill--week .event-pill__name,

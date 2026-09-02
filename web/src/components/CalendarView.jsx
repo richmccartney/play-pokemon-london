@@ -168,7 +168,12 @@ export default function CalendarView({ events, status }) {
         </>
       )}
 
-      <EventDrawer event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      <EventDrawer
+        event={selectedEvent}
+        allEvents={events}
+        onSelectEvent={setSelectedEvent}
+        onClose={() => setSelectedEvent(null)}
+      />
     </section>
   );
 }

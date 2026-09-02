@@ -216,6 +216,41 @@ function dedupeKey(event) {
 }
 
 /**
+ * Collapse same-venue, same-day, same-type events where pokedata.ovh lists
+ * the session twice: once as a bare recurring-league row with no name, and
+ * once as the organiser's own richer listing carrying a name and a
+ * pokemon_url. The two rows disagree on start time (typically by an hour or
+ * two), so they survive dedupeKey, but they are the same session.
+ *
+ * Every such collision in the data is exactly one named plus one unnamed row
+ * - never two unnamed - which is what distinguishes this from venues that
+ * genuinely run back-to-back sessions. We keep the named record because it
+ * carries the organiser's own start time and links to the official page.
+ */
+function collapseDuplicateSessions(events) {
+  const groups = new Map();
+  for (const event of events) {
+    const key = [event.venueKey ?? event.shop, event.date, event.typeLabel].join("|");
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(event);
+  }
+
+  const dropped = new Set();
+  for (const group of groups.values()) {
+    if (group.length < 2) continue;
+    const named = group.filter((e) => e.hasOrganiserName);
+    const plain = group.filter((e) => !e.hasOrganiserName);
+    // Only collapse the unambiguous shape. Anything else (two named rows, or
+    // several unnamed ones) is left alone rather than risk dropping a real
+    // second session.
+    if (named.length !== 1 || plain.length !== 1) continue;
+    dropped.add(plain[0].id);
+  }
+
+  return events.filter((e) => !dropped.has(e.id));
+}
+
+/**
  * Fetch and normalise events across every configured search point,
  * de-duplicating by guid (events near multiple search points can repeat).
  * @param {object} [options]
@@ -282,7 +317,7 @@ export async function fetchAllEvents({
     }
   }
 
-  return Array.from(byId.values()).sort((a, b) =>
+  return collapseDuplicateSessions(Array.from(byId.values())).sort((a, b) =>
     a.startsAt.localeCompare(b.startsAt)
   );
 }

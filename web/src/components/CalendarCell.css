@@ -97,6 +97,13 @@
   flex: 1;
 }
 
+/* Week and day pills carry two or three lines each, so they need more
+   separation than the single-line month pills to stay readable. */
+.week-view .calendar-cell__events,
+.calendar-cell--day .calendar-cell__events {
+  gap: 0.5rem;
+}
+
 /* Only day view still renders an empty message; month and week cells are
    left blank so a sparse calendar isn't filled with repeated "No events". */
 .calendar-cell__empty {

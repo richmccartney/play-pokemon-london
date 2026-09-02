@@ -1,5 +1,6 @@
 import { formatTimeLabel, parseLocal } from "../lib/date";
 import { venueColorIndex } from "../lib/eventColor";
+import { eventIcon } from "../lib/eventIcon";
 import "./EventPill.css";
 
 export default function EventPill({ event, onSelect, variant = "month" }) {
@@ -13,6 +14,7 @@ export default function EventPill({ event, onSelect, variant = "month" }) {
   // venue and type lines. In that case the venue is the headline instead.
   const heading = event.hasOrganiserName === false ? event.shop : event.name;
   const showVenue = detailed && event.shop && event.shop !== heading;
+  const icon = eventIcon(event.typeLabel);
   return (
     <button
       type="button"
@@ -23,11 +25,18 @@ export default function EventPill({ event, onSelect, variant = "month" }) {
     >
       <span className="event-pill__head">
         <span className="event-pill__time">{time}</span>
-        {detailed && event.typeLabel && (
-          <span className="event-pill__type">{event.typeLabel}</span>
+        {detailed && icon && (
+          <span className="event-pill__type">{icon.label}</span>
         )}
       </span>
-      <span className="event-pill__name">{heading}</span>
+      <span className="event-pill__name">
+        {icon && (
+          <span className="event-pill__icon" title={icon.label} aria-label={icon.label} role="img">
+            {icon.icon}
+          </span>
+        )}
+        {heading}
+      </span>
       {showVenue && (
         <span className="event-pill__venue">
           <span aria-hidden="true">📍</span> {event.shop}
