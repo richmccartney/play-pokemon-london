@@ -30,17 +30,11 @@ export default function CalendarView({ events, status }) {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [radiusKm, setRadiusKm] = useState(40);
   const [typeFilter, setTypeFilter] = useState("all");
-  const [cityFilter, setCityFilter] = useState("all");
-  const [venueFilter, setVenueFilter] = useState("all");
+  const [venueFilter, setVenueFilter] = useState([]);
 
   const typeOptions = useMemo(() => {
     const labels = new Set(events.map((e) => e.typeLabel).filter(Boolean));
     return Array.from(labels).sort();
-  }, [events]);
-
-  const cityOptions = useMemo(() => {
-    const cities = new Set(events.map((e) => e.city).filter(Boolean));
-    return Array.from(cities).sort();
   }, [events]);
 
   const venueOptions = useMemo(() => {
@@ -51,13 +45,12 @@ export default function CalendarView({ events, status }) {
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
       if (typeFilter !== "all" && event.typeLabel !== typeFilter) return false;
-      if (cityFilter !== "all" && event.city !== cityFilter) return false;
-      if (venueFilter !== "all" && event.shop !== venueFilter) return false;
+      if (venueFilter.length > 0 && !venueFilter.includes(event.shop)) return false;
       if (radiusKm >= 999) return true;
       const km = distanceKm(origin.latitude, origin.longitude, event.latitude, event.longitude);
       return km <= radiusKm;
     });
-  }, [events, typeFilter, cityFilter, venueFilter, radiusKm]);
+  }, [events, typeFilter, venueFilter, radiusKm]);
 
   const weekStart = startOfWeek(cursor);
 
@@ -98,9 +91,6 @@ export default function CalendarView({ events, status }) {
         typeFilter={typeFilter}
         onTypeFilterChange={setTypeFilter}
         typeOptions={typeOptions}
-        cityFilter={cityFilter}
-        onCityFilterChange={setCityFilter}
-        cityOptions={cityOptions}
         venueFilter={venueFilter}
         onVenueFilterChange={setVenueFilter}
         venueOptions={venueOptions}

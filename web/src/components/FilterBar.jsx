@@ -1,3 +1,4 @@
+import MultiSelect from "./MultiSelect";
 import "./FilterBar.css";
 
 const RADIUS_OPTIONS = [10, 20, 40, 999];
@@ -9,9 +10,6 @@ export default function FilterBar({
   typeFilter,
   onTypeFilterChange,
   typeOptions,
-  cityFilter,
-  onCityFilterChange,
-  cityOptions,
   venueFilter,
   onVenueFilterChange,
   venueOptions,
@@ -28,41 +26,13 @@ export default function FilterBar({
       </div>
 
       <div className="filter-bar__group">
-        <label className="filter-bar__label" htmlFor="city-select">
-          Event location
-        </label>
-        <select
-          id="city-select"
-          className="filter-bar__select"
-          value={cityFilter}
-          onChange={(e) => onCityFilterChange(e.target.value)}
-        >
-          <option value="all">All locations</option>
-          {cityOptions.map((city) => (
-            <option key={city} value={city}>
-              {city}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="filter-bar__group">
-        <label className="filter-bar__label" htmlFor="venue-select">
-          Event venue
-        </label>
-        <select
+        <MultiSelect
           id="venue-select"
-          className="filter-bar__select"
-          value={venueFilter}
-          onChange={(e) => onVenueFilterChange(e.target.value)}
-        >
-          <option value="all">All venues</option>
-          {venueOptions.map((venue) => (
-            <option key={venue} value={venue}>
-              {venue}
-            </option>
-          ))}
-        </select>
+          label="Event venue"
+          options={venueOptions}
+          selected={venueFilter}
+          onChange={onVenueFilterChange}
+        />
       </div>
 
       <div className="filter-bar__group">
