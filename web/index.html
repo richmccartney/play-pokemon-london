@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#E3350D" />
+    <title>PokeLeagues London | Subscribable TCG League Calendar</title>
+    <meta name="description" content="A free, auto-updating subscribable calendar of TCG League Cups, Challenges, Friendlies and Pre-releases near London. Browse the full calendar, filter by location, or add it to Google Calendar, Apple Calendar or Outlook." />
+    <meta name="keywords" content="TCG League, London TCG events, League Cup, League Challenge, TCG Friendlies, Pre-release, TCG calendar, subscribable calendar, ics feed" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pokeleagueslondon.netlify.app/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pokeleagueslondon.netlify.app/" />
+    <meta property="og:title" content="PokeLeagues London" />
+    <meta property="og:description" content="A subscribable calendar of nearby Pokemon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+    <meta property="og:locale" content="en_GB" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="PokeLeagues London" />
+    <meta name="twitter:description" content="A subscribable calendar of nearby Pokemon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
+
+    <script>
+      // Apply saved theme before first paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme-preference");
+          if (stored === "light" || stored === "dark") {
+            document.documentElement.setAttribute("data-theme", stored);
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PokeLeagues London",
+      "url": "https://pokeleagueslondon.netlify.app/",
+      "description": "A subscribable calendar of nearby Pokemon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly."
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

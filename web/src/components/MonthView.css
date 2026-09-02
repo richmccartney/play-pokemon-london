@@ -1,0 +1,68 @@
+.month-view__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 2px;
+}
+
+.month-view__weekday {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.month-view__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(90px, auto);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.month-view__cell {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.month-view__cell.calendar-cell--today {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  box-shadow: none;
+}
+
+.month-view__more {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.1rem 0.3rem;
+}
+
+.month-view__more:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .month-view__grid {
+    grid-auto-rows: minmax(64px, auto);
+  }
+  .month-view__weekday {
+    font-size: 0.625rem;
+    padding: 0.35rem 0.1rem;
+  }
+  .calendar-cell__header-btn {
+    font-size: 0.75rem;
+  }
+  .event-pill__name {
+    display: none;
+  }
+}

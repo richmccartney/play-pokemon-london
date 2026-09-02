@@ -1,0 +1,4 @@
+.day-view {
+  display: grid;
+  grid-template-columns: 1fr;
+}
