@@ -107,7 +107,7 @@
     }
 
     * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { height: 100%; }
+    html { height: 100%; scroll-behavior: smooth; }
     body {
       font-family: var(--font-sans);
       font-size: 1rem;
@@ -382,7 +382,7 @@
       PokeLeagues London
     </a>
     <div class="nav-links">
-      <a class="nav-cta" href="#subscribe">Subscribe</a>
+      <a class="nav-cta" id="nav-subscribe-link" href="#subscribe">Subscribe</a>
       <button id="theme-toggle" type="button" aria-label="Switch theme">🌙</button>
     </div>
   </nav>
@@ -480,6 +480,12 @@
 
     // Main hero CTA just scrolls to the subscribe section (works everywhere).
     document.getElementById("webcal-link").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("subscribe").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Nav "Subscribe" link does the same smooth scroll.
+    document.getElementById("nav-subscribe-link").addEventListener("click", (e) => {
       e.preventDefault();
       document.getElementById("subscribe").scrollIntoView({ behavior: "smooth" });
     });
