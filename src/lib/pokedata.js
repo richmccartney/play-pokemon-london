@@ -5,6 +5,10 @@
 // of scraping rendered HTML, since it returns clean, structured JSON.
 
 import { resolveVenue, titleCase } from "./venues.js";
+import {
+  fetchAuthoritativeTypes,
+  authoritativeTypeFor,
+} from "./pokedata-types.js";
 
 const API_URL = "https://www.pokedata.ovh/events/leagues/getevents.php";
 
@@ -81,8 +85,11 @@ export async function fetchEventsForPoint(point, filters = DEFAULT_FILTERS) {
  * @param {object} [venueRegistry] - mutable venue registry (see venues.js);
  *   when provided, shop name and address are cleaned up and converged on a
  *   single canonical spelling across repeated sightings of the same venue.
+ * @param {Map<string,string>} [authoritativeTypes] - authoritative type labels
+ *   from pokedata.ovh's /events2/ API (see pokedata-types.js). When this
+ *   covers the event, it wins over sniffing the event name.
  */
-export function normaliseEvent(raw, searchLabel, venueRegistry) {
+export function normaliseEvent(raw, searchLabel, venueRegistry, authoritativeTypes) {
   // "when" looks like "2026-09-05 11:00:00" with no explicit timezone.
   // All observed events are UK shops, so we treat this as Europe/London
   // local time (the ICS file encodes this explicitly with a VTIMEZONE).
@@ -113,10 +120,12 @@ export function normaliseEvent(raw, searchLabel, venueRegistry) {
   // pokedata.ovh's raw `type` only ever distinguishes "League Cup",
   // "League Challenge", or a single catch-all "nonpremier TCG" bucket that
   // covers Prereleases, Friendly Tournaments, and regular League Locals
-  // alike. When an event has its own organiser-provided title, sniff it for
-  // keywords to recover the more specific type instead of defaulting every
-  // one of them to "League (Locals)".
-  const typeLabel = refineTypeLabel(raw.type, raw.name);
+  // alike. Prefer the authoritative classification from /events2/ where it
+  // covers the event; otherwise sniff an organiser-provided title for
+  // keywords rather than defaulting every one to "League (Locals)".
+  const typeLabel =
+    authoritativeTypeFor(raw, authoritativeTypes) ??
+    refineTypeLabel(raw.type, raw.name);
   const title = raw.name && raw.name.trim()
     ? raw.name.trim()
     : `${cleanedVenue.name} - Pokémon TCG ${typeLabel}`;
@@ -214,10 +223,20 @@ export async function fetchAllEvents({
   const byContentKey = new Map(); // guards against pokedata.ovh returning the
   // same event twice under different guids (same shop/time/type/address).
 
+  // Best-effort: authoritative Cup/Challenge classification from /events2/.
+  // Only covers premier events, and never throws - on failure we simply fall
+  // back to sniffing event names as before.
+  const authoritativeTypes = await fetchAuthoritativeTypes(points);
+
   for (const point of points) {
     const data = await fetchEventsForPoint(point, filters);
     for (const raw of data.events ?? []) {
-      const event = normaliseEvent(raw, point.label, venueRegistry);
+      const event = normaliseEvent(
+        raw,
+        point.label,
+        venueRegistry,
+        authoritativeTypes
+      );
 
       const contentKey = dedupeKey(event);
       const existingByContent = byContentKey.get(contentKey);
