@@ -360,8 +360,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "e840f608-0fb4-473e-8d4f-ea08d33ef49e",
@@ -564,8 +563,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "4071cf42-b2a3-436f-9aa0-1bea347a0f3f",
@@ -645,8 +643,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "b6fc0423-df45-4753-ba60-22a34b94c659",
@@ -906,9 +903,9 @@
     "address": "370 Caledonian Rd, London, England N1 1DY, GB",
     "latitude": 51.5419,
     "longitude": -0.116948,
-    "startsAt": "2026-09-07T18:00:00",
+    "startsAt": "2026-09-07T19:00:00",
     "date": "2026-09-07",
-    "time": "18:00:00",
+    "time": "19:00:00",
     "distanceKm": 4,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -930,7 +927,8 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "d8bae4b9-b42c-44a6-8d63-6594a72b8dd9",
@@ -1741,8 +1739,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "1a423aa4-5f09-449d-8252-28af3a68d46d",
@@ -2024,8 +2021,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "9e902972-d0be-4be4-81ab-9c040bac43d5",
@@ -2065,8 +2061,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "d2f38957-99b9-4951-9e32-9a6b47b53961",
@@ -2286,9 +2281,9 @@
     "address": "370 Caledonian Rd, London, England N1 1DY, GB",
     "latitude": 51.5419,
     "longitude": -0.116948,
-    "startsAt": "2026-09-14T18:00:00",
+    "startsAt": "2026-09-14T19:00:00",
     "date": "2026-09-14",
-    "time": "18:00:00",
+    "time": "19:00:00",
     "distanceKm": 4,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -2310,7 +2305,8 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "4ec5f26c-4bb3-438b-8e13-a82c7e8e5d1f",
@@ -3078,8 +3074,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "1e06c36f-639a-4738-a04f-6fad299dffe4",
@@ -3321,8 +3316,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "0963e011-a6d2-4898-adba-b3051b380cef",
@@ -3582,9 +3576,9 @@
     "address": "370 Caledonian Rd, London, England N1 1DY, GB",
     "latitude": 51.5419,
     "longitude": -0.116948,
-    "startsAt": "2026-09-21T18:00:00",
+    "startsAt": "2026-09-21T19:00:00",
     "date": "2026-09-21",
-    "time": "18:00:00",
+    "time": "19:00:00",
     "distanceKm": 4,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -3606,7 +3600,8 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "821a6758-db6f-413f-8d3f-2af6826e2e86",
@@ -4335,8 +4330,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "aa0ac8e3-0ac9-4b33-9e5d-7981502daa80",
@@ -4618,8 +4612,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "d6402843-1bbe-42f4-b60e-74357bd3ef93",
@@ -4839,9 +4832,9 @@
     "address": "370 Caledonian Rd, London, England N1 1DY, GB",
     "latitude": 51.5419,
     "longitude": -0.116948,
-    "startsAt": "2026-09-28T18:00:00",
+    "startsAt": "2026-09-28T19:00:00",
     "date": "2026-09-28",
-    "time": "18:00:00",
+    "time": "19:00:00",
     "distanceKm": 4,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -4863,7 +4856,8 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "1abfa9b1-9f60-44ea-b102-17da0e5ad7f9",
@@ -5487,9 +5481,9 @@
     "address": "4 Dominion Walk Canary Wharf, London E14 9FX, GB",
     "latitude": 51.507,
     "longitude": -0.006464,
-    "startsAt": "2026-10-02T19:00:00",
+    "startsAt": "2026-10-02T18:00:00",
     "date": "2026-10-02",
-    "time": "19:00:00",
+    "time": "18:00:00",
     "distanceKm": 8,
     "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-10-003631/",
     "sourceSearch": "London",
@@ -5511,8 +5505,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "timeVerified": true,
-    "confidence": "verified"
+    "confidence": "unverified"
   },
   {
     "id": "d009290f-2264-40fe-9fc9-73053c59db8b",
@@ -5673,8 +5666,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "7040f023-56dd-4afa-81cb-14fef47af75c",
@@ -6421,9 +6413,9 @@
     "address": "4 Dominion Walk Canary Wharf, London E14 9FX, GB",
     "latitude": 51.507,
     "longitude": -0.006464,
-    "startsAt": "2026-10-09T19:00:00",
+    "startsAt": "2026-10-09T18:00:00",
     "date": "2026-10-09",
-    "time": "19:00:00",
+    "time": "18:00:00",
     "distanceKm": 8,
     "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-10-003632/",
     "sourceSearch": "London",
@@ -6445,8 +6437,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "timeVerified": true,
-    "confidence": "verified"
+    "confidence": "unverified"
   },
   {
     "id": "ba7c8e85-6376-4533-8de1-c9d73a89dd24",
@@ -6687,8 +6678,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "c0c8a175-7bfb-476d-9657-9b83faafe728",
@@ -7393,9 +7383,9 @@
     "address": "4 Dominion Walk Canary Wharf, London E14 9FX, GB",
     "latitude": 51.507,
     "longitude": -0.006464,
-    "startsAt": "2026-10-16T19:00:00",
+    "startsAt": "2026-10-16T18:00:00",
     "date": "2026-10-16",
-    "time": "19:00:00",
+    "time": "18:00:00",
     "distanceKm": 8,
     "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-10-003633/",
     "sourceSearch": "London",
@@ -7417,8 +7407,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "timeVerified": true,
-    "confidence": "verified"
+    "confidence": "unverified"
   },
   {
     "id": "33d05052-3798-47e7-abeb-bdf6fc2b6e3e",
@@ -7579,8 +7568,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "01e21738-274a-4b32-ba2f-3ecf695be06e",
@@ -8284,9 +8272,9 @@
     "address": "4 Dominion Walk Canary Wharf, London E14 9FX, GB",
     "latitude": 51.507,
     "longitude": -0.006464,
-    "startsAt": "2026-10-23T19:00:00",
+    "startsAt": "2026-10-23T18:00:00",
     "date": "2026-10-23",
-    "time": "19:00:00",
+    "time": "18:00:00",
     "distanceKm": 8,
     "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-10-003635/",
     "sourceSearch": "London",
@@ -8308,8 +8296,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "timeVerified": true,
-    "confidence": "verified"
+    "confidence": "unverified"
   },
   {
     "id": "12dbb27a-5dd1-48fd-8116-7e5df94fe39c",
@@ -8550,8 +8537,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "dafd6849-2467-4cd0-93af-b177113926a2",
@@ -9215,9 +9201,9 @@
     "address": "4 Dominion Walk Canary Wharf, London E14 9FX, GB",
     "latitude": 51.507,
     "longitude": -0.006464,
-    "startsAt": "2026-10-30T19:00:00",
+    "startsAt": "2026-10-30T18:00:00",
     "date": "2026-10-30",
-    "time": "19:00:00",
+    "time": "18:00:00",
     "distanceKm": 8,
     "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-10-003637/",
     "sourceSearch": "London",
@@ -9239,8 +9225,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "timeVerified": true,
-    "confidence": "verified"
+    "confidence": "unverified"
   },
   {
     "id": "d9c976a2-87be-4938-b0bd-6a34b534a74a",
