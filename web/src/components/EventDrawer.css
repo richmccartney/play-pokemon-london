@@ -28,6 +28,20 @@
   }
 }
 
+/* On Apple platforms (macOS, iOS, iPadOS), give the drawer the host OS's
+   native rounded, inset "sheet" look instead of sitting flush against the
+   screen edges. The overlay's padding creates the gap on every side; since
+   percentage/vw-based sizing on the drawer resolves against that padded
+   content box, no extra width/height math is needed here. */
+.is-apple .event-drawer-overlay {
+  padding: 12px;
+}
+
+.is-apple .event-drawer {
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
 /* Matches the site nav height so the drawer header lines up with it. */
 .event-drawer__header {
   position: sticky;

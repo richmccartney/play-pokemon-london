@@ -1,5 +1,6 @@
 import { useTheme } from "./hooks/useTheme";
 import { useEvents } from "./hooks/useEvents";
+import { useApplePlatformClass } from "./hooks/useApplePlatformClass";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import CalendarView from "./components/CalendarView";
@@ -10,6 +11,7 @@ import "./App.css";
 export default function App() {
   const { theme, toggleTheme } = useTheme();
   const { events, status } = useEvents();
+  useApplePlatformClass();
 
   return (
     <>
