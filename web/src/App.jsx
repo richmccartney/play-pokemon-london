@@ -24,14 +24,16 @@ export default function App() {
         <CalendarView events={events} status={status} />
         <div className="app__below-calendar">
           <SubscribeSection />
-          <StatusFooter />
         </div>
       </main>
       <footer className="app__footer">
-        © 2026 PokeLeagues London — data refreshed nightly ·{" "}
-        <a href="https://buymeacoffee.com/pokemacca" target="_blank" rel="noopener noreferrer">
-          Buy Me a Coffee
-        </a>
+        <p>
+          © 2026 PokeLeagues London — data refreshed nightly ·{" "}
+          <a href="https://buymeacoffee.com/pokemacca" target="_blank" rel="noopener noreferrer">
+            Buy Me a Coffee
+          </a>
+        </p>
+        <StatusFooter />
       </footer>
     </>
   );

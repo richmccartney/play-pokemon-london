@@ -32,9 +32,8 @@ export default function StatusFooter() {
   }, []);
 
   return (
-    <div className="status-block">
-      <h2>Status</h2>
-      <p role="status">{statusText}</p>
-    </div>
+    <span className="app__footer-status" role="status">
+      <span aria-hidden="true">🚦</span> {statusText}
+    </span>
   );
 }
