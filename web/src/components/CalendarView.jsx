@@ -1,14 +1,17 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   addDays,
   addMonths,
   endOfMonth,
   formatMonthLabel,
   formatWeekRangeLabel,
+  isSameDay,
+  parseISODate,
   parseLocal,
   startOfDay,
   startOfMonth,
   startOfWeek,
+  toISODate,
 } from "../lib/date";
 import FilterBar from "./FilterBar";
 import ViewSwitcher from "./ViewSwitcher";
@@ -20,17 +23,62 @@ import EventDrawer from "./EventDrawer";
 import "./CalendarView.css";
 
 const TODAY = startOfDay(new Date());
+const VALID_VIEWS = new Set(["month", "week", "day"]);
 
-// Location is fixed to Central London — not user-changeable.
+// Reads the initial view/date/filters from the URL's query string (if
+// present) so a filtered/navigated calendar page can be bookmarked or
+// shared as a link and reopen in the same state. Read once, synchronously,
+// during the component's first render (not in an effect) so there's no
+// flash of the default state before the URL-derived one takes over.
+function readStateFromUrl() {
+  if (typeof window === "undefined") {
+    return { view: "week", cursor: TODAY, typeFilter: "all", venueFilter: [] };
+  }
+  const params = new URLSearchParams(window.location.search);
+
+  const viewParam = params.get("view");
+  const view = VALID_VIEWS.has(viewParam) ? viewParam : "week";
+
+  const dateParam = parseISODate(params.get("date"));
+  const cursor = dateParam ?? TODAY;
+
+  const typeFilter = params.get("type") || "all";
+  const venueFilter = params.getAll("venue").filter(Boolean);
+
+  return { view, cursor, typeFilter, venueFilter };
+}
+
+// Mirrors the current view/date/filters back into the URL's query string
+// (via replaceState, so filtering doesn't spam browser history) whenever
+// they change, so the address bar always reflects a link that reopens the
+// calendar in the same state. Defaults are omitted entirely to keep the
+// common case's URL clean.
+function syncStateToUrl({ view, cursor, typeFilter, venueFilter }) {
+  if (typeof window === "undefined") return;
+  const params = new URLSearchParams();
+
+  if (view !== "week") params.set("view", view);
+  if (!isSameDay(cursor, TODAY)) params.set("date", toISODate(cursor));
+  if (typeFilter !== "all") params.set("type", typeFilter);
+  for (const venue of venueFilter) params.append("venue", venue);
+
+  const query = params.toString();
+  const newUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+  if (newUrl !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+    window.history.replaceState(window.history.state, "", newUrl);
+  }
+}
 
 export default function CalendarView({ events, status }) {
+  const [initialUrlState] = useState(readStateFromUrl);
+
   // Week is the default: it's dense enough to show each event's venue and
   // type inline, which the month grid has no room for.
-  const [view, setView] = useState("week");
-  const [cursor, setCursor] = useState(TODAY);
+  const [view, setView] = useState(initialUrlState.view);
+  const [cursor, setCursor] = useState(initialUrlState.cursor);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [typeFilter, setTypeFilter] = useState("all");
-  const [venueFilter, setVenueFilter] = useState([]);
+  const [typeFilter, setTypeFilter] = useState(initialUrlState.typeFilter);
+  const [venueFilter, setVenueFilter] = useState(initialUrlState.venueFilter);
 
   const typeOptions = useMemo(() => {
     const labels = new Set(events.map((e) => e.typeLabel).filter(Boolean));
@@ -41,6 +89,13 @@ export default function CalendarView({ events, status }) {
     const venues = new Set(events.map((e) => e.shop).filter(Boolean));
     return Array.from(venues).sort();
   }, [events]);
+
+  // Keep the URL's query string in sync with the current view/date/filters,
+  // so the address bar always reflects a link that reopens the calendar in
+  // this exact state (e.g. to share a filtered view with someone else).
+  useEffect(() => {
+    syncStateToUrl({ view, cursor, typeFilter, venueFilter });
+  }, [view, cursor, typeFilter, venueFilter]);
 
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {

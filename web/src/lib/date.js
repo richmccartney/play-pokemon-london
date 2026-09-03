@@ -98,3 +98,25 @@ export function formatFullDateLabel(date) {
 export function formatTimeLabel(date) {
   return date.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
 }
+
+/** Format a Date as a "YYYY-MM-DD" local-date string, for URL query params. */
+export function toISODate(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+/**
+ * Parse a "YYYY-MM-DD" string (e.g. from a URL query param) as a local
+ * midnight Date. Returns null for anything malformed, so callers can fall
+ * back to a sane default instead of constructing an "Invalid Date".
+ */
+export function parseISODate(str) {
+  if (!str || !/^\d{4}-\d{2}-\d{2}$/.test(str)) return null;
+  const [y, m, d] = str.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  const valid =
+    date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
+  return valid ? date : null;
+}
