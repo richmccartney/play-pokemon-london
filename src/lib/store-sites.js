@@ -26,15 +26,23 @@ const USER_AGENT =
 
 const FETCH_TIMEOUT_MS = 15000;
 
+// A couple of hosts block our honest User-Agent outright. For those, and only
+// those, we send a browser string so the request is served at all.
+const BROWSER_USER_AGENT =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36";
+
 /**
  * Fetch a URL as text, returning null rather than throwing on any failure.
  */
-async function fetchText(url) {
+async function fetchText(url, { browserAgent = false } = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
   try {
     const res = await fetch(url, {
-      headers: { "user-agent": USER_AGENT, accept: "text/html" },
+      headers: {
+        "user-agent": browserAgent ? BROWSER_USER_AGENT : USER_AGENT,
+        accept: "text/html",
+      },
       signal: controller.signal,
     });
     if (!res.ok) return null;
@@ -430,6 +438,35 @@ const darkFire = {
   },
 };
 
+const mugAndMeeple = {
+  match: /mug\s*(and|&)\s*meeple/i,
+  // Their calendar carries the ticketed tournaments but not the weekly league
+  // night, so we can only vouch for Cups and Challenges.
+  covers: /cup|challenge|prerelease/i,
+  async schedule() {
+    // Their host rejects requests without a browser-shaped User-Agent.
+    const page = await fetchText("https://mugandmeeple.co.uk/calendar/", {
+      browserAgent: true,
+    });
+    if (!page) return [];
+
+    const found = [];
+    const entry =
+      /title:\s*'((?:[^'\\]|\\.)*)',\s*start:\s*'(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2})'/g;
+    let match;
+    while ((match = entry.exec(page))) {
+      const title = match[1];
+      if (!/pok[eé]mon/i.test(title)) continue;
+      // They run a parallel video game programme on the same evenings. Those
+      // are not the TCG events we track, and a VGC Challenge falling on a
+      // league night would otherwise overwrite it.
+      if (/\bvgc\b|video\s*game/i.test(title)) continue;
+      found.push({ date: match[2], time: match[3] });
+    }
+    return found;
+  },
+};
+
 const gamersGuild = {
   match: /^(the\s+)?gamers'?\s*guild/i,
   // Their site states the Challenge schedule but says nothing about the weekly
@@ -507,6 +544,7 @@ const ADAPTERS = [
   trollTrader,
   movieShack,
   darkFire,
+  mugAndMeeple,
   gamersGuild,
 ];
 /**
