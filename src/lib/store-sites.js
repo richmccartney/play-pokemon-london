@@ -171,7 +171,61 @@ function todayISO() {
   return new Date().toISOString().slice(0, 10);
 }
 
-const ADAPTERS = [darkSphere, p9];
+/**
+ * Wayland Games list their events on a separate subdomain from their shop,
+ * as a grid of cards each holding a title and a "Sept 8 2026 | 18:00 - 21:30"
+ * meta line. One page covers roughly two months.
+ *
+ * The card title is the only thing distinguishing a Pokemon night from their
+ * Magic, Star Wars and Riftbound nights, so the match is made against the
+ * title alone rather than the card's wider markup.
+ */
+const wayland = {
+  match: /^wayland\s*games/i,
+  async schedule() {
+    const page = await fetchText("https://centres.waylandgames.co.uk/brentwood");
+    if (!page) return [];
+
+    const found = [];
+    for (const card of page.split('class="card-title">').slice(1)) {
+      const title = card.slice(0, card.indexOf("<")).trim();
+      if (!/pok[eé]mon/i.test(title)) continue;
+
+      const metaIndex = card.indexOf("card-meta");
+      if (metaIndex === -1) continue;
+      const meta = card
+        .slice(metaIndex, metaIndex + 6000)
+        .replace(/<[^>]+>/g, " ")
+        .replace(/&nbsp;/g, " ")
+        .replace(/\s+/g, " ");
+
+      // "Sept 8 2026 | 18:00 - 21:30" - month first here, and the second
+      // clock time is the finish, so only the first is read.
+      const date = parseMonthFirstDate(meta);
+      const time = /(\d{1,2}):(\d{2})/.exec(meta);
+      if (!date || !time) continue;
+
+      found.push({ date, time: `${time[1].padStart(2, "0")}:${time[2]}` });
+    }
+    return found;
+  },
+};
+
+/**
+ * Parse "Sept 8 2026" into an ISO date. Wayland abbreviate September as
+ * "Sept", so the month is matched on its first three letters.
+ */
+function parseMonthFirstDate(text) {
+  const match = /([A-Za-z]{3,9})\s+(\d{1,2})\s+(\d{4})/.exec(text);
+  if (!match) return null;
+  const month = MONTHS[match[1].slice(0, 3).toLowerCase()];
+  if (!month) return null;
+  return `${match[3]}-${String(month).padStart(2, "0")}-${String(
+    Number(match[2])
+  ).padStart(2, "0")}`;
+}
+
+const ADAPTERS = [darkSphere, p9, wayland];
 
 function adapterFor(shop) {
   return ADAPTERS.find((a) => a.match.test(shop)) ?? null;
