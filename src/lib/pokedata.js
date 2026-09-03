@@ -4,7 +4,12 @@
 // endpoint client-side via fetch(). We call it directly server-side instead
 // of scraping rendered HTML, since it returns clean, structured JSON.
 
-import { resolveVenue, titleCase, finaliseVenueNames } from "./venues.js";
+import {
+  resolveVenue,
+  titleCase,
+  finaliseVenueNames,
+  venueNameKey,
+} from "./venues.js";
 import {
   fetchAuthoritativeTypes,
   authoritativeTypeFor,
@@ -129,9 +134,16 @@ export function normaliseEvent(raw, searchLabel, venueRegistry, authoritativeTyp
   // pokedata.ovh leaves `name` empty for most locals, so we synthesise a
   // title for the calendar feed. The UI flags these because it already shows
   // the venue and type alongside, where a synthesised title just repeats it.
-  const hasOrganiserName = Boolean(raw.name && raw.name.trim());
+  //
+  // Organiser titles often carry a trailing date stamp, which is dropped. If
+  // that leaves nothing but the venue name we treat the event as untitled and
+  // synthesise a readable one instead.
+  const organiserName = stripDateStamp((raw.name ?? "").trim());
+  const hasOrganiserName =
+    Boolean(organiserName) &&
+    venueNameKey(organiserName) !== venueNameKey(cleanedVenue.name);
   const title = hasOrganiserName
-    ? raw.name.trim()
+    ? organiserName
     : `${cleanedVenue.name} - Pokémon TCG ${typeLabel}`;
 
   return {
@@ -193,6 +205,29 @@ const NAME_TYPE_HINTS = [
  * @param {string} rawType
  * @param {string} [rawName]
  */
+/**
+ * Strip a trailing date stamp from an organiser's title.
+ *
+ * Some organisers file titles that are really internal references with the
+ * date baked in: "Retro Giant - 2026 09 04", "BMC Weekly Game Nights 090626".
+ * The date tells a subscriber nothing the Date field doesn't already, and it
+ * reads badly in a calendar app, so it is removed. Both the spaced ISO form
+ * and the packed US MMDDYY form are handled; the six-digit case is anchored to
+ * the end and must be a plausible date so a title that merely ends in a number
+ * is left alone.
+ *
+ * What remains may be a real title ("BMC Weekly Game Nights") or nothing but
+ * the venue name and punctuation ("Retro Giant -"), which the caller treats as
+ * having no organiser title at all.
+ */
+function stripDateStamp(name) {
+  return name
+    .replace(/\d{4}[\s._/-]+\d{1,2}[\s._/-]+\d{1,2}\s*$/, "")
+    .replace(/\b(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{2}\s*$/, "")
+    .replace(/[\s\-–—_,:]+$/, "")
+    .trim();
+}
+
 function refineTypeLabel(rawType, rawName) {
   const baseLabel = TYPE_LABELS[rawType] || rawType || "TCG Event";
   if (rawType !== "nonpremier TCG" || !rawName || !rawName.trim()) {

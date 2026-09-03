@@ -91,7 +91,17 @@ const PREFERRED_ADDRESS_SOURCE = {
 // common, and the shop name is what people recognise.
 const PREFERRED_DISPLAY_NAME = {
   BEXLEYHEATHLIBRARY: "The Movie Shack",
+  RETROGIANTMIGHTYMEEPLES: "Mighty Meeples",
 };
+
+// Venue names that must never be folded into a shorter name they happen to
+// extend. The prefix rule below is what lets "Bad Moon Cafe" absorb "Bad Moon
+// Cafe Holloway Road", but it misfires when a shop lends its name to a
+// separate venue nearby: Mighty Meeples is a games club at the rear of the
+// Golden Lion pub (RM1 1HR), ~130m from the Retro Giant shop itself (RM1
+// 3ED), so both the name and the distance test say "same place" when they are
+// not. Events at each need their own address and map pin.
+const DISTINCT_VENUES = new Set(["RETROGIANTMIGHTYMEEPLES"]);
 
 /**
  * Title-case a raw ALL-CAPS (or mixed-case) string, preserving known
@@ -113,13 +123,16 @@ export function titleCase(str) {
       }
       // Known acronyms / abbreviations.
       if (KEEP_UPPER.has(bare)) return upper;
-      // Small joining words (not first word).
-      if (index !== 0 && LOWER_WORDS.has(word.toLowerCase())) {
+      // Small joining words (not first word). Compared on the bare letters so
+      // that punctuation doesn't hide them, e.g. "of)" in "(back of)".
+      if (index !== 0 && LOWER_WORDS.has(bare.toLowerCase())) {
         return word.toLowerCase();
       }
-      // Capitalise only the first letter; keep any letter after an
-      // apostrophe lowercase (e.g. "john's" -> "John's", not "John'S").
-      return word.charAt(0).toUpperCase() + word.slice(1);
+      // Capitalise the first *letter* rather than the first character, so a
+      // leading bracket doesn't swallow the capital ("(back" -> "(Back").
+      // Any letter after an apostrophe stays lowercase ("john's" -> "John's",
+      // not "John'S").
+      return word.replace(/[a-z]/, (c) => c.toUpperCase());
     })
     .join("");
 }
@@ -218,8 +231,12 @@ export function resolveVenue(raw, registry) {
       const existing = registry[k];
       if (!existing.nameKey) return false;
       if (!withinVenueRadius(existing, lat, lng, radius)) return false;
+      if (existing.nameKey === nameKey) return true;
+      // Only the exact-name test applies to venues we have marked distinct;
+      // the prefix rule would wrongly swallow them into their namesake.
+      if (DISTINCT_VENUES.has(nameKey) || DISTINCT_VENUES.has(existing.nameKey))
+        return false;
       return (
-        existing.nameKey === nameKey ||
         existing.nameKey.startsWith(nameKey) ||
         nameKey.startsWith(existing.nameKey)
       );
@@ -328,8 +345,13 @@ export function finaliseVenueNames(registry) {
 
   const groups = new Map();
   for (const [key, entry] of entries) {
-    const root =
-      roots.find((r) => entry.baseNameKey.startsWith(r)) ?? entry.baseNameKey;
+    // Venues marked distinct are not branches of their namesake, so they must
+    // not be pulled into its group and given a "(locality)" branch label.
+    const root = DISTINCT_VENUES.has(entry.baseNameKey)
+      ? entry.baseNameKey
+      : roots.find(
+          (r) => !DISTINCT_VENUES.has(r) && entry.baseNameKey.startsWith(r)
+        ) ?? entry.baseNameKey;
     if (!groups.has(root)) groups.set(root, []);
     groups.get(root).push([key, entry]);
   }
@@ -337,7 +359,8 @@ export function finaliseVenueNames(registry) {
   for (const members of groups.values()) {
     if (members.length === 1) {
       const [, entry] = members[0];
-      entry.displayName = entry.canonicalName;
+      entry.displayName =
+        PREFERRED_DISPLAY_NAME[entry.baseNameKey] ?? entry.canonicalName;
       continue;
     }
 

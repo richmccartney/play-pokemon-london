@@ -240,9 +240,8 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
 
           {event.confidence === "unverified" && (
             <p className="event-drawer__unverified">
-              <span aria-hidden="true">⚠️</span> We could not confirm this time
-              against {event.shop}&rsquo;s own website, so it may be out of
-              date. Please check with the store before travelling.
+              <span aria-hidden="true">⚠️</span> This date and time may not be
+              up to date. Please check with the store before travelling.
             </p>
           )}
 
