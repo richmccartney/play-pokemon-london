@@ -118,48 +118,67 @@
 .event-pill--c22 { --pill-hue: 305; }
 .event-pill--c23 { --pill-hue: 80; }
 
-.event-pill[class*="event-pill--c"] {
+.event-pill[class*="event-pill--c"],
+.event-drawer__also-item[class*="event-pill--c"] {
   background: hsl(var(--pill-hue) 65% 92% / 1);
   border-color: hsl(var(--pill-hue) 45% 80%);
   border-left-color: hsl(var(--pill-hue) 55% 45%);
 }
 
-.event-pill[class*="event-pill--c"] .event-pill__time {
+.event-pill[class*="event-pill--c"] .event-pill__time,
+.event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-when {
   color: hsl(var(--pill-hue) 55% 32%);
 }
 
-.event-pill[class*="event-pill--c"] .event-pill__type {
+.event-pill[class*="event-pill--c"] .event-pill__type,
+.event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-type {
   color: hsl(var(--pill-hue) 55% 32%);
 }
 
-.event-pill[class*="event-pill--c"]:hover {
+.event-pill[class*="event-pill--c"]:hover,
+.event-drawer__also-item[class*="event-pill--c"]:hover {
   background: hsl(var(--pill-hue) 65% 87% / 1);
 }
 
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"] {
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"],
+:root[data-theme="dark"] .event-drawer__also-item[class*="event-pill--c"] {
   background: hsl(var(--pill-hue) 35% 20% / 1);
   border-color: hsl(var(--pill-hue) 30% 32%);
   border-left-color: hsl(var(--pill-hue) 60% 60%);
 }
 
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__time {
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__time,
+:root[data-theme="dark"] .event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-when {
   color: hsl(var(--pill-hue) 65% 72%);
 }
 
-:root[data-theme="dark"] .event-pill[class*="event-pill--c"]:hover {
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"] .event-pill__type,
+:root[data-theme="dark"] .event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-type {
+  color: hsl(var(--pill-hue) 65% 72%);
+}
+
+:root[data-theme="dark"] .event-pill[class*="event-pill--c"]:hover,
+:root[data-theme="dark"] .event-drawer__also-item[class*="event-pill--c"]:hover {
   background: hsl(var(--pill-hue) 35% 26% / 1);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] {
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"],
+  :root:not([data-theme="light"]) .event-drawer__also-item[class*="event-pill--c"] {
     background: hsl(var(--pill-hue) 35% 20% / 1);
     border-color: hsl(var(--pill-hue) 30% 32%);
     border-left-color: hsl(var(--pill-hue) 60% 60%);
   }
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__time {
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__time,
+  :root:not([data-theme="light"]) .event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-when {
     color: hsl(var(--pill-hue) 65% 72%);
   }
-  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"]:hover {
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"] .event-pill__type,
+  :root:not([data-theme="light"]) .event-drawer__also-item[class*="event-pill--c"] .event-drawer__also-type {
+    color: hsl(var(--pill-hue) 65% 72%);
+  }
+  :root:not([data-theme="light"]) .event-pill[class*="event-pill--c"]:hover,
+  :root:not([data-theme="light"]) .event-drawer__also-item[class*="event-pill--c"]:hover {
     background: hsl(var(--pill-hue) 35% 26% / 1);
   }
 }

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { formatFullDateLabel, formatTimeLabel, parseLocal } from "../lib/date";
 import { eventIcon } from "../lib/eventIcon";
+import { venueColorIndex } from "../lib/eventColor";
 import "./EventDrawer.css";
 
 export default function EventDrawer({ event, allEvents = [], onSelectEvent, onClose }) {
@@ -137,6 +138,9 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     )
     .sort((a, b) => a.startsAt.localeCompare(b.startsAt))
     .slice(0, 6);
+  // Same venue, so every "also here" card shares the venue's colour accent —
+  // consistent with how the calendar itself colour-codes entries by venue.
+  const alsoColorIndex = venueColorIndex(event.shop);
 
   return (
     <div className="event-drawer-overlay" onClick={onClose}>
@@ -264,7 +268,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
                     <li key={other.id}>
                       <button
                         type="button"
-                        className="event-drawer__also-item"
+                        className={`event-drawer__also-item event-pill--c${alsoColorIndex}`}
                         onClick={() => onSelectEvent?.(other)}
                       >
                         <span className="event-drawer__also-when">
