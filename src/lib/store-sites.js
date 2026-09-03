@@ -252,8 +252,131 @@ function parseMonthFirstDate(text) {
   ).padStart(2, "0")}`;
 }
 
-const ADAPTERS = [darkSphere, p9, wayland, badgerBadger, onlyGraded];
+/**
+ * Troll Trader embed a Tockify calendar, which serves its events as JSON from
+ * a public endpoint keyed on the calendar name found in the page markup.
+ *
+ * Like the Tribe feeds this needs no parsing: each event carries an epoch
+ * start time plus its UTC offset, so the local wall-clock time is exact.
+ */
+const trollTrader = {
+  match: /^troll\s*trader/i,
+  async schedule() {
+    const body = await fetchText(
+      "https://tockify.com/api/ngevent" +
+        `?calname=ttbromley&startms=${Date.now()}&max=200`
+    );
+    if (!body) return [];
 
+    let events;
+    try {
+      events = JSON.parse(body).events;
+    } catch {
+      return [];
+    }
+    if (!Array.isArray(events)) return [];
+
+    const found = [];
+    for (const event of events) {
+      const title = event?.content?.summary?.text ?? "";
+      if (!/pok[eé]mon/i.test(title)) continue;
+
+      const start = event?.when?.start;
+      if (!Number.isFinite(start?.millis)) continue;
+
+      // Shift by the event's own offset and read the result as UTC, so the
+      // local time is recovered without depending on the server's timezone.
+      const local = new Date(start.millis + (start.offset ?? 0));
+      found.push({
+        date: local.toISOString().slice(0, 10),
+        time: local.toISOString().slice(11, 16),
+      });
+    }
+    return found;
+  },
+};
+
+/**
+ * The Movie Shack sell event places as Shopify products, one product per event
+ * type with a variant per date ("Thursday 9th September 6pm"). The variant
+ * title is the only place the schedule appears, so the year is absent and has
+ * to be inferred.
+ *
+ * Their league nights are not sold this way - only the ticketed Challenges are
+ * - so this confirms a handful of dates rather than the whole schedule.
+ */
+const movieShack = {
+  match: /^(the\s*)?movie\s*shack/i,
+  // Only their ticketed Challenges are sold as products; the weekly league
+  // nights are free and never appear, so nothing else can be confirmed here.
+  covers: /challenge/i,
+  async schedule() {
+    const body = await fetchText(
+      "https://themovieshack.co.uk/products.json?limit=250"
+    );
+    if (!body) return [];
+
+    let products;
+    try {
+      products = JSON.parse(body).products;
+    } catch {
+      return [];
+    }
+    if (!Array.isArray(products)) return [];
+
+    const found = [];
+    for (const product of products) {
+      if (!/pok[eé]mon/i.test(product?.title ?? "")) continue;
+      for (const variant of product.variants ?? []) {
+        const parsed = parseDayMonthTime(variant?.title ?? "");
+        if (parsed) found.push(parsed);
+      }
+    }
+    return found;
+  },
+};
+
+/**
+ * Parse "Thursday 9th September 6pm" into a date and 24-hour time.
+ *
+ * No year is given, so the next occurrence of that day/month is assumed:
+ * a month more than a little in the past belongs to next year. Times are
+ * written informally ("6pm", "6.30pm"), so both forms are accepted.
+ */
+function parseDayMonthTime(text) {
+  const when = /(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]{3,9})/.exec(text);
+  const clock = /(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)/i.exec(text);
+  if (!when || !clock) return null;
+
+  const month = MONTHS[when[2].slice(0, 3).toLowerCase()];
+  if (!month) return null;
+
+  let hour = Number(clock[1]) % 12;
+  if (/pm/i.test(clock[3])) hour += 12;
+
+  const now = new Date();
+  // Allow a month's grace before rolling forward, so an event earlier this
+  // month is not pushed a year into the future.
+  const year =
+    month < now.getUTCMonth() ? now.getUTCFullYear() + 1 : now.getUTCFullYear();
+
+  return {
+    date: `${year}-${String(month).padStart(2, "0")}-${String(
+      Number(when[1])
+    ).padStart(2, "0")}`,
+    time: `${String(hour).padStart(2, "0")}:${clock[2] ?? "00"}`,
+  };
+}
+
+const ADAPTERS = [
+  darkSphere,
+  p9,
+  wayland,
+  badgerBadger,
+  onlyGraded,
+  trollTrader,
+  movieShack,
+];
 /**
  * Store websites we have found but not yet written an adapter for, kept here
  * so the search work is not repeated. Each note says why there is no adapter
@@ -312,8 +435,9 @@ export async function verifyAgainstStoreSites(events) {
   // given pokedata row refers to, so we leave it alone rather than guess.
   const schedules = new Map();
   for (const shop of shops) {
+    const adapter = adapterFor(shop);
     try {
-      const entries = await adapterFor(shop).schedule(shop);
+      const entries = await adapter.schedule(shop);
       const byDate = new Map();
       const seen = new Set();
       for (const entry of entries) {
@@ -324,7 +448,11 @@ export async function verifyAgainstStoreSites(events) {
         seen.add(entry.date);
         byDate.set(entry.date, entry.time);
       }
-      schedules.set(shop, { byDate, byWeekday: weeklyPattern(byDate) });
+      schedules.set(shop, {
+        byDate,
+        byWeekday: weeklyPattern(byDate),
+        covers: adapter.covers,
+      });
     } catch {
       // An adapter throwing is a bug in that adapter, not a reason to fail
       // the whole sync; the store just keeps its pokedata times.
@@ -341,6 +469,16 @@ export async function verifyAgainstStoreSites(events) {
     // Pokemon's official listings, which we have found to lag behind what
     // stores actually run - so "unverified" genuinely means "might be stale".
     if (!schedule) return { ...event, confidence: "unverified" };
+
+    // Some adapters only see part of a store's programme - The Movie Shack
+    // sell their monthly Challenge as a Shopify product but run their weekly
+    // league nights without tickets. A store can hold two Pokémon events on
+    // one date (a 15:00 league and a 19:00 Challenge), so matching on date
+    // alone would stamp the Challenge's time onto the league. Where an adapter
+    // declares what it covers, everything else is left as unverified.
+    if (schedule.covers && !schedule.covers.test(event.typeLabel ?? "")) {
+      return { ...event, confidence: "unverified" };
+    }
 
     // Prefer an exact date match; fall back to the store's established
     // weekly slot for dates beyond what their site currently lists.
@@ -389,21 +527,36 @@ export async function verifyAgainstStoreSites(events) {
  * are a mix of recurring leagues and one-off cups and challenges that start
  * at their own times, so a lone weekend sighting proves only that one event.
  * Days with conflicting times are dropped rather than guessed at.
+ *
+ * Agreeing times are not on their own evidence of a *weekly* rhythm: The Movie
+ * Shack sell a monthly Challenge that always falls on a Thursday at 18:00,
+ * which would otherwise be projected onto every Thursday league night. So
+ * where a weekday has several sightings, two of them must be exactly a week
+ * apart before the time is treated as recurring.
  */
 function weeklyPattern(byDate) {
   const times = new Map();
   for (const [date, time] of byDate) {
     const weekday = new Date(`${date}T12:00:00Z`).getUTCDay();
     if (!times.has(weekday)) times.set(weekday, []);
-    times.get(weekday).push(time);
+    times.get(weekday).push({ date, time });
   }
   const pattern = new Map();
   for (const [weekday, seen] of times) {
     const isWeekend = weekday === 0 || weekday === 6;
-    const distinct = new Set(seen);
-    if (distinct.size === 1 && seen.length >= (isWeekend ? 2 : 1)) {
-      pattern.set(weekday, seen[0]);
-    }
+    const distinct = new Set(seen.map((s) => s.time));
+    if (distinct.size !== 1) continue;
+    if (seen.length < (isWeekend ? 2 : 1)) continue;
+    if (seen.length > 1 && !hasWeeklyGap(seen.map((s) => s.date))) continue;
+    pattern.set(weekday, seen[0].time);
   }
   return pattern;
+}
+
+/** Are any two of these dates exactly seven days apart? */
+function hasWeeklyGap(dates) {
+  const days = dates
+    .map((d) => Date.parse(`${d}T12:00:00Z`) / 86_400_000)
+    .sort((a, b) => a - b);
+  return days.some((d, i) => i > 0 && d - days[i - 1] === 7);
 }
