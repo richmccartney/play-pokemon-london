@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node scripts/test-local.js",
     "dev": "netlify dev",
-    "sync": "node scripts/test-local.js"
+    "sync": "node scripts/test-local.js",
+    "fixtures": "node scripts/generate-fixtures.mjs"
   },
   "keywords": [],
   "author": "",
