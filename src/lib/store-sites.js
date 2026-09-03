@@ -857,6 +857,34 @@ function adapterFor(shop) {
  * @param {object[]} events
  * @returns {Promise<{events: object[], corrections: object[]}>}
  */
+/**
+ * Start times we hold on the project owner's authority rather than from a
+ * store's own website.
+ *
+ * These correct the clock but deliberately do NOT mark an event verified: the
+ * "verified" badge means "we read this off the shop's own site today", and
+ * nothing here has been checked that way. The events keep their warning
+ * telling people to ring ahead.
+ *
+ * Only for shops that genuinely publish nothing. The Movie Shack sell their
+ * monthly Challenge through Shopify but run the weekly league without tickets,
+ * so it appears nowhere on their site; pokedata's 15:00 is simply wrong.
+ */
+const REPORTED_TIMES = [
+  {
+    match: /^(the\s*)?movie\s*shack/i,
+    typeLabel: /^league\s*\(locals\)$/i,
+    time: "18:00",
+  },
+];
+
+function reportedTimeFor(event) {
+  const rule = REPORTED_TIMES.find(
+    (r) => r.match.test(event.shop ?? "") && r.typeLabel.test(event.typeLabel ?? "")
+  );
+  return rule?.time ?? null;
+}
+
 export async function verifyAgainstStoreSites(events) {
   const shops = [...new Set(events.map((e) => e.shop))].filter((shop) =>
     adapterFor(shop)
@@ -916,6 +944,30 @@ export async function verifyAgainstStoreSites(events) {
   const corrections = [];
   const corrected = events.map((event) => {
     const schedule = schedules.get(event.shop);
+
+    // A time we hold on the owner's authority overrides pokedata, but never
+    // counts as verification, so the event keeps its check-before-travelling
+    // warning.
+    const reported = reportedTimeFor(event);
+    if (reported) {
+      const current = (event.time ?? "").slice(0, 5);
+      if (current && current !== reported) {
+        corrections.push({
+          shop: event.shop,
+          date: event.date,
+          from: current,
+          to: reported,
+          exact: false,
+          reported: true,
+        });
+      }
+      return {
+        ...event,
+        time: `${reported}:00`,
+        startsAt: `${event.date}T${reported}:00`,
+        confidence: "unverified",
+      };
+    }
 
     // Events we cannot check against the store keep pokedata's time, and are
     // marked so the UI can tell people to ring ahead. pokedata mirrors
