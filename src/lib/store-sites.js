@@ -64,8 +64,22 @@ const WEEKDAYS = [
   "saturday",
 ];
 
-const MONTHS = {
-  jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+/**
+ * Decode the handful of HTML entities that turn up in shop listings. Sites
+ * commonly write "Pok&eacute;mon", which would otherwise defeat name matching.
+ */
+function decodeEntities(html) {
+  return html
+    .replace(/&(eacute|#233);/gi, "é")
+    .replace(/&(amp|#38);/gi, "&")
+    .replace(/&(pound|#163);/gi, "£")
+    .replace(/&(nbsp|#160);/gi, " ")
+    .replace(/&(quot|#34);/gi, '"')
+    .replace(/&(#39|apos|rsquo);/gi, "'")
+    .replace(/&(ndash|#8211);/gi, "-");
+}
+
+const MONTHS = {  jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
   jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
 };
 
@@ -478,6 +492,55 @@ const darkFire = {
   },
 };
 
+const doOrDice = {
+  match: /^do\s*or\s*dice/i,
+  // Their weekly timetable covers the two league nights only. Challenges and
+  // Cups are ticketed and sit on a separate Wix Events list which we do not
+  // read, so we vouch for the league alone.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const page = await fetchText("https://www.do-or-dice.com/weekly-timetable");
+    if (!page) return [];
+
+    // The timetable is a plain page of prose under day headings, so we split
+    // on the headings and look for a Pokémon line within each day's block.
+    // Wix serves the accented characters as HTML entities ("Pok&eacute;mon"),
+    // so they must be decoded before any name matching.
+    const text = decodeEntities(page)
+      .replace(/<[^>]+>/g, "\n")
+      .replace(/[ \t]+/g, " ");
+    const found = [];
+
+    for (const [index, day] of WEEKDAYS.entries()) {
+      const heading = new RegExp(`\\b${day}s\\b`, "i");
+      const start = text.search(heading);
+      if (start < 0) continue;
+
+      // A day's block ends at the next day heading after this one.
+      let end = text.length;
+      for (const other of WEEKDAYS) {
+        if (other === day) continue;
+        const at = text.slice(start + 1).search(new RegExp(`\\b${other}s\\b`, "i"));
+        if (at < 0) continue;
+        const absolute = start + 1 + at;
+        if (absolute < end) end = absolute;
+      }
+
+      const block = text.slice(start, end);
+      const stated =
+        /pok[eé]mon[\s\S]{0,120}?(\d{1,2})[.:]?(\d{2})?\s*(am|pm)/i.exec(block);
+      if (!stated) continue;
+
+      let hour = Number(stated[1]) % 12;
+      if (/pm/i.test(stated[3])) hour += 12;
+      const time = `${String(hour).padStart(2, "0")}:${stated[2] ?? "00"}`;
+
+      for (const date of upcomingWeekdays(index, 26)) found.push({ date, time });
+    }
+    return found;
+  },
+};
+
 const europaGaming = {
   match: /^europa\s*gaming/i,
   // Their widget only ever surfaces the next occurrence of each event, so we
@@ -692,6 +755,7 @@ const ADAPTERS = [
   badMoon,
   wishlist,
   europaGaming,
+  doOrDice,
   mugAndMeeple,
   gamersGuild,
 ];
