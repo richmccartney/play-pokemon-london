@@ -4,15 +4,44 @@ import { eventIcon } from "../lib/eventIcon";
 import { venueColorIndex } from "../lib/eventColor";
 import "./EventDrawer.css";
 
+// Close/dismiss durations: a deliberate swipe-to-dismiss continues the
+// fling motion the user already started, so it plays a touch longer; a
+// tap on "Back" (or Escape, or the backdrop) has no motion to continue and
+// should feel snappier. The spring-back (drag released before crossing the
+// dismiss threshold) sits in between — quick, but still a visible ease.
+const SWIPE_CLOSE_MS = 220;
+const CLICK_CLOSE_MS = 130;
+const SPRING_BACK_MS = 180;
+
 export default function EventDrawer({ event, allEvents = [], onSelectEvent, onClose }) {
   const closeButtonRef = useRef(null);
   const drawerRef = useRef(null);
   const touchStart = useRef(null);
-  // Mirrored in a ref because touchend must read the latest offset
-  // synchronously; a fast swipe can end before React commits the state.
+  // Mirrored in refs because touchend/requestClose must read the latest
+  // values synchronously; a fast swipe can end before React commits state,
+  // and guards against a second close being requested mid-animation.
   const dragXRef = useRef(0);
+  const closePhaseRef = useRef(null);
   const [dragX, setDragX] = useState(0);
-  const [dismissing, setDismissing] = useState(false);
+  // The drawer's own width at the moment a drag or close starts, used to
+  // turn dragX into a 0..1 progress fraction for the fade. Captured into
+  // state (rather than read from a ref during render) so the fade amount
+  // is deterministic across renders.
+  const [dragWidth, setDragWidth] = useState(0);
+  // True only while a finger is actually down and moving, so the drawer can
+  // track it instantly (no transition); false the instant it lifts, so the
+  // spring-back/dismiss/close that follows animates smoothly instead of
+  // "flashing" back into place with no transition at all.
+  const [dragging, setDragging] = useState(false);
+  // null while open/idle, otherwise which action is closing the drawer, so
+  // the exit animation can use that method's duration.
+  const [closePhase, setClosePhase] = useState(null);
+  // Once true (a drag has started, or a close has been requested), the
+  // drawer is fully JS-driven via inline transform/opacity instead of the
+  // CSS entrance keyframe — including through a spring-back, so letting go
+  // of a small drag still animates smoothly rather than reverting to the
+  // (now stale) keyframe animation.
+  const [interacting, setInteracting] = useState(false);
   // Whether the drawer's own content has been scrolled down from the top,
   // so the sticky header can pick up a shadow separating it from whatever
   // content is now tucked underneath it.
@@ -20,7 +49,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
   // The drawer's DOM node persists across events (e.g. tapping through to
   // "also here", or opening a new event right after swipe-dismissing the
   // previous one), so track which event this render's transient UI state
-  // (scroll position/shadow, and any in-progress swipe-to-dismiss offset)
+  // (scroll position/shadow, and any in-progress drag/close animation)
   // belongs to, and reset it during render when a new event is shown rather
   // than carrying over the previous event's. This is the React-recommended
   // "adjust state during render" pattern for resetting state on prop change.
@@ -32,11 +61,34 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     // the full drawer width so it animates off-screen) would reopen for the
     // next event still translated fully off-screen, since this component
     // never unmounts between events — it just renders null while closed.
-    // dragXRef itself is reset in the effect below (refs shouldn't be
-    // written during render).
+    // dragXRef/closePhaseRef themselves are reset in the effect below
+    // (refs shouldn't be written during render).
     setDragX(0);
-    setDismissing(false);
+    setDragWidth(0);
+    setDragging(false);
+    setClosePhase(null);
+    setInteracting(false);
   }
+
+  // Slides (and fades) the drawer fully off-screen, then calls the parent's
+  // onClose once that animation has had time to play. Shared by the "Back"
+  // button, Escape, backdrop click, and a completed swipe-to-dismiss, so
+  // every path animates out consistently — only the duration differs.
+  const requestClose = useCallback(
+    (method) => {
+      if (closePhaseRef.current) return;
+      closePhaseRef.current = method;
+      setClosePhase(method);
+      setInteracting(true);
+      setDragging(false);
+      const width = drawerRef.current?.offsetWidth || window.innerWidth;
+      setDragWidth(width);
+      dragXRef.current = width;
+      setDragX(width);
+      window.setTimeout(onClose, method === "swipe" ? SWIPE_CLOSE_MS : CLICK_CLOSE_MS);
+    },
+    [onClose]
+  );
 
   // Focus the close button on open, restore focus to the trigger on close,
   // and trap Escape/Tab within the drawer while it's open (WCAG 2.1 dialog
@@ -47,16 +99,17 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     closeButtonRef.current?.focus();
     document.body.style.overflow = "hidden";
     // The drawer's DOM node persists across events (e.g. tapping through to
-    // "also here"), so reset scroll position and any leftover swipe-dismiss
-    // offset for each newly opened event rather than carrying over the last
-    // one's (the "scrolled"/dragX/dismissing state itself is reset during
-    // render above, in response to the same change).
+    // "also here"), so reset scroll position and any leftover drag/close
+    // state for each newly opened event rather than carrying over the last
+    // one's (the corresponding state itself is reset during render above,
+    // in response to the same change).
     if (drawerRef.current) drawerRef.current.scrollTop = 0;
     dragXRef.current = 0;
+    closePhaseRef.current = null;
 
     function handleKeyDown(e) {
       if (e.key === "Escape") {
-        onClose();
+        requestClose("click");
         return;
       }
       if (e.key !== "Tab" || !drawerRef.current) return;
@@ -81,13 +134,13 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
       document.body.style.overflow = "";
       if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
     };
-  }, [event, onClose]);
+  }, [event, requestClose]);
 
   // The drawer enters from the right, so a rightward swipe dismisses it.
   // The panel tracks the finger and only closes past a distance or velocity
   // threshold; otherwise it springs back.
   const handleTouchStart = useCallback((e) => {
-    if (e.touches.length !== 1) return;
+    if (e.touches.length !== 1 || closePhaseRef.current) return;
     const t = e.touches[0];
     touchStart.current = { x: t.clientX, y: t.clientY, time: Date.now(), axis: null };
   }, []);
@@ -104,6 +157,11 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     if (start.axis === null) {
       if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
       start.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      if (start.axis === "x") {
+        setInteracting(true);
+        setDragging(true);
+        setDragWidth(drawerRef.current?.offsetWidth || window.innerWidth);
+      }
     }
     if (start.axis !== "x") return;
 
@@ -116,6 +174,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     const start = touchStart.current;
     touchStart.current = null;
     const travelled = dragXRef.current;
+    setDragging(false);
     if (!start || start.axis !== "x") {
       dragXRef.current = 0;
       setDragX(0);
@@ -128,15 +187,15 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     // A flick can dismiss on velocity alone, but still needs to cover enough
     // distance so an incidental nudge never closes the drawer.
     if (travelled > width * 0.35 || (velocity > 0.5 && travelled > 60)) {
-      setDismissing(true);
-      dragXRef.current = width;
-      setDragX(width);
-      window.setTimeout(onClose, 180);
+      requestClose("swipe");
     } else {
+      // Springs back: dragging is already false (set above), so the render
+      // below picks up a transition and eases back to rest instead of
+      // snapping/flashing into place.
       dragXRef.current = 0;
       setDragX(0);
     }
-  }, [onClose]);
+  }, [requestClose]);
 
   // Gives the sticky header a shadow once content has scrolled up underneath
   // it, so it reads as a distinct layer floating above the content rather
@@ -181,8 +240,31 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
   // consistent with how the calendar itself colour-codes entries by venue.
   const alsoColorIndex = venueColorIndex(event.shop);
 
+  // 0 (fully open) .. 1 (fully dragged/closed away), driving both the
+  // card's own fade and the backdrop dimming behind it.
+  const progress = dragWidth > 0 ? Math.min(1, dragX / dragWidth) : 0;
+  const closeDurationMs =
+    closePhase === "swipe" ? SWIPE_CLOSE_MS : closePhase === "click" ? CLICK_CLOSE_MS : SPRING_BACK_MS;
+  const cardTransitionStyle = dragging
+    ? "none"
+    : `transform ${closeDurationMs}ms ease-out, opacity ${closeDurationMs}ms ease-out`;
+
   return (
-    <div className="event-drawer-overlay" onClick={onClose}>
+    <div
+      className="event-drawer-overlay"
+      onClick={() => requestClose("click")}
+      style={
+        interacting
+          ? {
+              // Animated via background-color (not the overlay's own
+              // opacity) so only the backdrop dims/undims — the card is a
+              // child of this element and would otherwise be double-faded.
+              backgroundColor: `rgba(0, 0, 0, ${0.4 * (1 - progress)})`,
+              transition: dragging ? "none" : `background-color ${closeDurationMs}ms ease-out`,
+            }
+          : undefined
+      }
+    >
       <div
         className="event-drawer"
         role="dialog"
@@ -196,10 +278,11 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchEnd}
         style={
-          dragX
+          interacting
             ? {
                 transform: `translateX(${dragX}px)`,
-                transition: dismissing || dragX === 0 ? "transform 0.18s ease-out" : "none",
+                opacity: 1 - progress,
+                transition: cardTransitionStyle,
                 animation: "none",
               }
             : undefined
@@ -210,7 +293,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
           <button
             type="button"
             className="event-drawer__close"
-            onClick={onClose}
+            onClick={() => requestClose("click")}
             ref={closeButtonRef}
             aria-label="Close event details"
           >
