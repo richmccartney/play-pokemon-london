@@ -492,6 +492,64 @@ const darkFire = {
   },
 };
 
+const stylecreep = {
+  match: /^stylecreep/i,
+  // Their shop sells the weekly league plus various one-off Pokémon events
+  // (kids' trading, 2v2, Worlds celebrations) that we do not track, so the
+  // league night is all we vouch for.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const catalogue = await fetchText(
+      "https://www.stylecreep.com/collections/pokemon-events/products.json?limit=250"
+    );
+    if (!catalogue) return [];
+
+    let products;
+    try {
+      products = JSON.parse(catalogue).products ?? [];
+    } catch {
+      return [];
+    }
+
+    for (const product of products) {
+      if (!/pok[eé]mon\s*-\s*weekly\s+league/i.test(product?.title ?? "")) continue;
+
+      // Registration opens half an hour before play, and the description
+      // gives both, so we take the later "starts" time as the start.
+      const body = decodeEntities(product.body_html ?? "")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ");
+      const stated =
+        /(?:tournament|play)\s+starts?\s+(?:at\s+)?(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)?/i.exec(
+          body
+        );
+      if (!stated) continue;
+
+      let hour = Number(stated[1]) % 12;
+      // The start time inherits its meridiem from the registration time when
+      // it states none of its own ("Registration from 6pm, starts at 6.30pm").
+      const evening =
+        /pm/i.test(stated[3] ?? "") || /registration\s+from\s+\d{1,2}(?:[.:]\d{2})?\s*pm/i.test(body);
+      if (evening) hour += 12;
+      const time = `${String(hour).padStart(2, "0")}:${stated[2] ?? "00"}`;
+
+      // Their variant titles list the dates the league actually runs. The
+      // parser needs a clock reading to latch onto, so the time we already
+      // know is appended in a form it recognises.
+      const suffix = `${((hour + 11) % 12) + 1}${stated[2] ? `.${stated[2]}` : ""}${
+        hour >= 12 ? "pm" : "am"
+      }`;
+      const dates = [];
+      for (const variant of product.variants ?? []) {
+        const parsed = parseDayMonthTime(`${variant?.title ?? ""} ${suffix}`);
+        if (parsed) dates.push({ date: parsed.date, time });
+      }
+      return dates;
+    }
+    return [];
+  },
+};
+
 const doOrDice = {
   match: /^do\s*or\s*dice/i,
   // Their weekly timetable covers the two league nights only. Challenges and
@@ -756,6 +814,7 @@ const ADAPTERS = [
   wishlist,
   europaGaming,
   doOrDice,
+  stylecreep,
   mugAndMeeple,
   gamersGuild,
 ];
