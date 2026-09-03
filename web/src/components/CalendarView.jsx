@@ -214,7 +214,6 @@ export default function CalendarView({ events, status }) {
               events={filteredEvents}
               onSelectEvent={setSelectedEvent}
               today={TODAY}
-              selectedDay={cursor}
             />
           )}
           {view === "day" && (

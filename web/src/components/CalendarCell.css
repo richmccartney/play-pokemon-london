@@ -24,18 +24,6 @@
   outline-offset: -2px;
 }
 
-/* In week view the cursor day is the one the navigation acts on, so it needs
-   to be visibly picked out even when it isn't today. */
-.calendar-cell--selected {
-  border-color: var(--accent);
-  outline: 2px solid var(--accent);
-  outline-offset: -2px;
-}
-
-.calendar-cell--selected .calendar-cell__header {
-  color: var(--accent);
-}
-
 /* Day view shows a single cell, so it needs enough height not to collapse
    into a squashed strip when the day has no events. */
 .calendar-cell--day {

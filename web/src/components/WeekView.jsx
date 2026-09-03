@@ -3,7 +3,7 @@ import EventPill from "./EventPill";
 import "./CalendarCell.css";
 import "./WeekView.css";
 
-export default function WeekView({ weekStart, events, onSelectEvent, today, selectedDay }) {
+export default function WeekView({ weekStart, events, onSelectEvent, today }) {
   const days = Array.from({ length: 7 }, (_, i) => addDays(weekStart, i));
   const eventsByDay = new Map();
   for (const event of events) {
@@ -16,7 +16,6 @@ export default function WeekView({ weekStart, events, onSelectEvent, today, sele
     <div className="week-view" role="grid" aria-label="Week view">
       {days.map((day) => {
         const isToday = isSameDay(day, today);
-        const isSelected = selectedDay ? isSameDay(day, selectedDay) : false;
         const dayEvents = (eventsByDay.get(day.toDateString()) || []).sort((a, b) =>
           a.startsAt.localeCompare(b.startsAt)
         );
@@ -24,10 +23,8 @@ export default function WeekView({ weekStart, events, onSelectEvent, today, sele
           <div
             key={day.toISOString()}
             role="gridcell"
-            className={`calendar-cell${isToday ? " calendar-cell--today" : ""}${
-              isSelected ? " calendar-cell--selected" : ""
-            }`}
-            aria-current={isSelected ? "date" : undefined}
+            className={`calendar-cell${isToday ? " calendar-cell--today" : ""}`}
+            aria-current={isToday ? "date" : undefined}
           >
             <div className="calendar-cell__header">
               <span>{formatDayLabel(day)}</span>
