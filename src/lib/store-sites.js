@@ -438,6 +438,53 @@ const darkFire = {
   },
 };
 
+const badMoon = {
+  match: /^bad\s*moon/i,
+  // Their on-site calendar deliberately carries only non-weekly events, so
+  // the league nights come from the ticket shop instead. That shop lists no
+  // Cups or Challenges, so we vouch for the weekly league only.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule(shop) {
+    const catalogue = await fetchText(
+      "https://shop.badmooncafe.co.uk/products.json?limit=250"
+    );
+    if (!catalogue) return [];
+
+    // They run a branch in Borough and another on Holloway Road, on different
+    // days at different times, so the wrong product would be actively harmful.
+    const wantsHolloway = /holloway/i.test(shop);
+
+    let products;
+    try {
+      products = JSON.parse(catalogue).products ?? [];
+    } catch {
+      return [];
+    }
+
+    for (const product of products) {
+      const title = product?.title ?? "";
+      if (!/pok[eé]mon|pokemon/i.test(title)) continue;
+
+      const stated =
+        /(\w+day)s?\s+(\d{1,2})(?::(\d{2}))?\s*(am|pm)\s*@\s*(.+?)\s*BMC/i.exec(
+          title
+        );
+      if (!stated) continue;
+      if (/holloway/i.test(stated[5]) !== wantsHolloway) continue;
+
+      const weekday = WEEKDAYS.indexOf(stated[1].toLowerCase());
+      if (weekday < 0) continue;
+
+      let hour = Number(stated[2]) % 12;
+      if (/pm/i.test(stated[4])) hour += 12;
+      const time = `${String(hour).padStart(2, "0")}:${stated[3] ?? "00"}`;
+
+      return upcomingWeekdays(weekday, 26).map((date) => ({ date, time }));
+    }
+    return [];
+  },
+};
+
 const mugAndMeeple = {
   match: /mug\s*(and|&)\s*meeple/i,
   // Their calendar carries the ticketed tournaments but not the weekly league
@@ -544,6 +591,7 @@ const ADAPTERS = [
   trollTrader,
   movieShack,
   darkFire,
+  badMoon,
   mugAndMeeple,
   gamersGuild,
 ];
