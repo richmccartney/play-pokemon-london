@@ -54,6 +54,16 @@ async function fetchText(url, { browserAgent = false } = {}) {
   }
 }
 
+const WEEKDAYS = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
 const MONTHS = {
   jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
   jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
@@ -351,6 +361,16 @@ const movieShack = {
  * a month more than a little in the past belongs to next year. Times are
  * written informally ("6pm", "6.30pm"), so both forms are accepted.
  */
+/**
+ * Parse a "Thursday 9th September 6pm" style listing.
+ *
+ * Where a weekday is given and disagrees with the stated day of the month, the
+ * weekday wins and the date is nudged to the nearest matching day. Shops
+ * routinely mistype the number when copying a listing forward - The Movie
+ * Shack advertise "Thursday 9th September" for what is really Thursday the
+ * 10th - but they do not get the day of the week wrong, because that is the
+ * night they actually open for it.
+ */
 function parseDayMonthTime(text) {
   const when = /(\d{1,2})(?:st|nd|rd|th)?\s+([A-Za-z]{3,9})/.exec(text);
   const clock = /(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)/i.exec(text);
@@ -368,10 +388,30 @@ function parseDayMonthTime(text) {
   const year =
     month < now.getUTCMonth() ? now.getUTCFullYear() + 1 : now.getUTCFullYear();
 
+  let date = `${year}-${String(month).padStart(2, "0")}-${String(
+    Number(when[1])
+  ).padStart(2, "0")}`;
+
+  const named = /(sun|mon|tues|wednes|thurs|fri|satur)day/i.exec(text);
+  if (named) {
+    const wanted = WEEKDAYS.findIndex((day) =>
+      day.startsWith(named[1].toLowerCase())
+    );
+    const actual = new Date(`${date}T12:00:00Z`).getUTCDay();
+    if (wanted >= 0 && wanted !== actual) {
+      // Shift by at most three days, so a genuinely different date is left
+      // alone rather than dragged onto the wrong week.
+      let shift = wanted - actual;
+      if (shift > 3) shift -= 7;
+      if (shift < -3) shift += 7;
+      const moved = new Date(`${date}T12:00:00Z`);
+      moved.setUTCDate(moved.getUTCDate() + shift);
+      date = moved.toISOString().slice(0, 10);
+    }
+  }
+
   return {
-    date: `${year}-${String(month).padStart(2, "0")}-${String(
-      Number(when[1])
-    ).padStart(2, "0")}`,
+    date,
     time: `${String(hour).padStart(2, "0")}:${clock[2] ?? "00"}`,
   };
 }
@@ -612,16 +652,6 @@ const gamersGuild = {
     return firstWeekdayOfMonths(weekday, 6).map((date) => ({ date, time }));
   },
 };
-
-const WEEKDAYS = [
-  "sunday",
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-];
 
 /** ISO dates for the first `weekday` of each of the next `count` months. */
 function firstWeekdayOfMonths(weekday, count) {

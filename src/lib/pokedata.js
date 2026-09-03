@@ -286,6 +286,49 @@ function collapseDuplicateSessions(events) {
 }
 
 /**
+ * Venues where a League Challenge replaces that week's ordinary league night
+ * rather than running alongside it. The Movie Shack hold their Challenge on
+ * the same weekday as the league, and pokedata lists both, but the store runs
+ * only the one session that evening.
+ *
+ * This is deliberately per-venue: other shops genuinely do run a league and a
+ * Challenge on the same day (Europa Gaming on 21 September, Dark Fire Cafe's
+ * overlapping Sunday sessions), so it cannot be a blanket rule.
+ */
+const CHALLENGE_REPLACES_LEAGUE = [/^the\s+movie\s+shack/i];
+
+/**
+ * Drop the weekly league on dates where such a venue also holds a Challenge.
+ */
+function collapseChallengeNights(events) {
+  const challengeDates = new Set();
+  for (const event of events) {
+    if (!CHALLENGE_REPLACES_LEAGUE.some((p) => p.test(event.shop ?? ""))) continue;
+    if (/challenge/i.test(event.typeLabel ?? "")) {
+      challengeDates.add(`${event.venueKey ?? event.shop}|${event.date}`);
+    }
+  }
+  if (!challengeDates.size) return events;
+
+  return events.filter((event) => {
+    if (!/^league\s*\(locals\)$/i.test(event.typeLabel ?? "")) return true;
+    return !challengeDates.has(`${event.venueKey ?? event.shop}|${event.date}`);
+  });
+}
+
+/**
+ * Venues we deliberately do not publish. Forbidden Planet's branches list
+ * Pokémon sessions through pokedata but do not run them as an open league in
+ * the way the rest of the calendar assumes, so they are excluded by request.
+ */
+const EXCLUDED_VENUES = [/^forbidden\s*planet/i, /^fp\s+/i];
+
+function isExcluded(event) {
+  const name = event.shop ?? "";
+  return EXCLUDED_VENUES.some((pattern) => pattern.test(name));
+}
+
+/**
  * Fetch and normalise events across every configured search point,
  * de-duplicating by guid (events near multiple search points can repeat).
  * @param {object} [options]
@@ -352,7 +395,11 @@ export async function fetchAllEvents({
     }
   }
 
-  return collapseDuplicateSessions(Array.from(byId.values())).sort((a, b) =>
+  // Excluded after names are settled, so the match is against the venue's
+  // final display name rather than whichever spelling pokedata sent.
+  const kept = Array.from(byId.values()).filter((event) => !isExcluded(event));
+
+  return collapseChallengeNights(collapseDuplicateSessions(kept)).sort((a, b) =>
     a.startsAt.localeCompare(b.startsAt)
   );
 }
