@@ -40,25 +40,42 @@ const BROWSER_USER_AGENT =
 
 /**
  * Fetch a URL as text, returning null rather than throwing on any failure.
+ *
+ * Retried because a single failed request costs us a whole shop's schedule:
+ * the adapter returns nothing, every event for that shop silently falls back
+ * to pokedata's stale time, and the corrections disappear until the next run
+ * happens to succeed. P9's site failed exactly this way from GitHub's
+ * runners while being perfectly reachable elsewhere, losing 19 verified
+ * events in one night.
  */
-async function fetchText(url, { browserAgent = false } = {}) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const res = await fetch(url, {
-      headers: {
-        "user-agent": browserAgent ? BROWSER_USER_AGENT : USER_AGENT,
-        accept: "text/html",
-      },
-      signal: controller.signal,
-    });
-    if (!res.ok) return null;
-    return await res.text();
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timer);
+async function fetchText(url, { browserAgent = false, attempts = 3 } = {}) {
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const res = await fetch(url, {
+        headers: {
+          "user-agent": browserAgent ? BROWSER_USER_AGENT : USER_AGENT,
+          accept: "text/html",
+        },
+        signal: controller.signal,
+      });
+      // 4xx is a settled answer (the page is gone, or we are blocked);
+      // retrying will not change it. Only 5xx and network faults are worth
+      // another go.
+      if (res.ok) return await res.text();
+      if (res.status < 500) return null;
+    } catch {
+      // Network fault or timeout; fall through to the retry.
+    } finally {
+      clearTimeout(timer);
+    }
+    if (attempt < attempts) {
+      // Back off a little so we are not hammering a struggling site.
+      await new Promise((resolve) => setTimeout(resolve, 500 * attempt));
+    }
   }
+  return null;
 }
 
 const WEEKDAYS = [

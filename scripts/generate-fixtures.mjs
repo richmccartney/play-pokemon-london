@@ -50,6 +50,41 @@ for (const c of corrections) {
   );
 }
 
+const previousPath = join(repoRoot, "web", "public", "api", "events");
+const previous = existsSync(previousPath)
+  ? JSON.parse(readFileSync(previousPath, "utf8"))
+  : [];
+
+// Carry forward times we previously confirmed against a store's own website
+// but could not confirm this run. A store site being briefly unreachable
+// makes its adapter return nothing, which would otherwise drop every event
+// for that store back to pokedata's stale time and silently undo corrections
+// we already had. P9 failed exactly this way from GitHub's runners and cost
+// 19 verified events in a single night.
+//
+// Only the time is carried over, and only until a run verifies that date
+// again, so a genuine schedule change still takes effect the moment the
+// store publishes it.
+const previousById = new Map(previous.map((e) => [e.id, e]));
+let carried = 0;
+for (const event of events) {
+  if (event.confidence === "verified") continue;
+  const prior = previousById.get(event.id);
+  if (prior?.confidence !== "verified") continue;
+  if (prior.startsAt === event.startsAt) continue;
+  event.startsAt = prior.startsAt;
+  event.time = prior.time;
+  event.confidence = "verified";
+  event.timeVerified = true;
+  event.timeCarriedOver = true;
+  carried++;
+}
+if (carried > 0) {
+  console.log(
+    `\nCarried over ${carried} previously verified times whose store site did not respond this run.`
+  );
+}
+
 const verified = events.filter((e) => e.confidence === "verified").length;
 console.log(
   `\n${events.length} events, ${corrections.length} corrections, ${verified} verified / ${
@@ -57,11 +92,9 @@ console.log(
   } unverified (${Math.round((verified / events.length) * 100)}%)`
 );
 
-// Guard the nightly job against publishing a bad run. If a store site is
-// down, or we get rate limited, verification quietly degrades to pokedata's
-// stale times rather than failing loudly, and committing that would undo
-// corrections we already have. Compare against the fixture we are replacing
-// and refuse to regress badly.
+// Backstop for anything the carry-over above cannot rescue, such as the
+// source itself returning far less than usual. Refuse to publish a run that
+// regresses badly rather than quietly degrading the site.
 const MIN_EVENTS = 50;
 const MAX_VERIFIED_DROP = 0.2;
 
@@ -72,22 +105,18 @@ if (events.length < MIN_EVENTS) {
   process.exit(1);
 }
 
-const previousPath = join(repoRoot, "web", "public", "api", "events");
-if (existsSync(previousPath)) {
-  const previous = JSON.parse(readFileSync(previousPath, "utf8"));
-  const previousVerified = previous.filter(
-    (e) => e.confidence === "verified"
-  ).length;
-  if (previousVerified > 0) {
-    const drop = (previousVerified - verified) / previousVerified;
-    if (drop > MAX_VERIFIED_DROP) {
-      console.error(
-        `\nRefusing to write: verified events fell from ${previousVerified} to ${verified} ` +
-          `(${Math.round(drop * 100)}% drop, limit ${MAX_VERIFIED_DROP * 100}%). ` +
-          `Keeping the existing data.`
-      );
-      process.exit(1);
-    }
+const previousVerified = previous.filter(
+  (e) => e.confidence === "verified"
+).length;
+if (previousVerified > 0) {
+  const drop = (previousVerified - verified) / previousVerified;
+  if (drop > MAX_VERIFIED_DROP) {
+    console.error(
+      `\nRefusing to write: verified events fell from ${previousVerified} to ${verified} ` +
+        `(${Math.round(drop * 100)}% drop, limit ${MAX_VERIFIED_DROP * 100}%). ` +
+        `Keeping the existing data.`
+    );
+    process.exit(1);
   }
 }
 
