@@ -1,7 +1,9 @@
 [build]
   base = "web"
   publish = "dist"
-  command = "npm install && npm run build"
+  # The functions live outside this base directory and import the root
+  # dependencies, so those have to be installed as well as the web ones.
+  command = "npm install --prefix .. && npm install && npm run build"
 
 [functions]
   directory = "../netlify/functions"
