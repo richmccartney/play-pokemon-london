@@ -368,6 +368,136 @@ function parseDayMonthTime(text) {
   };
 }
 
+/**
+ * Dark Fire Cafe run a Wix site that states its schedule in prose rather than
+ * listing dates ("Wednesday League Nights - When: Every Wednesday From 6pm"),
+ * with ticketed Challenges sold through a linked Shopify store.
+ *
+ * Only the Wednesday night is read. Their Sundays carry two overlapping
+ * Pokémon sessions - Little Trainers from 10am and the league from 12noon -
+ * and pokedata holds a single Sunday row whose time matches neither
+ * consistently, so there is no safe way to tell which session it refers to.
+ *
+ * Challenge dates are emitted alongside so that a Challenge week is skipped by
+ * the ambiguity guard rather than having the weekly 18:00 stamped over a
+ * Challenge that starts at 18:30.
+ */
+const darkFire = {
+  match: /^dark\s*fire/i,
+  // Only the weekly league night is stated on their site. Challenges start
+  // half an hour later and are listed on Shopify only a month or two ahead,
+  // so beyond that window we would not know a Challenge week from a normal
+  // one and would flatten its 18:30 onto the league's 18:00.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const page = await fetchText("https://www.darkfirecafe.com/pokemon-tcg");
+    if (!page) return [];
+
+    const text = page.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const weekly =
+      /Wednesday\s+League\s+Nights.{0,80}?Every\s+Wednesday\s+From\s+(\d{1,2})\s*(am|pm)/i.exec(
+        text
+      );
+    if (!weekly) return [];
+
+    let hour = Number(weekly[1]) % 12;
+    if (/pm/i.test(weekly[2])) hour += 12;
+    const time = `${String(hour).padStart(2, "0")}:00`;
+
+    const found = [];
+    for (const date of upcomingWeekdays(3, 26)) found.push({ date, time });
+
+    // Their Challenges are sold as Shopify products whose description carries
+    // the date and start time in prose.
+    const shop = await fetchText(
+      "https://1cfgsy-ms.myshopify.com/collections/events/products.json?limit=250"
+    );
+    if (shop) {
+      try {
+        for (const product of JSON.parse(shop).products ?? []) {
+          if (!/pok[eé]mon/i.test(product?.title ?? "")) continue;
+          const body = (product.body_html ?? "")
+            .replace(/<[^>]+>/g, " ")
+            .replace(/\s+/g, " ");
+          const parsed = parseDayMonthTime(body);
+          if (parsed) found.push(parsed);
+        }
+      } catch {
+        // A malformed catalogue just means no Challenge dates this run.
+      }
+    }
+    return found;
+  },
+};
+
+const gamersGuild = {
+  match: /^(the\s+)?gamers'?\s*guild/i,
+  // Their site states the Challenge schedule but says nothing about the weekly
+  // league, so we can only vouch for Challenges.
+  covers: /challenge/i,
+  async schedule() {
+    const page = await fetchText(
+      "https://shop.thegamersguild.co.uk/pokemon-league-challenge/"
+    );
+    if (!page) return [];
+
+    const text = page.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const stated =
+      /League\s+Challenge\s+events\s+the\s+first\s+(\w+)\s+of\s+each\s+month,\s*(\d{1,2})(?::(\d{2}))?\s*(?:-|–|to)/i.exec(
+        text
+      );
+    if (!stated) return [];
+
+    const weekday = WEEKDAYS.indexOf(stated[1].toLowerCase());
+    if (weekday < 0) return [];
+
+    // "6-9pm" states no meridiem on the start, but an evening event that ends
+    // at 9pm cannot start at 6am.
+    let hour = Number(stated[2]);
+    if (hour < 12) hour += 12;
+    const time = `${String(hour).padStart(2, "0")}:${stated[3] ?? "00"}`;
+
+    return firstWeekdayOfMonths(weekday, 6).map((date) => ({ date, time }));
+  },
+};
+
+const WEEKDAYS = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+/** ISO dates for the first `weekday` of each of the next `count` months. */
+function firstWeekdayOfMonths(weekday, count) {
+  const dates = [];
+  const start = new Date(`${todayISO()}T12:00:00Z`);
+  for (let i = 0; i < count; i += 1) {
+    const cursor = new Date(
+      Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + i, 1, 12)
+    );
+    while (cursor.getUTCDay() !== weekday) {
+      cursor.setUTCDate(cursor.getUTCDate() + 1);
+    }
+    dates.push(cursor.toISOString().slice(0, 10));
+  }
+  return dates;
+}
+
+/** ISO dates for the next `count` occurrences of a weekday (0 = Sunday). */
+function upcomingWeekdays(weekday, count) {
+  const dates = [];
+  const cursor = new Date(`${todayISO()}T12:00:00Z`);
+  while (dates.length < count) {
+    if (cursor.getUTCDay() === weekday) dates.push(cursor.toISOString().slice(0, 10));
+    cursor.setUTCDate(cursor.getUTCDate() + 1);
+  }
+  return dates;
+}
+
 const ADAPTERS = [
   darkSphere,
   p9,
@@ -376,6 +506,8 @@ const ADAPTERS = [
   onlyGraded,
   trollTrader,
   movieShack,
+  darkFire,
+  gamersGuild,
 ];
 /**
  * Store websites we have found but not yet written an adapter for, kept here
@@ -440,9 +572,16 @@ export async function verifyAgainstStoreSites(events) {
       const entries = await adapter.schedule(shop);
       const byDate = new Map();
       const seen = new Set();
+      // Dates the store lists more than once. Recorded rather than merely
+      // dropped: a weekday fallback would otherwise fill an ambiguous date
+      // straight back in with the store's usual time, which is exactly the
+      // time we know to be wrong on that particular day (Dark Fire Cafe's
+      // Challenge weeks start at 18:30, not their usual 18:00).
+      const ambiguous = new Set();
       for (const entry of entries) {
         if (seen.has(entry.date)) {
           byDate.delete(entry.date);
+          ambiguous.add(entry.date);
           continue;
         }
         seen.add(entry.date);
@@ -450,13 +589,18 @@ export async function verifyAgainstStoreSites(events) {
       }
       schedules.set(shop, {
         byDate,
+        ambiguous,
         byWeekday: weeklyPattern(byDate),
         covers: adapter.covers,
       });
     } catch {
       // An adapter throwing is a bug in that adapter, not a reason to fail
       // the whole sync; the store just keeps its pokedata times.
-      schedules.set(shop, { byDate: new Map(), byWeekday: new Map() });
+      schedules.set(shop, {
+        byDate: new Map(),
+        ambiguous: new Set(),
+        byWeekday: new Map(),
+      });
     }
   }
 
@@ -483,6 +627,9 @@ export async function verifyAgainstStoreSites(events) {
     // Prefer an exact date match; fall back to the store's established
     // weekly slot for dates beyond what their site currently lists.
     const weekday = new Date(`${event.date}T12:00:00Z`).getUTCDay();
+    if (schedule.ambiguous?.has(event.date)) {
+      return { ...event, confidence: "unverified" };
+    }
     const officialTime =
       schedule.byDate.get(event.date) ?? schedule.byWeekday.get(weekday);
     if (!officialTime) return { ...event, confidence: "unverified" };
