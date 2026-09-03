@@ -438,6 +438,31 @@ const darkFire = {
   },
 };
 
+const europaGaming = {
+  match: /^europa\s*gaming/i,
+  // Their widget only ever surfaces the next occurrence of each event, so we
+  // learn the weekly slot from it rather than reading individual dates. That
+  // gives us no view of their Challenges, which run at a different time.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const page = await fetchText("https://www.europagaming.co.uk/");
+    if (!page) return [];
+
+    // Wix Events slugs carry the name, date and local start time, e.g.
+    // "pokemon-locals-2026-09-07-19-00". The page also holds a startDate in
+    // UTC, but the slug is already local wall-clock time so needs no
+    // conversion and cannot drift with British Summer Time.
+    const slug = /"slug":"(pokemon-locals-(\d{4}-\d{2}-\d{2})-(\d{2})-(\d{2}))"/.exec(
+      page
+    );
+    if (!slug) return [];
+
+    const time = `${slug[3]}:${slug[4]}`;
+    const weekday = new Date(`${slug[2]}T12:00:00Z`).getUTCDay();
+    return upcomingWeekdays(weekday, 26).map((date) => ({ date, time }));
+  },
+};
+
 const wishlist = {
   match: /^wishlist\s*collectables/i,
   // Their shop sells a single weekly league ticket and no Pokémon tournaments,
@@ -636,6 +661,7 @@ const ADAPTERS = [
   darkFire,
   badMoon,
   wishlist,
+  europaGaming,
   mugAndMeeple,
   gamersGuild,
 ];
