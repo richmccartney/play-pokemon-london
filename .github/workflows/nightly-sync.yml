@@ -136,6 +136,11 @@ jobs:
         if: steps.pr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ steps.pr.outputs.pull-request-number }}
         run: |
-          gh pr merge "${{ steps.pr.outputs.pull-request-number }}" \
-            --squash --delete-branch --admin
+          # --admin bypasses branch protection but needs admin rights, so fall
+          # back to a plain merge if it is refused. Either way the PR is left
+          # open rather than failing the run, so nothing is silently lost.
+          gh pr merge "$PR" --squash --delete-branch --admin \
+            || gh pr merge "$PR" --squash --delete-branch \
+            || echo "::warning::Could not merge PR #$PR automatically. Merge it by hand to publish the update."
