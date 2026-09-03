@@ -438,6 +438,49 @@ const darkFire = {
   },
 };
 
+const wishlist = {
+  match: /^wishlist\s*collectables/i,
+  // Their shop sells a single weekly league ticket and no Pokémon tournaments,
+  // so the league night is all we can vouch for.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const catalogue = await fetchText(
+      "https://wishlistcollectables.co.uk/products.json?limit=250"
+    );
+    if (!catalogue) return [];
+
+    let products;
+    try {
+      products = JSON.parse(catalogue).products ?? [];
+    } catch {
+      return [];
+    }
+
+    for (const product of products) {
+      if (!/weekly\s+pok[eé]mon\s+league/i.test(product?.title ?? "")) continue;
+
+      const body = (product.body_html ?? "")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ");
+      const stated =
+        /League\s+day:\s*(\w+day).{0,40}?Start\s+time:\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)/i.exec(
+          body
+        );
+      if (!stated) continue;
+
+      const weekday = WEEKDAYS.indexOf(stated[1].toLowerCase());
+      if (weekday < 0) continue;
+
+      let hour = Number(stated[2]) % 12;
+      if (/pm/i.test(stated[4])) hour += 12;
+      const time = `${String(hour).padStart(2, "0")}:${stated[3] ?? "00"}`;
+
+      return upcomingWeekdays(weekday, 26).map((date) => ({ date, time }));
+    }
+    return [];
+  },
+};
+
 const badMoon = {
   match: /^bad\s*moon/i,
   // Their on-site calendar deliberately carries only non-weekly events, so
@@ -592,6 +635,7 @@ const ADAPTERS = [
   movieShack,
   darkFire,
   badMoon,
+  wishlist,
   mugAndMeeple,
   gamersGuild,
 ];
