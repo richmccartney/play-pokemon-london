@@ -17,6 +17,7 @@ export default async (req) => {
       type: e.type,
       typeLabel: e.typeLabel,
       shop: e.shop,
+      venueKey: e.venueKey,
       city: e.city,
       state: e.state,
       countryCode: e.countryCode,
@@ -26,6 +27,8 @@ export default async (req) => {
       startsAt: e.startsAt,
       distanceKm: e.distanceKm,
       pokemonUrl: e.pokemonUrl,
+      // Drives the "verified" badge and the "check with the store" warning.
+      confidence: e.confidence,
     }));
 
     return new Response(JSON.stringify(payload), {
