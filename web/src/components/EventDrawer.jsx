@@ -18,14 +18,24 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
   // content is now tucked underneath it.
   const [scrolled, setScrolled] = useState(false);
   // The drawer's DOM node persists across events (e.g. tapping through to
-  // "also here"), so track which event the shadow state belongs to and
-  // reset it during render when a new event is shown, rather than carrying
-  // over the previous event's scroll position. This is the React-recommended
+  // "also here", or opening a new event right after swipe-dismissing the
+  // previous one), so track which event this render's transient UI state
+  // (scroll position/shadow, and any in-progress swipe-to-dismiss offset)
+  // belongs to, and reset it during render when a new event is shown rather
+  // than carrying over the previous event's. This is the React-recommended
   // "adjust state during render" pattern for resetting state on prop change.
-  const [scrolledForEventId, setScrolledForEventId] = useState(event?.id);
-  if (event?.id !== scrolledForEventId) {
-    setScrolledForEventId(event?.id);
+  const [openForEventId, setOpenForEventId] = useState(event?.id);
+  if (event?.id !== openForEventId) {
+    setOpenForEventId(event?.id);
     setScrolled(false);
+    // Without this, a swipe-dismissed drawer (which ends with dragX left at
+    // the full drawer width so it animates off-screen) would reopen for the
+    // next event still translated fully off-screen, since this component
+    // never unmounts between events — it just renders null while closed.
+    // dragXRef itself is reset in the effect below (refs shouldn't be
+    // written during render).
+    setDragX(0);
+    setDismissing(false);
   }
 
   // Focus the close button on open, restore focus to the trigger on close,
@@ -37,10 +47,12 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     closeButtonRef.current?.focus();
     document.body.style.overflow = "hidden";
     // The drawer's DOM node persists across events (e.g. tapping through to
-    // "also here"), so reset scroll position for each newly opened event
-    // rather than carrying over the last one's (the "scrolled" shadow state
-    // itself is reset during render above, in response to the same change).
+    // "also here"), so reset scroll position and any leftover swipe-dismiss
+    // offset for each newly opened event rather than carrying over the last
+    // one's (the "scrolled"/dragX/dismissing state itself is reset during
+    // render above, in response to the same change).
     if (drawerRef.current) drawerRef.current.scrollTop = 0;
+    dragXRef.current = 0;
 
     function handleKeyDown(e) {
       if (e.key === "Escape") {
