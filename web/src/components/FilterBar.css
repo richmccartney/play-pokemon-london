@@ -27,21 +27,6 @@
   color: var(--text-muted);
 }
 
-.filter-bar__select {
-  font-family: inherit;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text);
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.55rem 0.9rem;
-  min-width: 180px;
-  height: 2.75rem;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
 /* Sits in the control row, so it is styled as a real button matched to the
    height of the selects rather than a low-contrast text link. */
 .filter-bar__clear {
@@ -85,10 +70,6 @@
   }
   .filter-bar__group {
     width: 100%;
-  }
-  .filter-bar__select {
-    width: 100%;
-    min-width: 0;
   }
   .filter-bar__clear {
     align-self: stretch;

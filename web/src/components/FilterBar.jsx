@@ -24,22 +24,13 @@ export default function FilterBar({
       </div>
 
       <div className="filter-bar__group">
-        <label className="filter-bar__label" htmlFor="type-select">
-          Event type
-        </label>
-        <select
+        <MultiSelect
           id="type-select"
-          className="filter-bar__select"
-          value={typeFilter}
-          onChange={(e) => onTypeFilterChange(e.target.value)}
-        >
-          <option value="all">All event types</option>
-          {typeOptions.map((label) => (
-            <option key={label} value={label}>
-              {label}
-            </option>
-          ))}
-        </select>
+          label="Event type"
+          options={typeOptions}
+          selected={typeFilter}
+          onChange={onTypeFilterChange}
+        />
       </div>
       {hasFilters && (
         <button type="button" className="filter-bar__clear" onClick={onClear}>

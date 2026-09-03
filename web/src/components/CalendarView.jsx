@@ -32,7 +32,7 @@ const VALID_VIEWS = new Set(["month", "week", "day"]);
 // flash of the default state before the URL-derived one takes over.
 function readStateFromUrl() {
   if (typeof window === "undefined") {
-    return { view: "week", cursor: TODAY, typeFilter: "all", venueFilter: [] };
+    return { view: "week", cursor: TODAY, typeFilter: [], venueFilter: [] };
   }
   const params = new URLSearchParams(window.location.search);
 
@@ -42,7 +42,7 @@ function readStateFromUrl() {
   const dateParam = parseISODate(params.get("date"));
   const cursor = dateParam ?? TODAY;
 
-  const typeFilter = params.get("type") || "all";
+  const typeFilter = params.getAll("type").filter(Boolean);
   const venueFilter = params.getAll("venue").filter(Boolean);
 
   return { view, cursor, typeFilter, venueFilter };
@@ -59,7 +59,7 @@ function syncStateToUrl({ view, cursor, typeFilter, venueFilter }) {
 
   if (view !== "week") params.set("view", view);
   if (!isSameDay(cursor, TODAY)) params.set("date", toISODate(cursor));
-  if (typeFilter !== "all") params.set("type", typeFilter);
+  for (const type of typeFilter) params.append("type", type);
   for (const venue of venueFilter) params.append("venue", venue);
 
   const query = params.toString();
@@ -99,13 +99,13 @@ export default function CalendarView({ events, status }) {
 
   const filteredEvents = useMemo(() => {
     return events.filter((event) => {
-      if (typeFilter !== "all" && event.typeLabel !== typeFilter) return false;
+      if (typeFilter.length > 0 && !typeFilter.includes(event.typeLabel)) return false;
       if (venueFilter.length > 0 && !venueFilter.includes(event.shop)) return false;
       return true;
     });
   }, [events, typeFilter, venueFilter]);
 
-  const hasFilters = typeFilter !== "all" || venueFilter.length > 0;
+  const hasFilters = typeFilter.length > 0 || venueFilter.length > 0;
 
   const weekStart = startOfWeek(cursor);
 
@@ -177,7 +177,7 @@ export default function CalendarView({ events, status }) {
         venueOptions={venueOptions}
         hasFilters={hasFilters}
         onClear={() => {
-          setTypeFilter("all");
+          setTypeFilter([]);
           setVenueFilter([]);
         }}
       />
