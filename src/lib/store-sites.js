@@ -123,49 +123,76 @@ const darkSphere = {
 };
 
 /**
- * P9 run WordPress with The Events Calendar ("Tribe"), which exposes a
- * paginated JSON API. That is by far the most reliable source we have: it
- * gives exact start times, a per-event venue name, and Europe/London as the
- * declared timezone, so no parsing or inference is needed.
+ * A number of the stores run WordPress with The Events Calendar ("Tribe"),
+ * which exposes a paginated JSON API. That is by far the most reliable source
+ * we have: it gives exact start times, a per-event venue name, and
+ * Europe/London as the declared timezone, so no parsing or inference is
+ * needed.
  *
- * P9 have two branches and the API labels each event with the branch it runs
- * at, matching the names we already hold, so one fetch serves both shops.
+ * Build an adapter for one such site. `venueFor` maps one of our shop names
+ * onto the venue label the site uses, so a chain with several branches can be
+ * served by a single fetch; returning null means "accept any venue", which is
+ * what single-site stores want.
  */
-const p9 = {
+function tribeAdapter({ match, origin, venueFor = () => null }) {
+  return {
+    match,
+    async schedule(shop) {
+      const venue = venueFor(shop);
+      const found = [];
+
+      // The feed is chronological from start_date, so we can stop as soon as
+      // a page comes back short rather than walking all 20 pages.
+      for (let page = 1; page <= 20; page += 1) {
+        const body = await fetchText(
+          `${origin}/wp-json/tribe/events/v1/events` +
+            `?per_page=50&page=${page}&start_date=${todayISO()}`
+        );
+        if (!body) break;
+
+        let events;
+        try {
+          events = JSON.parse(body).events;
+        } catch {
+          break;
+        }
+        if (!Array.isArray(events) || events.length === 0) break;
+
+        for (const event of events) {
+          if (!/pok[eé]mon/i.test(event.title ?? "")) continue;
+          if (venue !== null && (event.venue?.venue ?? "") !== venue) continue;
+          const [date, time] = String(event.start_date).split(" ");
+          if (!date || !time) continue;
+          found.push({ date, time: time.slice(0, 5) });
+        }
+
+        if (events.length < 50) break;
+      }
+      return found;
+    },
+  };
+}
+
+const p9 = tribeAdapter({
   match: /^p9\s*card\s*game/i,
-  async schedule(shop) {
-    const found = [];
+  origin: "https://www.p9card.games",
+  // P9's own venue labels already match the shop names we hold.
+  venueFor: (shop) => shop,
+});
 
-    // The feed is chronological from start_date, so we can stop as soon as a
-    // page comes back short rather than walking all 20 pages.
-    for (let page = 1; page <= 20; page += 1) {
-      const body = await fetchText(
-        "https://www.p9card.games/wp-json/tribe/events/v1/events" +
-          `?per_page=50&page=${page}&start_date=${todayISO()}`
-      );
-      if (!body) break;
+// Badger Badger label their two branches by neighbourhood alone, while we hold
+// them by street ("Norwood Rd", "Deptford High St"), so the shop name has to be
+// translated before it will match.
+const badgerBadger = tribeAdapter({
+  match: /^badger\s*badger/i,
+  origin: "https://www.badgerbadger.org",
+  venueFor: (shop) => (/norwood/i.test(shop) ? "West Norwood" : "Deptford"),
+});
 
-      let events;
-      try {
-        events = JSON.parse(body).events;
-      } catch {
-        break;
-      }
-      if (!Array.isArray(events) || events.length === 0) break;
-
-      for (const event of events) {
-        if (!/pok[eé]mon/i.test(event.title ?? "")) continue;
-        if ((event.venue?.venue ?? "") !== shop) continue;
-        const [date, time] = String(event.start_date).split(" ");
-        if (!date || !time) continue;
-        found.push({ date, time: time.slice(0, 5) });
-      }
-
-      if (events.length < 50) break;
-    }
-    return found;
-  },
-};
+const onlyGraded = tribeAdapter({
+  match: /^only\s*graded/i,
+  origin: "https://www.onlygraded.com",
+});
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10);
@@ -225,7 +252,33 @@ function parseMonthFirstDate(text) {
   ).padStart(2, "0")}`;
 }
 
-const ADAPTERS = [darkSphere, p9, wayland];
+const ADAPTERS = [darkSphere, p9, wayland, badgerBadger, onlyGraded];
+
+/**
+ * Store websites we have found but not yet written an adapter for, kept here
+ * so the search work is not repeated. Each note says why there is no adapter
+ * yet, since that is the thing worth knowing before picking one up.
+ */
+const KNOWN_SITES = {
+  "Dark Fire Cafe": "https://darkfirecafe.com/pokemon-tcg",
+  "Troll Trader Bromley": "https://ttbromley.com/pages/calendar",
+  "The Mug and Meeple": "https://www.mugandmeeple.co.uk/calendar/", // 403s to plain fetch
+  "The Gamers Guild": "https://shop.thegamersguild.co.uk/events/",
+  "Bad Moon Cafe": "https://www.badmooncafe.co.uk/events/",
+  "Marquee Models": "https://www.mmodels.co.uk/",
+  "Zombie Games Cafe": "https://www.zombiegamescafe.com/pokemon-tcg-events",
+  "The Ludoquist": "https://www.theludoquist.com/pages/events-2026",
+  "Spellbound Games": "https://spellboundgames.co.uk/pages/events",
+  "D20 Board Game Cafe": "https://www.d20cafe.co.uk/watford/",
+  "Wishlist Collectables": "https://www.wishlistcollectables.co.uk/pages/pokemon",
+  "Europa Gaming": "https://www.europagaming.co.uk/",
+  Labyrinthe: "https://www.labyrinthe.co.uk/trading-card-games", // 403s to plain fetch
+  Thunderbolt: "https://thunderboltcards.com/",
+  Stylecreep: "https://stylecreep.com/", // product pages only, no schedule found
+  Kaboom: "https://kaboomcards.co.uk/collections/pokemon", // products only
+  // Retro Giant (retrogiant.co.uk) is deliberately absent: their robots.txt
+  // disallows automated fetching, so we leave their events unverified.
+};
 
 function adapterFor(shop) {
   return ADAPTERS.find((a) => a.match.test(shop)) ?? null;
