@@ -1,0 +1,141 @@
+name: Nightly event sync
+
+# Regenerates the event data, the calendar feed and the status artifact, then
+# opens a PR and merges it so Netlify redeploys with fresh data.
+#
+# This runs here rather than in a Netlify Function because verifying ~20 store
+# websites takes well over the 30 seconds a function is allowed. The sync kept
+# being cut short and writing pokedata's stale times back over corrections we
+# had already made, which is why the site showed Dark Sphere at 15:00 when we
+# had verified it as 19:00.
+#
+# A PR (rather than a direct push) means every nightly change is reviewable
+# after the fact, and the data diff is visible in the repository history.
+
+on:
+  schedule:
+    # 02:00 UTC. GitHub schedules are always UTC, so this is 02:00 GMT or
+    # 03:00 BST depending on the time of year.
+    - cron: "0 2 * * *"
+  # Lets you force a refresh from the Actions tab without waiting for the
+  # nightly run.
+  workflow_dispatch:
+
+# Needed to push the branch, open the PR and merge it.
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: nightly-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      # Regenerates web/public/api/events, web/public/calendar.ics and
+      # web/public/status. Exits non-zero if the run looks bad (too few
+      # events, or a big drop in verified times), which fails the job and
+      # leaves the existing data in place rather than publishing a
+      # regression.
+      - name: Regenerate event data
+        run: npm run fixtures
+
+      - name: Check for changes
+        id: diff
+        run: |
+          # --stat over the index too, so newly added files count as changes
+          # on the first run rather than looking like no change at all.
+          git add -A -- web/public
+          if git diff --cached --quiet -- web/public; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No event data changes."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --cached --stat -- web/public
+          fi
+          git reset -- web/public
+
+      # The status artifact contains a lastSyncAt timestamp that changes on
+      # every run, so it alone is not evidence of a real data change. Only
+      # continue if the events or the calendar actually moved.
+      - name: Check for meaningful changes
+        id: meaningful
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git add -A -- web/public/api/events web/public/calendar.ics
+          if git diff --cached --quiet -- web/public/api/events web/public/calendar.ics; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Only the sync timestamp changed; nothing to publish."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+          git reset -- web/public
+
+      - name: Summarise the change
+        id: summary
+        if: steps.meaningful.outputs.changed == 'true'
+        run: |
+          node -e "
+            const { execSync } = require('node:child_process');
+            const fs = require('node:fs');
+            const now = JSON.parse(fs.readFileSync('web/public/api/events', 'utf8'));
+            // Missing on the very first run, before any data is committed.
+            let before = [];
+            try {
+              before = JSON.parse(execSync('git show HEAD:web/public/api/events', { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] }));
+            } catch {}
+            const verified = (l) => l.filter((e) => e.confidence === 'verified').length;
+            const beforeIds = new Set(before.map((e) => e.id));
+            const nowIds = new Set(now.map((e) => e.id));
+            const added = now.filter((e) => !beforeIds.has(e.id)).length;
+            const removed = before.filter((e) => !nowIds.has(e.id)).length;
+            const byId = new Map(before.map((e) => [e.id, e]));
+            const retimed = now.filter((e) => byId.has(e.id) && byId.get(e.id).startsAt !== e.startsAt).length;
+            const lines = [
+              \`\${now.length} events (was \${before.length})\`,
+              \`\${verified(now)} verified (was \${verified(before)})\`,
+              \`+\${added} new, -\${removed} gone, \${retimed} retimed\`,
+            ];
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'body<<EOF\n' + lines.join('\n') + '\nEOF\n');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, \`title=\${now.length} events, \${verified(now)} verified\n\`);
+          "
+
+      - name: Create pull request
+        id: pr
+        if: steps.meaningful.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Nightly event sync: ${{ steps.summary.outputs.title }}"
+          title: "Nightly event sync: ${{ steps.summary.outputs.title }}"
+          body: |
+            Automated nightly refresh of the event data, calendar feed and status artifact.
+
+            ${{ steps.summary.outputs.body }}
+
+            Generated by `.github/workflows/nightly-sync.yml`.
+          branch: automated/nightly-sync
+          # Recreate the branch each night so a run that never merged does not
+          # stack changes onto a stale base.
+          delete-branch: true
+          add-paths: web/public
+
+      - name: Merge the pull request
+        if: steps.pr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.pull-request-number }}" \
+            --squash --delete-branch --admin

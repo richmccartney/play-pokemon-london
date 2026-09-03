@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node scripts/test-local.js",
-    "dev": "netlify dev",
+    "dev": "npm --prefix web run dev",
     "sync": "node scripts/test-local.js",
     "fixtures": "node scripts/generate-fixtures.mjs"
   },
@@ -14,12 +14,10 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@netlify/blobs": "^11.0.3",
     "ics": "^3.12.0",
     "luxon": "^3.7.2"
   },
   "devDependencies": {
-    "@netlify/functions": "^6.0.0",
     "typescript": "^7.0.2"
   }
 }

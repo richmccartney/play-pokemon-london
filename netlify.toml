@@ -1,36 +1,40 @@
+# The event data, the calendar feed and the status artifact are all generated
+# ahead of time and committed by the nightly GitHub Action (see
+# .github/workflows/nightly-sync.yml), so this is a purely static deploy.
+#
+# They used to be served by Netlify Functions backed by Netlify Blobs. That
+# did not work: verifying ~20 store websites takes far longer than the 30
+# seconds a function is allowed, so the sync was cut short every night and
+# wrote pokedata's stale times back over corrections we had already made.
+# Generating in CI removes the time limit entirely, and has the side benefit
+# that every nightly data change is visible as a diff in the repository.
+
 [build]
   base = "web"
   publish = "dist"
-  # The functions live outside this base directory and import the root
-  # dependencies, so those have to be installed as well as the web ones.
-  command = "npm install --prefix .. && npm install && npm run build"
+  command = "npm install && npm run build"
 
-[functions]
-  directory = "../netlify/functions"
-  node_bundler = "esbuild"
+# Serve the calendar with the right content type so subscribing works. Without
+# this it is sent as application/octet-stream and calendar clients refuse it.
+[[headers]]
+  for = "/calendar.ics"
+  [headers.values]
+    content-type = "text/calendar; charset=utf-8"
+    cache-control = "public, max-age=1800"
 
-# Nightly at 02:00 UTC (03:00 or 04:00 BST depending on time of year, since
-# Netlify schedules always run in UTC).
-[functions."sync-events"]
-  schedule = "0 2 * * *"
+[[headers]]
+  for = "/api/events"
+  [headers.values]
+    content-type = "application/json; charset=utf-8"
+    access-control-allow-origin = "*"
 
-# Friendly public URLs.
-[[redirects]]
-  from = "/calendar.ics"
-  to = "/.netlify/functions/calendar"
-  status = 200
+[[headers]]
+  for = "/status"
+  [headers.values]
+    content-type = "application/json; charset=utf-8"
 
-[[redirects]]
-  from = "/status"
-  to = "/.netlify/functions/status"
-  status = 200
-
-[[redirects]]
-  from = "/api/events"
-  to = "/.netlify/functions/events"
-  status = 200
-
-# SPA fallback so client-side routes don't 404 on refresh.
+# SPA fallback so client-side routes don't 404 on refresh. Listed last, and
+# without force, so the generated files above win.
 [[redirects]]
   from = "/*"
   to = "/index.html"

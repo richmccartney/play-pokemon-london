@@ -190,7 +190,7 @@ function withinVenueRadius(entry, lat, lng, limit = VENUE_MATCH_METRES) {
  * pin.
  *
  * @param {{shop:string,address:string,city:string,state:string,latitude?:number,longitude?:number}} raw
- * @param {object} registry - mutable venue registry (see store.js), shape:
+ * @param {object} registry - mutable venue registry shape:
  *   { [normalisedKey]: { canonicalName, canonicalAddress, variants: { [rawShop+"|"+rawAddress]: count } } }
  * @returns {{name:string,address:string}}
  */

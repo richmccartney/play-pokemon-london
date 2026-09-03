@@ -24,7 +24,14 @@
 const USER_AGENT =
   "PokeLeaguesLondon/1.0 (+https://playpokemonlondon.netlify.app; nightly schedule verification)";
 
+// The verification pass runs in GitHub Actions (see
+// .github/workflows/nightly-sync.yml), which has no meaningful time limit, so
+// these are sized for reliability rather than to fit a serverless budget.
 const FETCH_TIMEOUT_MS = 15000;
+
+// Ceiling for the whole pass, purely a backstop against an adapter hanging
+// forever. Override with VERIFY_BUDGET_MS when running somewhere stricter.
+const VERIFY_BUDGET_MS = Number(process.env.VERIFY_BUDGET_MS ?? 300000);
 
 // A couple of hosts block our honest User-Agent outright. For those, and only
 // those, we send a browser string so the request is served at all.
@@ -907,11 +914,21 @@ export async function verifyAgainstStoreSites(events) {
   // several candidate times there is no safe way to tell which of them a
   // given pokedata row refers to, so we leave it alone rather than guess.
   const schedules = new Map();
+  // Hard ceiling on the whole pass. Adapters that haven't produced a schedule
+  // by now are dropped for this run rather than allowed to overrun the
+  // function's limit, which previously killed the sync outright and wrote
+  // every event back unverified. upsertEvents keeps prior verified times, so
+  // a dropped adapter is a no-op rather than a regression.
+  const budget = new Promise((resolve) =>
+    setTimeout(() => resolve("timeout"), VERIFY_BUDGET_MS)
+  );
   const results = await Promise.all(
     shops.map(async (shop) => {
       const adapter = adapterFor(shop);
       try {
-        return { shop, entries: await adapter.schedule(shop), adapter };
+        const entries = await Promise.race([adapter.schedule(shop), budget]);
+        if (entries === "timeout" || !entries) return { shop, entries: null, adapter };
+        return { shop, entries, adapter };
       } catch {
         // An adapter throwing is a bug in that adapter, not a reason to fail
         // the whole sync; the store just keeps its pokedata times.
