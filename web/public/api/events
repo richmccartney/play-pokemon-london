@@ -94,9 +94,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-09-03T17:30:00",
+    "startsAt": "2026-09-03T18:30:00",
     "date": "2026-09-03",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -118,7 +118,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "13b2a62b-d342-4fa9-837f-29919b1874fd",
@@ -256,9 +257,9 @@
     "address": "6 Marechal Niel Parade, Main Rd, Sidcup DA14 6QF, UK",
     "latitude": 51.4306,
     "longitude": 0.083604,
-    "startsAt": "2026-09-04T15:15:00",
+    "startsAt": "2026-09-04T16:00:00",
     "date": "2026-09-04",
-    "time": "15:15:00",
+    "time": "16:00:00",
     "distanceKm": 17,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -280,7 +281,8 @@
       "unit": "km",
       "time": "15:15:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "d731c209-a822-4c7f-95fc-08daf9d3b8e6",
@@ -727,7 +729,8 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "unverified"
+    "confidence": "verified",
+    "timeVerified": true
   },
   {
     "id": "e6a314e6-c739-4c68-8dfc-c70152636254",
@@ -1475,9 +1478,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-09-10T17:30:00",
+    "startsAt": "2026-09-10T18:30:00",
     "date": "2026-09-10",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -1499,7 +1502,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "964d24f0-1a9f-456f-a10e-6684d4b470ee",
@@ -1638,9 +1642,9 @@
     "address": "6 Marechal Niel Parade, Main Rd, Sidcup DA14 6QF, UK",
     "latitude": 51.4306,
     "longitude": 0.083604,
-    "startsAt": "2026-09-11T15:15:00",
+    "startsAt": "2026-09-11T16:00:00",
     "date": "2026-09-11",
-    "time": "15:15:00",
+    "time": "16:00:00",
     "distanceKm": 17,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -1662,7 +1666,8 @@
       "unit": "km",
       "time": "15:15:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "a86c6628-1ae7-4ff8-a052-fdcfbfa7ca5f",
@@ -1921,9 +1926,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-09-13T09:00:00",
+    "startsAt": "2026-09-13T12:00:00",
     "date": "2026-09-13",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -1945,7 +1950,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "ff4ebee1-e096-427e-8754-4f8d2beec615",
@@ -2813,9 +2819,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-09-17T17:30:00",
+    "startsAt": "2026-09-17T18:30:00",
     "date": "2026-09-17",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -2837,7 +2843,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "c75a8d55-a80d-4a69-bc4d-47f257b64493",
@@ -3178,9 +3185,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-09-20T09:00:00",
+    "startsAt": "2026-09-20T12:00:00",
     "date": "2026-09-20",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -3202,7 +3209,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "8c53cbac-2b93-4385-a5b4-4a6b7d8882cf",
@@ -4111,9 +4119,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-09-24T17:30:00",
+    "startsAt": "2026-09-24T18:30:00",
     "date": "2026-09-24",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -4135,7 +4143,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "f82d46e0-ebff-498c-b30b-f31b0c98f276",
@@ -4476,9 +4485,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-09-27T09:00:00",
+    "startsAt": "2026-09-27T12:00:00",
     "date": "2026-09-27",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -4500,7 +4509,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "ae5e168b-4934-4896-b7a3-9a89b7fb7c23",
@@ -5329,9 +5339,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-10-01T17:30:00",
+    "startsAt": "2026-10-01T18:30:00",
     "date": "2026-10-01",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -5353,7 +5363,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "e958001f-cd39-45ec-838a-61bf57167a79",
@@ -5532,9 +5543,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-10-04T09:00:00",
+    "startsAt": "2026-10-04T12:00:00",
     "date": "2026-10-04",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -5556,7 +5567,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "457a2fae-42bf-4264-aafc-ff46cae9b226",
@@ -6263,9 +6275,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-10-08T17:30:00",
+    "startsAt": "2026-10-08T18:30:00",
     "date": "2026-10-08",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -6287,7 +6299,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "f96bffec-9f61-4336-ad1f-8047c714324b",
@@ -6546,9 +6559,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-10-11T09:00:00",
+    "startsAt": "2026-10-11T12:00:00",
     "date": "2026-10-11",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -6570,7 +6583,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "a981e561-2af8-4a2c-8c86-78648a333342",
@@ -7195,9 +7209,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-10-15T17:30:00",
+    "startsAt": "2026-10-15T18:30:00",
     "date": "2026-10-15",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -7219,7 +7233,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "b4e6b81b-f700-4ca7-b595-aa86efcf7c52",
@@ -7438,9 +7453,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-10-18T09:00:00",
+    "startsAt": "2026-10-18T12:00:00",
     "date": "2026-10-18",
-    "time": "09:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -7462,7 +7477,8 @@
       "unit": "km",
       "time": "09:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "47d19603-7528-4e1f-8464-4fd5453f2b78",
@@ -8126,9 +8142,9 @@
     "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
     "latitude": 51.4045,
     "longitude": -0.256923,
-    "startsAt": "2026-10-22T17:30:00",
+    "startsAt": "2026-10-22T18:30:00",
     "date": "2026-10-22",
-    "time": "17:30:00",
+    "time": "18:30:00",
     "distanceKm": 15,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -8150,7 +8166,8 @@
       "unit": "km",
       "time": "17:30:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "40901fcd-46f9-4437-88f1-4923acf3f5e1",
@@ -8409,9 +8426,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-10-25T10:00:00",
+    "startsAt": "2026-10-25T12:00:00",
     "date": "2026-10-25",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -8433,7 +8450,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "68823710-1024-490f-af89-b285fdec1a60",
@@ -9041,7 +9059,8 @@
       "unit": "km",
       "time": "18:30:00"
     },
-    "confidence": "unverified"
+    "confidence": "verified",
+    "timeVerified": true
   },
   {
     "id": "a189145f-534d-4951-a73a-ae5f58e59704",
@@ -9260,9 +9279,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-11-01T10:00:00",
+    "startsAt": "2026-11-01T12:00:00",
     "date": "2026-11-01",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -9284,7 +9303,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "1cd43222-46ee-404d-b708-2d8d119a183b",
@@ -10030,9 +10050,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-11-08T10:00:00",
+    "startsAt": "2026-11-08T12:00:00",
     "date": "2026-11-08",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -10054,7 +10074,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "de6ef6b4-7ad4-4d50-a7c3-d22009757849",
@@ -10718,9 +10739,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-11-15T10:00:00",
+    "startsAt": "2026-11-15T12:00:00",
     "date": "2026-11-15",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -10742,7 +10763,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "dcd9df7a-b307-438b-9609-8f0912bd4ff0",
@@ -11366,9 +11388,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-11-22T10:00:00",
+    "startsAt": "2026-11-22T12:00:00",
     "date": "2026-11-22",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -11390,7 +11412,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "b06494ff-7533-4162-897b-c0e535a7da3a",
@@ -12134,9 +12157,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-11-29T10:00:00",
+    "startsAt": "2026-11-29T12:00:00",
     "date": "2026-11-29",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -12158,7 +12181,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "6aafbafd-953b-4eb2-812b-e2af42010120",
@@ -12458,9 +12482,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-12-06T10:00:00",
+    "startsAt": "2026-12-06T12:00:00",
     "date": "2026-12-06",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -12482,7 +12506,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "fb27c0c3-caa1-44ce-b93d-063bb278c520",
@@ -12539,9 +12564,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-12-13T10:00:00",
+    "startsAt": "2026-12-13T12:00:00",
     "date": "2026-12-13",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -12563,7 +12588,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "e2ffb490-0f83-4df4-8ab8-fdc6e3eda9e4",
@@ -12579,9 +12605,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-12-20T10:00:00",
+    "startsAt": "2026-12-20T12:00:00",
     "date": "2026-12-20",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -12603,7 +12629,8 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   },
   {
     "id": "663210af-e484-422c-ae4e-a4cc83a3fc82",
@@ -12619,9 +12646,9 @@
     "address": "Unit 8, the Gavel Centre, Porters Wood, St Albans AL3 6PQ, UK",
     "latitude": 51.7705,
     "longitude": -0.326323,
-    "startsAt": "2026-12-27T10:00:00",
+    "startsAt": "2026-12-27T12:00:00",
     "date": "2026-12-27",
-    "time": "10:00:00",
+    "time": "12:00:00",
     "distanceKm": 32,
     "pokemonUrl": null,
     "sourceSearch": "London",
@@ -12643,6 +12670,7 @@
       "unit": "km",
       "time": "10:00:00"
     },
-    "confidence": "unverified"
+    "timeVerified": true,
+    "confidence": "verified"
   }
 ]

@@ -459,10 +459,14 @@ function parseDayMonthTime(text) {
  * listing dates ("Wednesday League Nights - When: Every Wednesday From 6pm"),
  * with ticketed Challenges sold through a linked Shopify store.
  *
- * Only the Wednesday night is read. Their Sundays carry two overlapping
- * Pokémon sessions - Little Trainers from 10am and the league from 12noon -
- * and pokedata holds a single Sunday row whose time matches neither
- * consistently, so there is no safe way to tell which session it refers to.
+ * Their Sundays carry two overlapping Pokémon sessions - Little Trainers, a
+ * £5 children's trading and learn-to-play session from 10am, and the £7.50
+ * standard-format league from 12noon. pokedata holds a single Sunday row whose
+ * time matches neither consistently (it drifts across 09:00, 10:00 and 12:00),
+ * so the time cannot be used to tell them apart. We read it as the 12noon
+ * league: our "League (Locals)" rows are the standard-format league, which is
+ * the direct Sunday counterpart of their Wednesday night, whereas Little
+ * Trainers is a junior session rather than league play.
  *
  * Challenge dates are emitted alongside so that a Challenge week is skipped by
  * the ambiguity guard rather than having the weekly 18:00 stamped over a
@@ -470,16 +474,16 @@ function parseDayMonthTime(text) {
  */
 const darkFire = {
   match: /^dark\s*fire/i,
-  // Only the weekly league night is stated on their site. Challenges start
-  // half an hour later and are listed on Shopify only a month or two ahead,
-  // so beyond that window we would not know a Challenge week from a normal
-  // one and would flatten its 18:30 onto the league's 18:00.
+  // Their Cups and pre-releases are ticketed and run to their own times, so
+  // the two weekly league sessions are all we vouch for.
   covers: /^league\s*\(locals\)$/i,
   async schedule() {
     const page = await fetchText("https://www.darkfirecafe.com/pokemon-tcg");
     if (!page) return [];
 
     const text = page.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+    const found = [];
+
     const weekly =
       /Wednesday\s+League\s+Nights.{0,80}?Every\s+Wednesday\s+From\s+(\d{1,2})\s*(am|pm)/i.exec(
         text
@@ -490,8 +494,23 @@ const darkFire = {
     if (/pm/i.test(weekly[2])) hour += 12;
     const time = `${String(hour).padStart(2, "0")}:00`;
 
-    const found = [];
     for (const date of upcomingWeekdays(3, 26)) found.push({ date, time });
+
+    // The Sunday league is written "Every Sunday From 12noon", so noon and
+    // midnight are accepted alongside the usual am/pm. "Little Trainers" is
+    // the junior session and is deliberately not matched here.
+    const sunday =
+      /Sunday\s+League\s+Afternoons.{0,80}?Every\s+Sunday\s+From\s+(\d{1,2})\s*(noon|midnight|am|pm)/i.exec(
+        text
+      );
+    if (sunday) {
+      let sundayHour = Number(sunday[1]) % 12;
+      if (/pm|noon/i.test(sunday[2])) sundayHour += 12;
+      const sundayTime = `${String(sundayHour).padStart(2, "0")}:00`;
+      for (const date of upcomingWeekdays(0, 26)) {
+        found.push({ date, time: sundayTime });
+      }
+    }
 
     // Their Challenges are sold as Shopify products whose description carries
     // the date and start time in prose.
@@ -501,7 +520,13 @@ const darkFire = {
     if (shop) {
       try {
         for (const product of JSON.parse(shop).products ?? []) {
-          if (!/pok[eé]mon/i.test(product?.title ?? "")) continue;
+          // Their catalogue covers a dozen game systems, so the product type
+          // is the reliable filter; the title alone would miss a Pokémon
+          // event that did not spell the name out.
+          const isPokemon =
+            /pok[eé]mon/i.test(product?.product_type ?? "") ||
+            /pok[eé]mon/i.test(product?.title ?? "");
+          if (!isPokemon) continue;
           const body = (product.body_html ?? "")
             .replace(/<[^>]+>/g, " ")
             .replace(/\s+/g, " ");
@@ -571,6 +596,109 @@ const stylecreep = {
       return dates;
     }
     return [];
+  },
+};
+
+/**
+ * Thunderbolt Cards sell each league night as a Shopify product under a
+ * "Play Events" product type, with the date in the title and the times in the
+ * description ("Event runs 6.30pm till 10pm. Rounds start at 7pm").
+ *
+ * We publish the 6.30pm door time rather than the 7pm round start, so the
+ * calendar tells people when to arrive rather than when they would already be
+ * late. Only the dates they have put on sale can be confirmed, which is
+ * typically the next week or two rather than the whole run.
+ */
+const thunderbolt = {
+  match: /^thunderbolt/i,
+  // Only their casual play nights are sold as products; nothing else on the
+  // store carries a Pokémon event time.
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const catalogue = await fetchText(
+      "https://thunderboltcards.com/products.json?limit=250"
+    );
+    if (!catalogue) return [];
+
+    let products;
+    try {
+      products = JSON.parse(catalogue).products ?? [];
+    } catch {
+      return [];
+    }
+
+    const found = [];
+    for (const product of products) {
+      if (product?.product_type !== "Play Events") continue;
+      const title = decodeEntities(product.title ?? "");
+      if (!/pok[eé]mon/i.test(title)) continue;
+
+      const date = parseLongDate(title);
+      if (!date) continue;
+
+      const body = decodeEntities(product.body_html ?? "")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ");
+      // "Event runs 6.30pm till 10pm" - the first time is when doors open.
+      const stated =
+        /event\s+runs\s+(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)?/i.exec(body);
+      if (!stated) continue;
+
+      let hour = Number(stated[1]) % 12;
+      // These are evening events and the meridiem is sometimes left off the
+      // opening time ("runs 6.30 till 10pm"), so pm is assumed unless the
+      // listing explicitly says am.
+      if (!/am/i.test(stated[3] ?? "")) hour += 12;
+      found.push({
+        date,
+        time: `${String(hour).padStart(2, "0")}:${stated[2] ?? "00"}`,
+      });
+    }
+    return found;
+  },
+};
+
+/**
+ * Tokyo Toys publish their Sidcup store's weekly TCG timetable as a blog post,
+ * one line per game ("Friday Pokémon 4-7:30 pm"). It is the only place their
+ * Pokémon night is listed with a time.
+ *
+ * The post also mentions a last-Friday-of-the-month Challenge at 7:30pm, but
+ * that is a different event at a different time, so the weekly league is all
+ * this vouches for.
+ */
+const tokyoToys = {
+  match: /^tokyo\s*toys/i,
+  covers: /^league\s*\(locals\)$/i,
+  async schedule() {
+    const page = await fetchText(
+      "https://tokyotoys.com/blogs/news/my-favourite-figure-today"
+    );
+    if (!page) return [];
+
+    const text = decodeEntities(page)
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ");
+
+    // The lines run together without separators in places ("Thursday One piece
+    // 5-10pmFriday Pokémon 4-7:30 pm"), so the weekday is read as the one
+    // immediately preceding the Pokémon entry, and the match is kept tight so
+    // it cannot run on into the following game's line.
+    const stated =
+      /(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\s*pok[eé]mon\s*(\d{1,2})(?:[.:](\d{2}))?\s*(am|pm)?\s*-/i.exec(
+        text
+      );
+    if (!stated) return [];
+
+    let hour = Number(stated[2]) % 12;
+    // The opening time carries no meridiem of its own in "4-7:30 pm"; these
+    // are afternoon/evening sessions, so pm holds unless stated otherwise.
+    if (!/am/i.test(stated[4] ?? "")) hour += 12;
+    const time = `${String(hour).padStart(2, "0")}:${stated[3] ?? "00"}`;
+
+    const weekday = WEEKDAYS.indexOf(stated[1].toLowerCase());
+    if (weekday < 0) return [];
+    return upcomingWeekdays(weekday, 26).map((date) => ({ date, time }));
   },
 };
 
@@ -841,6 +969,8 @@ const ADAPTERS = [
   stylecreep,
   mugAndMeeple,
   gamersGuild,
+  thunderbolt,
+  tokyoToys,
 ];
 /**
  * Store websites we have found but not yet written an adapter for, kept here
@@ -861,7 +991,6 @@ const KNOWN_SITES = {
   "Wishlist Collectables": "https://www.wishlistcollectables.co.uk/pages/pokemon",
   "Europa Gaming": "https://www.europagaming.co.uk/",
   Labyrinthe: "https://www.labyrinthe.co.uk/trading-card-games", // 403s to plain fetch
-  Thunderbolt: "https://thunderboltcards.com/",
   Stylecreep: "https://stylecreep.com/", // product pages only, no schedule found
   Kaboom: "https://kaboomcards.co.uk/collections/pokemon", // products only
   // Retro Giant (retrogiant.co.uk) is deliberately absent: their robots.txt
