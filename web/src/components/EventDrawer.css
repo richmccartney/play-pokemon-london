@@ -34,7 +34,7 @@
    percentage/vw-based sizing on the drawer resolves against that padded
    content box, no extra width/height math is needed here. */
 .is-apple .event-drawer-overlay {
-  padding: 12px;
+  padding: 16px;
 }
 
 .is-apple .event-drawer {
@@ -42,7 +42,9 @@
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
-/* Matches the site nav height so the drawer header lines up with it. */
+/* Matches the site nav height so the drawer header lines up with it.
+   Horizontal padding matches the body (1.5rem) and clears the rounded
+   corner radius above, so the close button never crowds the curve. */
 .event-drawer__header {
   position: sticky;
   top: 0;
@@ -51,8 +53,7 @@
   height: var(--nav-height);
   box-sizing: border-box;
   background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
   z-index: 1;
 }
 
