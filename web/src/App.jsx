@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import CalendarView from "./components/CalendarView";
 import SubscribeSection from "./components/SubscribeSection";
+import SupportCoffee from "./components/SupportCoffee";
 import StatusFooter from "./components/StatusFooter";
 import "./App.css";
 
@@ -24,15 +25,11 @@ export default function App() {
         <CalendarView events={events} status={status} />
         <div className="app__below-calendar">
           <SubscribeSection />
+          <SupportCoffee />
         </div>
       </main>
       <footer className="app__footer">
-        <p>
-          © 2026 PokeLeagues London — data refreshed nightly ·{" "}
-          <a href="https://buymeacoffee.com/pokemacca" target="_blank" rel="noopener noreferrer">
-            Buy Me a Coffee
-          </a>
-        </p>
+        <p>© 2026 PokeLeagues London — data refreshed nightly</p>
         <StatusFooter />
       </footer>
     </>

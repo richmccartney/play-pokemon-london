@@ -1,0 +1,34 @@
+.support-coffee {
+  max-width: 960px;
+  margin: 1.75rem auto 0;
+  padding: 0 1.5rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.support-coffee__emoji {
+  display: inline-block;
+  margin-right: 0.4rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  vertical-align: -0.15em;
+}
+
+.support-coffee a {
+  font-weight: 700;
+  color: var(--text);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+.support-coffee a:hover {
+  color: var(--accent-hover);
+}
+
+@media (max-width: 640px) {
+  .support-coffee {
+    padding: 0 1rem;
+  }
+}
