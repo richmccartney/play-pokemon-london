@@ -7,6 +7,11 @@
 .app__footer {
   text-align: center;
   padding: 1.5rem;
+  /* Safe-area padding so the last line of content clears the home indicator
+     / translucent bottom toolbar instead of being flush against it. */
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  padding-left: calc(1.5rem + env(safe-area-inset-left));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
   border-top: 1px solid var(--border);
   font-size: 0.875rem;
   color: var(--text-muted);

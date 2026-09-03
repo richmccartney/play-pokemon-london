@@ -64,6 +64,12 @@
   box-sizing: border-box;
   background: var(--surface);
   padding: 1.25rem 1.5rem 1.5rem;
+  /* The drawer's top/right edges sit flush against the physical screen edges
+     (mobile: left edge too, since it's full-width there — see the max-width
+     media query below), so pad by the safe area to clear the notch/status
+     bar and avoid the close button crowding a rounded screen corner. */
+  padding-top: calc(1.25rem + env(safe-area-inset-top));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
   z-index: 1;
   box-shadow: 0 12px 20px -14px rgba(0, 0, 0, 0);
   transition: box-shadow 0.25s ease;
@@ -99,6 +105,10 @@
 
 .event-drawer__body {
   padding: 1.5rem;
+  /* Same reasoning as the header: clear the home indicator/right edge safe
+     area so the last action button is never flush against it. */
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -195,6 +205,12 @@
     /* Let vertical scrolling stay native while horizontal drags are
        handled by the swipe-to-dismiss gesture. */
     touch-action: pan-y;
+  }
+  .event-drawer__header {
+    padding-left: calc(1.5rem + env(safe-area-inset-left));
+  }
+  .event-drawer__body {
+    padding-left: calc(1.5rem + env(safe-area-inset-left));
   }
   .event-drawer__grabber {
     display: block;

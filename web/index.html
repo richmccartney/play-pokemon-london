@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#E3350D" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- Matches the nav bar's actual surface color per theme (see useTheme.js,
+         which keeps this in sync after the user toggles light/dark), so the
+         browser's status bar/toolbar tint the page draws behind matches the
+         header instead of a stray brand color. -->
+    <meta name="theme-color" content="#ffffff" />
     <title>PokeLeagues London | Subscribable TCG League Calendar</title>
     <meta name="description" content="A free, auto-updating subscribable calendar of TCG League Cups, Challenges, Friendlies and Pre-releases near London. Browse the full calendar, filter by location, or add it to Google Calendar, Apple Calendar or Outlook." />
     <meta name="keywords" content="TCG League, London TCG events, League Cup, League Challenge, TCG Friendlies, Pre-release, TCG calendar, subscribable calendar, ics feed" />
@@ -29,13 +33,17 @@
     <meta name="twitter:description" content="A subscribable calendar of nearby Pokemon TCG League Cups, Challenges, Friendlies and Pre-releases, refreshed nightly." />
 
     <script>
-      // Apply saved theme before first paint to avoid a flash of the wrong theme.
+      // Apply saved theme before first paint to avoid a flash of the wrong theme,
+      // and keep the status bar/toolbar tint (theme-color) matching the nav's
+      // surface color from the very first paint, not just after React mounts.
       (function () {
         try {
           var stored = localStorage.getItem("theme-preference");
-          if (stored === "light" || stored === "dark") {
-            document.documentElement.setAttribute("data-theme", stored);
-          }
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = stored === "light" || stored === "dark" ? stored : prefersDark ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", theme === "dark" ? "#1a1a19" : "#ffffff");
         } catch (e) {}
       })();
     </script>
