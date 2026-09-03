@@ -291,11 +291,18 @@ function collapseDuplicateSessions(events) {
  * the same weekday as the league, and pokedata lists both, but the store runs
  * only the one session that evening.
  *
+ * P9 is the same: their own events API lists 18 Pokémon events across five
+ * months and never two on one day, so their 13 September Challenge replaces
+ * the Sunday league at Bow rather than running beside it.
+ *
  * This is deliberately per-venue: other shops genuinely do run a league and a
  * Challenge on the same day (Europa Gaming on 21 September, Dark Fire Cafe's
  * overlapping Sunday sessions), so it cannot be a blanket rule.
  */
-const CHALLENGE_REPLACES_LEAGUE = [/^the\s+movie\s+shack/i];
+const CHALLENGE_REPLACES_LEAGUE = [
+  /^the\s+movie\s+shack/i,
+  /^p9\s*card\s*game/i,
+];
 
 /**
  * Drop the weekly league on dates where such a venue also holds a Challenge.
