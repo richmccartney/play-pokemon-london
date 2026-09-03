@@ -34,6 +34,16 @@
   width: 100%;
 }
 
+/* In month view, .event-pill__head and .event-pill__name sit side by side
+   in a row. .event-pill__head's min-width:0 (needed so the time+type combo
+   can wrap correctly within the week/day column layout) would otherwise let
+   it flex-shrink below the "HH:MM" time text's own width here too, letting
+   the time visibly overflow past its own box and overlap the icon/name
+   next to it. Pin it to its natural width so only the name truncates. */
+.event-pill--month .event-pill__head {
+  flex-shrink: 0;
+}
+
 .event-pill__time {
   font-weight: 700;
   color: var(--accent);
