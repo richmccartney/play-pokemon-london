@@ -4,6 +4,7 @@
 // Can also be triggered manually (see README) for testing/backfills.
 
 import { fetchAllEvents } from "../../src/lib/pokedata.js";
+import { verifyAgainstStoreSites } from "../../src/lib/store-sites.js";
 import {
   upsertEvents,
   getVenueRegistry,
@@ -13,8 +14,20 @@ import {
 export default async (req) => {
   try {
     const venueRegistry = await getVenueRegistry();
-    const events = await fetchAllEvents({ venueRegistry });
+    const scraped = await fetchAllEvents({ venueRegistry });
     await saveVenueRegistry(venueRegistry);
+
+    // pokedata mis-attributes times at venues that run several games a week
+    // (their Dark Sphere entries carried the MTG slot), so where a store
+    // publishes its own schedule we let the store win.
+    const { events, corrections } = await verifyAgainstStoreSites(scraped);
+    for (const c of corrections) {
+      console.log(
+        `sync-events: corrected ${c.shop} on ${c.date} ${c.from} -> ${c.to}` +
+          ` (${c.exact ? "exact date" : "weekly pattern"})`
+      );
+    }
+
     const merged = await upsertEvents(events);
 
     console.log(
