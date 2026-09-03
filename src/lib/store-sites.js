@@ -244,7 +244,12 @@ export async function verifyAgainstStoreSites(events) {
   const shops = [...new Set(events.map((e) => e.shop))].filter((shop) =>
     adapterFor(shop)
   );
-  if (shops.length === 0) return { events, corrections: [] };
+  if (shops.length === 0) {
+    return {
+      events: events.map((e) => ({ ...e, confidence: "unverified" })),
+      corrections: [],
+    };
+  }
 
   // date -> time, per shop. Built once per shop so each site is fetched at
   // most once regardless of how many events we hold for it.
@@ -277,17 +282,24 @@ export async function verifyAgainstStoreSites(events) {
   const corrections = [];
   const corrected = events.map((event) => {
     const schedule = schedules.get(event.shop);
-    if (!schedule) return event;
+
+    // Events we cannot check against the store keep pokedata's time, and are
+    // marked so the UI can tell people to ring ahead. pokedata mirrors
+    // Pokemon's official listings, which we have found to lag behind what
+    // stores actually run - so "unverified" genuinely means "might be stale".
+    if (!schedule) return { ...event, confidence: "unverified" };
 
     // Prefer an exact date match; fall back to the store's established
     // weekly slot for dates beyond what their site currently lists.
     const weekday = new Date(`${event.date}T12:00:00Z`).getUTCDay();
     const officialTime =
       schedule.byDate.get(event.date) ?? schedule.byWeekday.get(weekday);
-    if (!officialTime) return event;
+    if (!officialTime) return { ...event, confidence: "unverified" };
 
     const currentTime = (event.time ?? "").slice(0, 5);
-    if (!currentTime || currentTime === officialTime) return event;
+    if (!currentTime || currentTime === officialTime) {
+      return { ...event, confidence: "verified", timeVerified: true };
+    }
 
     corrections.push({
       id: event.id,
@@ -303,6 +315,7 @@ export async function verifyAgainstStoreSites(events) {
       time: `${officialTime}:00`,
       startsAt: `${event.date}T${officialTime}:00`,
       timeVerified: true,
+      confidence: "verified",
     };
   });
 

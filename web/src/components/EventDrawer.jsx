@@ -200,7 +200,17 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
             </div>
             <div className="event-drawer__fact">
               <dt>Time</dt>
-              <dd>{formatTimeLabel(start)}</dd>
+              <dd>
+                {formatTimeLabel(start)}
+                {event.confidence === "verified" && (
+                  <span
+                    className="event-drawer__verified"
+                    title={`Confirmed against ${event.shop}'s own website`}
+                  >
+                    ✓ confirmed
+                  </span>
+                )}
+              </dd>
             </div>
             {event.shop !== heading && (
               <div className="event-drawer__fact">
@@ -223,10 +233,18 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
               <dd>
                 {event.pokemonUrl
                   ? "Officially sanctioned Play! Pokémon event"
-                  : "Regular league night — check with the store before travelling"}
+                  : "Regular league night"}
               </dd>
             </div>
           </dl>
+
+          {event.confidence === "unverified" && (
+            <p className="event-drawer__unverified">
+              <span aria-hidden="true">⚠️</span> We could not confirm this time
+              against {event.shop}&rsquo;s own website, so it may be out of
+              date. Please check with the store before travelling.
+            </p>
+          )}
 
           <div className="event-drawer__map-wrap">
             <iframe
