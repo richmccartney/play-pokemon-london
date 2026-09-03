@@ -34,8 +34,26 @@ export async function upsertEvents(freshEvents) {
   // Add/update events seen in this run.
   for (const event of freshEvents) {
     const prior = merged[event.id];
+
+    // Never let an unverified time overwrite one we previously confirmed
+    // against the store's own website. If an adapter is briefly unreachable
+    // (or the whole verification pass gets cut short) the fresh copy carries
+    // pokedata's stale time, and blindly taking it would silently undo a
+    // correction. The rest of the record still updates; only the time is
+    // held back, and only until a run verifies that date again.
+    const regressed =
+      prior?.confidence === "verified" && event.confidence !== "verified";
+
     merged[event.id] = {
       ...event,
+      ...(regressed
+        ? {
+            startsAt: prior.startsAt,
+            time: prior.time,
+            confidence: "verified",
+            timeVerified: true,
+          }
+        : {}),
       firstSeenAt: prior?.firstSeenAt ?? now,
       lastSeenAt: now,
       cancelled: false,
@@ -65,6 +83,10 @@ export async function upsertEvents(freshEvents) {
     lastSyncAt: now,
     eventCount: Object.keys(merged).length,
     freshCount: freshEvents.length,
+    // Surfaced so a truncated verification pass shows up as a visible drop
+    // rather than silently serving stale times.
+    verifiedCount: freshEvents.filter((e) => e.confidence === "verified")
+      .length,
   });
 
   return merged;

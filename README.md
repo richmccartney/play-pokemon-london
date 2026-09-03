@@ -80,7 +80,7 @@ curl http://localhost:8888/calendar.ics
 5. Trigger a first sync manually so the calendar isn't empty on day one:
 
    ```bash
-   curl -X POST https://<your-site>.netlify.app/.netlify/functions/sync-events-manual \
+   curl -X POST https://<your-site>.netlify.app/.netlify/functions/sync-events-manual-background \
      -H "x-write-key: $SYNC_WRITE_KEY"
    ```
 
@@ -100,7 +100,7 @@ points.
 |---|---|
 | `/calendar.ics` | Public subscribable calendar feed |
 | `/status` | JSON: last sync time, event counts |
-| `/.netlify/functions/sync-events-manual` | POST, requires `x-write-key` header — force a re-sync |
+| `/.netlify/functions/sync-events-manual-background` | POST, requires `x-write-key` header — force a re-sync |
 
 ## Notes / etiquette
 

@@ -899,46 +899,59 @@ export async function verifyAgainstStoreSites(events) {
   // date -> time, per shop. Built once per shop so each site is fetched at
   // most once regardless of how many events we hold for it.
   //
+  // Fetched concurrently: run one shop at a time this takes ~90s, which is
+  // far past what a Netlify function will tolerate, and the whole sync was
+  // timing out and silently falling back to pokedata's stale times.
+  //
   // Days where the store lists more than one Pokémon event are skipped: with
   // several candidate times there is no safe way to tell which of them a
   // given pokedata row refers to, so we leave it alone rather than guess.
   const schedules = new Map();
-  for (const shop of shops) {
-    const adapter = adapterFor(shop);
-    try {
-      const entries = await adapter.schedule(shop);
-      const byDate = new Map();
-      const seen = new Set();
-      // Dates the store lists more than once. Recorded rather than merely
-      // dropped: a weekday fallback would otherwise fill an ambiguous date
-      // straight back in with the store's usual time, which is exactly the
-      // time we know to be wrong on that particular day (Dark Fire Cafe's
-      // Challenge weeks start at 18:30, not their usual 18:00).
-      const ambiguous = new Set();
-      for (const entry of entries) {
-        if (seen.has(entry.date)) {
-          byDate.delete(entry.date);
-          ambiguous.add(entry.date);
-          continue;
-        }
-        seen.add(entry.date);
-        byDate.set(entry.date, entry.time);
+  const results = await Promise.all(
+    shops.map(async (shop) => {
+      const adapter = adapterFor(shop);
+      try {
+        return { shop, entries: await adapter.schedule(shop), adapter };
+      } catch {
+        // An adapter throwing is a bug in that adapter, not a reason to fail
+        // the whole sync; the store just keeps its pokedata times.
+        return { shop, entries: null, adapter };
       }
-      schedules.set(shop, {
-        byDate,
-        ambiguous,
-        byWeekday: weeklyPattern(byDate),
-        covers: adapter.covers,
-      });
-    } catch {
-      // An adapter throwing is a bug in that adapter, not a reason to fail
-      // the whole sync; the store just keeps its pokedata times.
+    })
+  );
+
+  for (const { shop, entries, adapter } of results) {
+    if (!entries) {
       schedules.set(shop, {
         byDate: new Map(),
         ambiguous: new Set(),
         byWeekday: new Map(),
       });
+      continue;
     }
+    const byDate = new Map();
+    const seen = new Set();
+    // Dates the store lists more than once. Recorded rather than merely
+    // dropped: a weekday fallback would otherwise fill an ambiguous date
+    // straight back in with the store's usual time, which is exactly the
+    // time we know to be wrong on that particular day (Dark Fire Cafe's
+    // Challenge weeks start at 18:30, not their usual 18:00).
+    const ambiguous = new Set();
+    for (const entry of entries) {
+      if (seen.has(entry.date)) {
+        byDate.delete(entry.date);
+        ambiguous.add(entry.date);
+        continue;
+      }
+      seen.add(entry.date);
+      byDate.set(entry.date, entry.time);
+    }
+    schedules.set(shop, {
+      byDate,
+      ambiguous,
+      byWeekday: weeklyPattern(byDate),
+      covers: adapter.covers,
+    });
   }
 
   const corrections = [];

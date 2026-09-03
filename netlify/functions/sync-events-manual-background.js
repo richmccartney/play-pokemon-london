@@ -2,8 +2,14 @@
 // it can't be abused/spammed by the public. Useful for testing changes or
 // forcing a refresh without waiting for the nightly schedule.
 //
+// Named "-background" so Netlify runs it as a background function: verifying
+// ~20 store sites takes far longer than the 30s a synchronous function is
+// allowed, and being killed mid-run meant the stale pokedata times were
+// written unverified. Background functions get up to 15 minutes, and return
+// 202 immediately rather than the result.
+//
 // Trigger with:
-//   curl -X POST https://<site>/.netlify/functions/sync-events-manual \
+//   curl -X POST https://<site>/.netlify/functions/sync-events-manual-background \
 //     -H "x-write-key: $SYNC_WRITE_KEY"
 
 import { fetchAllEvents } from "../../src/lib/pokedata.js";
@@ -35,6 +41,9 @@ export default async (req) => {
     const { events, corrections } = await verifyAgainstStoreSites(scraped);
 
     const merged = await upsertEvents(events);
+    console.log(
+      `sync-events-manual: fetched ${events.length}, corrected ${corrections.length}, stored ${Object.keys(merged).length}`
+    );
     return new Response(
       JSON.stringify({
         ok: true,
