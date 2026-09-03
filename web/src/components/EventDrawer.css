@@ -42,21 +42,39 @@
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
-/* Matches the site nav height so the drawer header lines up with it.
+/* Roughly matches the site nav height so the drawer header lines up with
+   it, but grows a little taller via padding-bottom so there's always clear
+   space below the button before scrolled-up content starts — not just a
+   fixed-height row the button happens to sit near the top of.
    Horizontal padding matches the body (1.5rem) and clears the rounded
    corner radius above, so the close button never crowds the curve.
    Top-aligned (rather than centered) with explicit padding-top so the
-   button keeps a clear, deliberate margin from the top edge/curve. */
+   button keeps a clear, deliberate margin from the top edge/curve.
+   The box-shadow is defined at zero opacity (rather than "none") so it can
+   transition smoothly in once the content beneath has scrolled, instead of
+   popping in abruptly. */
 .event-drawer__header {
   position: sticky;
   top: 0;
   display: flex;
   align-items: flex-start;
-  height: var(--nav-height);
+  min-height: var(--nav-height);
   box-sizing: border-box;
   background: var(--surface);
-  padding: 1.25rem 1.5rem 0;
+  padding: 1.25rem 1.5rem 1.5rem;
   z-index: 1;
+  box-shadow: 0 12px 20px -14px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.25s ease;
+}
+
+.event-drawer__header--scrolled {
+  box-shadow: 0 12px 20px -14px rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-drawer__header {
+    transition: none;
+  }
 }
 
 .event-drawer__close {

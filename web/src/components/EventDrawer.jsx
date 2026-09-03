@@ -13,6 +13,20 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
   const dragXRef = useRef(0);
   const [dragX, setDragX] = useState(0);
   const [dismissing, setDismissing] = useState(false);
+  // Whether the drawer's own content has been scrolled down from the top,
+  // so the sticky header can pick up a shadow separating it from whatever
+  // content is now tucked underneath it.
+  const [scrolled, setScrolled] = useState(false);
+  // The drawer's DOM node persists across events (e.g. tapping through to
+  // "also here"), so track which event the shadow state belongs to and
+  // reset it during render when a new event is shown, rather than carrying
+  // over the previous event's scroll position. This is the React-recommended
+  // "adjust state during render" pattern for resetting state on prop change.
+  const [scrolledForEventId, setScrolledForEventId] = useState(event?.id);
+  if (event?.id !== scrolledForEventId) {
+    setScrolledForEventId(event?.id);
+    setScrolled(false);
+  }
 
   // Focus the close button on open, restore focus to the trigger on close,
   // and trap Escape/Tab within the drawer while it's open (WCAG 2.1 dialog
@@ -22,6 +36,11 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     const previouslyFocused = document.activeElement;
     closeButtonRef.current?.focus();
     document.body.style.overflow = "hidden";
+    // The drawer's DOM node persists across events (e.g. tapping through to
+    // "also here"), so reset scroll position for each newly opened event
+    // rather than carrying over the last one's (the "scrolled" shadow state
+    // itself is reset during render above, in response to the same change).
+    if (drawerRef.current) drawerRef.current.scrollTop = 0;
 
     function handleKeyDown(e) {
       if (e.key === "Escape") {
@@ -107,6 +126,14 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
     }
   }, [onClose]);
 
+  // Gives the sticky header a shadow once content has scrolled up underneath
+  // it, so it reads as a distinct layer floating above the content rather
+  // than content abruptly touching its bottom edge. A small threshold avoids
+  // the shadow flickering in from sub-pixel scroll jitter at rest.
+  const handleScroll = useCallback((e) => {
+    setScrolled(e.currentTarget.scrollTop > 4);
+  }, []);
+
   if (!event) return null;
 
   const start = parseLocal(event.startsAt);
@@ -151,6 +178,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
         aria-labelledby="event-drawer-title"
         ref={drawerRef}
         onClick={(e) => e.stopPropagation()}
+        onScroll={handleScroll}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -166,7 +194,7 @@ export default function EventDrawer({ event, allEvents = [], onSelectEvent, onCl
         }
       >
         <div className="event-drawer__grabber" aria-hidden="true" />
-        <div className="event-drawer__header">
+        <div className={`event-drawer__header${scrolled ? " event-drawer__header--scrolled" : ""}`}>
           <button
             type="button"
             className="event-drawer__close"
