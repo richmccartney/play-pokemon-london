@@ -1,249 +1,5 @@
 [
   {
-    "id": "2fd16528-ef03-4e60-b1c5-866489034d48",
-    "name": "The Movie Shack - Pokémon TCG League (Locals)",
-    "hasOrganiserName": false,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "The Movie Shack",
-    "venueKey": "BEXLEYHEATHLIBRARY@51.457,0.148",
-    "city": "London",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "Bexleyheath Library, Bexleyheath DA6 7HJ, UK",
-    "latitude": 51.4559,
-    "longitude": 0.143947,
-    "startsAt": "2026-09-03T18:00:00",
-    "date": "2026-09-03",
-    "time": "18:00:00",
-    "distanceKm": 20,
-    "pokemonUrl": null,
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "2fd16528-ef03-4e60-b1c5-866489034d48",
-      "city": "London",
-      "country_code": "GB",
-      "name": "",
-      "pokemon_url": "",
-      "shop": "THE MOVIE SHACK",
-      "state": "England",
-      "street_address": "2 MAYPLACE RD W, ENGLAND DA7 4JB, GB",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 15:00:00",
-      "date": "2026-09-03",
-      "latitude": "51.4569",
-      "longitude": "0.147755",
-      "distance": 20,
-      "unit": "km",
-      "time": "15:00:00"
-    },
-    "confidence": "unverified"
-  },
-  {
-    "id": "cf0a745d-d899-4f8f-b44d-4fe8eefddfe2",
-    "name": "Stylecreep - Pokémon TCG League (Locals)",
-    "hasOrganiserName": false,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "Stylecreep",
-    "venueKey": "STYLECREEP@51.473,-0.338",
-    "city": "London",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "25 St John's Rd, England TW7 6NB, GB",
-    "latitude": 51.4733,
-    "longitude": -0.33789,
-    "startsAt": "2026-09-03T18:30:00",
-    "date": "2026-09-03",
-    "time": "18:30:00",
-    "distanceKm": 15,
-    "pokemonUrl": null,
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "cf0a745d-d899-4f8f-b44d-4fe8eefddfe2",
-      "city": "London",
-      "country_code": "GB",
-      "name": "",
-      "pokemon_url": "",
-      "shop": "STYLECREEP",
-      "state": "England",
-      "street_address": "25 ST JOHN'S RD, ENGLAND TW7 6NB, GB",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 17:00:00",
-      "date": "2026-09-03",
-      "latitude": "51.4733",
-      "longitude": "-0.33789",
-      "distance": 15,
-      "unit": "km",
-      "time": "17:00:00"
-    },
-    "timeVerified": true,
-    "confidence": "verified"
-  },
-  {
-    "id": "faf4ccbb-9972-489f-8585-670b1bb9ad2e",
-    "name": "Thunderbolt Cards - Pokémon TCG League (Locals)",
-    "hasOrganiserName": false,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "Thunderbolt Cards",
-    "venueKey": "THUNDERBOLTCARDS@51.404,-0.257",
-    "city": "London",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "19 Coombe Rd, New Malden KT3 4QG, UK",
-    "latitude": 51.4045,
-    "longitude": -0.256923,
-    "startsAt": "2026-09-03T18:30:00",
-    "date": "2026-09-03",
-    "time": "18:30:00",
-    "distanceKm": 15,
-    "pokemonUrl": null,
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "faf4ccbb-9972-489f-8585-670b1bb9ad2e",
-      "city": "London",
-      "country_code": "GB",
-      "name": "",
-      "pokemon_url": "",
-      "shop": "THUNDERBOLT CARDS",
-      "state": "England",
-      "street_address": "19 COOMBE RD, NEW MALDEN KT3 4QG, UK",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 17:30:00",
-      "date": "2026-09-03",
-      "latitude": "51.4045",
-      "longitude": "-0.256923",
-      "distance": 15,
-      "unit": "km",
-      "time": "17:30:00"
-    },
-    "timeVerified": true,
-    "confidence": "verified"
-  },
-  {
-    "id": "13b2a62b-d342-4fa9-837f-29919b1874fd",
-    "name": "Do Or Dice Addlestone - Pokémon TCG League (Locals)",
-    "hasOrganiserName": false,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "Do Or Dice Addlestone",
-    "venueKey": "DOORDICEADDLESTONE@51.370,-0.490",
-    "city": "Runnymede",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "Do Or Dice, Unit 6B Addlestone One Market Street, Addlestone, GB-Sry KT15 2GD, GB",
-    "latitude": 51.3702,
-    "longitude": -0.489522,
-    "startsAt": "2026-09-03T18:30:00",
-    "date": "2026-09-03",
-    "time": "18:30:00",
-    "distanceKm": 29,
-    "pokemonUrl": null,
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "13b2a62b-d342-4fa9-837f-29919b1874fd",
-      "city": "Runnymede",
-      "country_code": "GB",
-      "name": "",
-      "pokemon_url": "",
-      "shop": "DO OR DICE ADDLESTONE",
-      "state": "England",
-      "street_address": "DO OR DICE, UNIT 6B ADDLESTONE ONE MARKET STREET, ADDLESTONE, GB-SRY KT15 2GD, GB",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 17:30:00",
-      "date": "2026-09-03",
-      "latitude": "51.3702",
-      "longitude": "-0.489522",
-      "distance": 29,
-      "unit": "km",
-      "time": "17:30:00"
-    },
-    "timeVerified": true,
-    "confidence": "verified"
-  },
-  {
-    "id": "f1493ca3-c3c5-4476-8bf4-0b278fc29bed",
-    "name": "Pokémon TCG League Tournament",
-    "hasOrganiserName": true,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "Badger Badger (Deptford High St)",
-    "venueKey": "BADGERBADGER@51.479,-0.026",
-    "city": "London",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "139 Deptford High St, England SE8 3NU, GB",
-    "latitude": 51.479,
-    "longitude": -0.026239,
-    "startsAt": "2026-09-03T18:45:00",
-    "date": "2026-09-03",
-    "time": "18:45:00",
-    "distanceKm": 8,
-    "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-08-001159/",
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "f1493ca3-c3c5-4476-8bf4-0b278fc29bed",
-      "city": "London",
-      "country_code": "GB",
-      "name": "Pokémon TCG League Tournament",
-      "pokemon_url": "26-08-001159",
-      "shop": "BADGER BADGER",
-      "state": "England",
-      "street_address": "139 DEPTFORD HIGH ST, ENGLAND SE8 3NU, GB",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 19:00:00",
-      "date": "2026-09-03",
-      "latitude": "51.479",
-      "longitude": "-0.026239",
-      "distance": 8,
-      "unit": "km",
-      "time": "19:00:00"
-    },
-    "timeVerified": true,
-    "confidence": "verified"
-  },
-  {
-    "id": "a3ba1c2c-a42c-46a3-beb0-7d03634dc150",
-    "name": "Cerulean League Week 9",
-    "hasOrganiserName": true,
-    "type": "nonpremier TCG",
-    "typeLabel": "League (Locals)",
-    "shop": "Labyrinthe",
-    "venueKey": "LABYRINTHE@51.407,0.058",
-    "city": "London",
-    "state": "England",
-    "countryCode": "GB",
-    "address": "Caveside Close, Chislehurst, England BR7 5NL, GB",
-    "latitude": 51.4072,
-    "longitude": 0.057566,
-    "startsAt": "2026-09-03T19:00:00",
-    "date": "2026-09-03",
-    "time": "19:00:00",
-    "distanceKm": 17,
-    "pokemonUrl": "https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournaments/26-09-007468/",
-    "sourceSearch": "London",
-    "raw": {
-      "guid": "a3ba1c2c-a42c-46a3-beb0-7d03634dc150",
-      "city": "London",
-      "country_code": "GB",
-      "name": "Cerulean League Week 9",
-      "pokemon_url": "26-09-007468",
-      "shop": "LABYRINTHE",
-      "state": "England",
-      "street_address": "CAVESIDE CLOSE, CHISLEHURST, ENGLAND BR7 5NL, GB",
-      "type": "nonpremier TCG",
-      "when": "2026-09-03 19:00:00",
-      "date": "2026-09-03",
-      "latitude": "51.4072",
-      "longitude": "0.057566",
-      "distance": 17,
-      "unit": "km",
-      "time": "19:00:00"
-    },
-    "confidence": "unverified"
-  },
-  {
     "id": "7e28fd67-3c13-4096-942e-876285b33a8c",
     "name": "Tokyo Toys - Pokémon TCG League (Locals)",
     "hasOrganiserName": false,
@@ -362,8 +118,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "e840f608-0fb4-473e-8d4f-ea08d33ef49e",
@@ -484,8 +239,9 @@
       "unit": "km",
       "time": "11:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "b8909c0f-fade-45a2-9bd5-0a4be867231b",
@@ -566,8 +322,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "4071cf42-b2a3-436f-9aa0-1bea347a0f3f",
@@ -647,8 +402,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "b6fc0423-df45-4753-ba60-22a34b94c659",
@@ -770,8 +524,9 @@
       "unit": "km",
       "time": "12:30:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "b24349f3-23ca-437a-8e40-67b90f1d8df9",
@@ -1584,8 +1339,9 @@
       "unit": "km",
       "time": "19:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "2078d19b-a8d9-44ea-8016-86a2b595c162",
@@ -1747,8 +1503,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "1a423aa4-5f09-449d-8252-28af3a68d46d",
@@ -1869,8 +1624,9 @@
       "unit": "km",
       "time": "11:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "2996f85d-8a90-48c0-b5f7-80ed63f60353",
@@ -2031,8 +1787,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "d2f38957-99b9-4951-9e32-9a6b47b53961",
@@ -2113,8 +1868,9 @@
       "unit": "km",
       "time": "12:30:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "9f260a34-310f-40b5-9f33-1d0a2644723d",
@@ -2965,8 +2721,9 @@
       "unit": "km",
       "time": "19:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "2622d85f-8f1e-4561-909c-5b31b7617daa",
@@ -3046,8 +2803,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "1e06c36f-639a-4738-a04f-6fad299dffe4",
@@ -3168,8 +2924,9 @@
       "unit": "km",
       "time": "11:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "27d626d1-4541-4156-9f34-0820d2f0a282",
@@ -3290,8 +3047,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "0963e011-a6d2-4898-adba-b3051b380cef",
@@ -3372,8 +3128,9 @@
       "unit": "km",
       "time": "12:30:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "a4f29589-d816-477e-81df-c003a42e06e8",
@@ -4225,8 +3982,9 @@
       "unit": "km",
       "time": "19:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "e4debee2-5636-433f-9150-66953c35a70c",
@@ -4306,8 +4064,7 @@
       "unit": "km",
       "time": "18:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "aa0ac8e3-0ac9-4b33-9e5d-7981502daa80",
@@ -4428,8 +4185,9 @@
       "unit": "km",
       "time": "11:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "9cc3bbee-74eb-48f4-8239-d697d4eb8895",
@@ -4590,8 +4348,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "d6402843-1bbe-42f4-b60e-74357bd3ef93",
@@ -4672,8 +4429,9 @@
       "unit": "km",
       "time": "12:30:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "ee40ab65-7d9e-446f-9561-eee8caa8875c",
@@ -5485,8 +5243,9 @@
       "unit": "km",
       "time": "18:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "d009290f-2264-40fe-9fc9-73053c59db8b",
@@ -5648,8 +5407,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "7040f023-56dd-4afa-81cb-14fef47af75c",
@@ -6421,8 +6179,9 @@
       "unit": "km",
       "time": "18:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "ba7c8e85-6376-4533-8de1-c9d73a89dd24",
@@ -6664,8 +6423,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "c0c8a175-7bfb-476d-9657-9b83faafe728",
@@ -7395,8 +7153,9 @@
       "unit": "km",
       "time": "18:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "33d05052-3798-47e7-abeb-bdf6fc2b6e3e",
@@ -7558,8 +7317,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "01e21738-274a-4b32-ba2f-3ecf695be06e",
@@ -8288,8 +8046,9 @@
       "unit": "km",
       "time": "18:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "12dbb27a-5dd1-48fd-8116-7e5df94fe39c",
@@ -8531,8 +8290,7 @@
       "unit": "km",
       "time": "12:00:00"
     },
-    "confidence": "verified",
-    "timeVerified": true
+    "confidence": "unverified"
   },
   {
     "id": "dafd6849-2467-4cd0-93af-b177113926a2",
@@ -9221,8 +8979,9 @@
       "unit": "km",
       "time": "18:00:00"
     },
+    "confidence": "verified",
     "timeVerified": true,
-    "confidence": "verified"
+    "timeCarriedOver": true
   },
   {
     "id": "d9c976a2-87be-4938-b0bd-6a34b534a74a",
