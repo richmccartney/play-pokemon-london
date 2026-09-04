@@ -5,6 +5,9 @@ Scrapes League Cup / Challenge / Pre-release events from
 persistently, and publishes them as a subscribable `.ics` calendar feed —
 hosted entirely on Netlify.
 
+Outstanding work — feature ideas, known defects, and the stores whose times we
+still cannot confirm — is tracked in [BACKLOG.md](./BACKLOG.md).
+
 ## How it works
 
 ```
