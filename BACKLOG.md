@@ -16,7 +16,95 @@ Numbers below were accurate at the last update; regenerate with the snippet in
 
 ## Feature requests
 
-> _Add yours here._
+Roughly in the order they were raised, not priority order.
+
+### Per-venue pages
+
+Give each venue its own page: expanded detail, a map, something about the shop,
+and its full list of upcoming events.
+
+The biggest piece here, and the one that most changes the site's shape — it
+turns a single-page calendar into a site with real structure. Worth doing for
+its own sake, but it also gives us somewhere to put things that have nowhere to
+live today: the verified/unverified explanation, a link to the shop's own
+listings, price, and the "check before travelling" warning in context rather
+than as a badge.
+
+Two things to decide first:
+
+- **Routing.** The site is currently a single page with a SPA fallback in
+  `netlify.toml`. Real URLs (`/venue/dark-sphere`) need either a router plus a
+  catch-all redirect, or pre-rendered pages at build time. Pre-rendering is
+  likely better here — the data only changes nightly, and static pages would be
+  indexable, which matters if people are searching for their local shop.
+- **Where the copy comes from.** We hold no descriptive content about venues,
+  only what pokedata gives us plus what the adapters scrape. An "about" section
+  means either writing 30 short descriptions by hand or pulling them from each
+  shop's site, which is a different kind of scraping to what we do now.
+
+We do already have latitude/longitude for every venue, so the map is
+straightforward.
+
+### Filter by TfL zone
+
+Filter events by Travelcard zone rather than only by venue.
+
+Genuinely useful — zone is how Londoners actually think about whether somewhere
+is worth travelling to on a weeknight. Needs a zone lookup per venue: there is
+no zone in our data, and it cannot be derived from coordinates alone since
+zones follow the network rather than geography.
+
+Options are hand-mapping the ~30 venues to their nearest station's zone (small,
+one-off, but goes stale if venues move), or a TfL API lookup. Note that a
+meaningful number of venues are outside the zones entirely — Harlow, Watford,
+Addlestone, Sidcup — so the filter needs an honest answer for those rather than
+hiding them.
+
+### Location-based calendar subscriptions
+
+Let people subscribe to a filtered feed rather than all 312 events.
+
+This is probably the highest-value item on the list. Most people want their two
+or three local shops, and today they must take everything or nothing — which
+makes the calendar noisy enough that some will unsubscribe.
+
+Implementation is the interesting part: we serve a static `.ics`, so a filtered
+feed means either generating one file per venue at build time (simple, cacheable,
+but no arbitrary combinations) or accepting query parameters, which needs a
+server and we deliberately moved *away* from Netlify Functions. Per-venue and
+per-zone files are the natural fit for a static site, and would compose well
+with the two features above.
+
+### Better month view on mobile
+
+The month grid is cramped on small screens.
+
+Worth pinning down what "improve" means before starting — the underlying
+tension is that a 7-column grid plus multiple events per day does not fit a
+phone. Options range from smaller (dots instead of pills, tap to expand) to
+larger (an agenda-style list on mobile instead of a grid).
+
+### Animate the view switcher pill, and make it draggable on mobile
+
+`ViewSwitcher.jsx` currently just toggles an `--active` class on three buttons —
+there is no sliding pill to animate yet, so this is "build the pill, then
+animate it" rather than a tweak.
+
+Dragging needs care: the switcher sits above a horizontally-scrollable calendar,
+so a horizontal drag gesture risks fighting the scroll underneath it. Also worth
+honouring `prefers-reduced-motion`.
+
+### Follow the system light/dark setting
+
+`useTheme.js` reads `prefers-color-scheme` **once**, on first load, then writes
+the result to `localStorage` — so the very first visit permanently pins a
+preference the user never expressed, and the site stops following the system
+from then on.
+
+Two parts to fix: store an explicit `"system"` state distinct from a user's
+choice, and subscribe to the media query so the theme follows a mid-session
+change (phones switching at sunset). The inline script in `index.html` that
+prevents a flash of the wrong theme on load needs updating in step.
 
 ---
 
