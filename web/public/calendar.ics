@@ -6,69 +6,9 @@ METHOD:PUBLISH
 X-WR-CALNAME:Pokémon TCG League Events
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
-UID:pokedata-7e28fd67-3c13-4096-942e-876285b33a8c@pokemon-events-calendar
-SUMMARY:Tokyo Toys - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260904T150000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.4306;0.083604
-LOCATION:Tokyo Toys\, 6 Marechal Niel Parade\, Main Rd\, Sidcup DA14 6QF\, 
-	UK\, London\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:pokedata-d731c209-a822-4c7f-95fc-08daf9d3b8e6@pokemon-events-calendar
-SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260904T150000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.578;0.181222
-LOCATION:Retro Giant\, 18A To 18B\, the Quadrant Arcade\, South St\, Romfor
-	d RM1 3ED\, UK\, London\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:pokedata-66a5bfec-82d4-48a0-9c44-c1c396508c1c@pokemon-events-calendar
-SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
-DTSTART:20260904T170000Z
-DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
-	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
-	r-club/play-pokemon-tournaments/26-09-000584/
-URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
-	s/26-09-000584/
-GEO:51.507;-0.006464
-LOCATION:P9 Card Game Canary Wharf\, 4 Dominion Walk Canary Wharf\, London 
-	E14 9FX\, GB\, London\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
-UID:pokedata-e840f608-0fb4-473e-8d4f-ea08d33ef49e@pokemon-events-calendar
-SUMMARY:Retro Giant
-DTSTAMP:20260904T071152Z
-DTSTART:20260904T173000Z
-DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
-	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
-	r-club/play-pokemon-tournaments/26-09-001274/
-URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
-	s/26-09-001274/
-GEO:51.5787;0.179691
-LOCATION:Mighty Meeples\, 2 High Street (Back of) Golden Lion\, Romford\, E
-	ssex RM1 1HR\, GB\, London\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
 UID:pokedata-a47df4f3-5b4f-4d00-9b41-e67debd62295@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260905T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -81,7 +21,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2980f1fe-68be-4460-8227-04cbf6d512f8@pokemon-events-calendar
 SUMMARY:Badger Badger West Norwood - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260905T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4342;-0.103512
@@ -94,7 +34,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b8909c0f-fade-45a2-9bd5-0a4be867231b@pokemon-events-calendar
 SUMMARY:Mug and Meeple TCG Cup Q1
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260905T100000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -111,7 +51,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1efdcd59-6760-4232-8c85-c303a162c5bf@pokemon-events-calendar
 SUMMARY:P9 Canary Wharf September Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260905T110000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -128,7 +68,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-4071cf42-b2a3-436f-9aa0-1bea347a0f3f@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -141,7 +81,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fff9f064-daa1-464b-9659-9fef21bb3504@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -158,7 +98,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b6fc0423-df45-4753-ba60-22a34b94c659@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -171,7 +111,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8c9b790a-3e3d-4e38-8aae-adf7cb711b09@pokemon-events-calendar
 SUMMARY:Dark Fire Sunday League #73
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -188,7 +128,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e6a314e6-c739-4c68-8dfc-c70152636254@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -203,9 +143,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-d5d063e8-27b8-4014-94c4-4117b23f0109@pokemon-events-calendar
+SUMMARY:Dark Sphere Standard 06/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260906T120000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012454/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012454/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-b24349f3-23ca-437a-8e40-67b90f1d8df9@pokemon-events-calendar
 SUMMARY:BMC Weekly Game Nights
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260906T130000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -222,7 +179,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-5468daa9-2164-4cc3-9f8a-0cb53a833b9d@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -235,7 +192,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f1635919-b4f2-4a06-9355-6d5a803fec95@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -248,7 +205,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fb31f11b-4115-4694-a549-a07e418ab534@pokemon-events-calendar
 SUMMARY:Europa Gaming - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5419;-0.116948
@@ -261,7 +218,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d8bae4b9-b42c-44a6-8d63-6594a72b8dd9@pokemon-events-calendar
 SUMMARY:BMHR Game Nights. 023
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -278,7 +235,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-cfc2b331-c39c-44fc-8720-b4a274efa618@pokemon-events-calendar
 SUMMARY:League Challenge September
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T173000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -295,7 +252,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e48cbe4c-47c1-436f-97d0-e036dc7953b7@pokemon-events-calendar
 SUMMARY:The Gamers Guild September 2026 League Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260907T170000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -312,7 +269,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-5824d26e-95a4-4b5c-a36d-7a6494a83f73@pokemon-events-calendar
 SUMMARY:The Ludoquist Board Game Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260908T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3716;-0.100303
@@ -323,22 +280,9 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
-UID:pokedata-aff9a366-8e93-4129-a25b-369dd2fe8919@pokemon-events-calendar
-SUMMARY:Dark Sphere - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260908T180000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.5035;-0.218481
-LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
-	ondon\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
 UID:pokedata-b735819e-5318-4a6a-b0e6-9e201075e329@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260908T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -351,7 +295,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-61c65e1c-d2ad-43d8-a8b7-6bbfee33f907@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260908T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -364,7 +308,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-993a51f4-7df0-4b9f-be66-85f559ed0ece@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260908T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -377,7 +321,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b9a4721c-a876-4039-a373-646c59999a3d@pokemon-events-calendar
 SUMMARY:Kaboom Cards Standard Format
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260908T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -392,9 +336,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-6069c7ac-9623-4e6e-be14-b121d30a2001@pokemon-events-calendar
+SUMMARY:Dark Sphere Standard 08/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260908T180000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012456/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012456/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-0eb55c77-05b7-4d4c-9d3d-3db35ed20b68@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260909T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -407,7 +368,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-43801e21-4198-411a-8979-3d5d2c9451c8@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260909T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -420,7 +381,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-51257398-4d37-4985-bf33-228cc7202f2c@pokemon-events-calendar
 SUMMARY:Dark Fire Night #119
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260909T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -437,7 +398,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-69517957-c378-4cfa-8d4f-97aa7c9e92fc@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260910T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -450,7 +411,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f78f0cc4-8dd7-4232-bae0-d75f16f9b960@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260910T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -463,7 +424,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-964d24f0-1a9f-456f-a10e-6684d4b470ee@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260910T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -474,9 +435,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-7fdc2354-d6a2-4d19-8888-9c5f20188733@pokemon-events-calendar
+SUMMARY:Stylecreep Challenge
+DTSTAMP:20260905T005125Z
+DTSTART:20260910T173000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-09-011532/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-011532/
+GEO:51.4733;-0.33789
+LOCATION:Stylecreep\, 25 St John's Rd\, England TW7 6NB\, GB\, London\, Eng
+	land
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-ff924c5c-30f7-44e3-aff0-6888c829545b@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260910T174500Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -493,7 +471,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2078d19b-a8d9-44ea-8016-86a2b595c162@pokemon-events-calendar
 SUMMARY:Movie Shack TCG September Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260910T170000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -510,7 +488,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-204c7db0-63fd-4959-957c-b90d9456f154@pokemon-events-calendar
 SUMMARY:Tokyo Toys - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260911T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4306;0.083604
@@ -523,7 +501,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a86c6628-1ae7-4ff8-a052-fdcfbfa7ca5f@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260911T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -536,7 +514,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1174d857-3a80-4dbe-a66f-ba7e82ab0de6@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260911T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -553,7 +531,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1a423aa4-5f09-449d-8252-28af3a68d46d@pokemon-events-calendar
 SUMMARY:Retro Giant
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260911T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -570,7 +548,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-88dd9b37-e536-4ced-af67-03bb5361e7b6@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260912T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -583,7 +561,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-82025300-af2f-4ebc-af07-4c1412e460c6@pokemon-events-calendar
 SUMMARY:Badger Badger West Norwood - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260912T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4342;-0.103512
@@ -596,7 +574,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2996f85d-8a90-48c0-b5f7-80ed63f60353@pokemon-events-calendar
 SUMMARY:Cerulean Cave Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260912T100000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -611,9 +589,26 @@ CATEGORIES:League Challenge
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-c83dc231-8306-4bd7-b8e0-53122e4e81a6@pokemon-events-calendar
+SUMMARY:TEAM CALAMITY LEAGUE CHALLENGE September 260912
+DTSTAMP:20260905T005125Z
+DTSTART:20260912T123000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-09-012122/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012122/
+GEO:51.7631;-0.2269
+LOCATION:Calamity Comics Hatfield\, 44 Town Centre White Lion Square\, Engl
+	and AL10 0JJ\, GB\, Welwyn Hatfield\, England
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-c83df6cc-0283-4d48-8fe0-854e671684c4@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -626,7 +621,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ff4ebee1-e096-427e-8754-4f8d2beec615@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -639,7 +634,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-478a42d6-d450-4646-b3e0-837103de01a6@pokemon-events-calendar
 SUMMARY:P9 Roman Road September Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T110000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -656,7 +651,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d2f38957-99b9-4951-9e32-9a6b47b53961@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -669,7 +664,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d26050fb-e2bb-4b3c-a14c-841660d2902e@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -684,9 +679,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-c2685648-15d4-4e5d-970c-88dac53cf06c@pokemon-events-calendar
+SUMMARY:Dark Sphere GLC 13/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260913T120000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012459/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012459/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-9f260a34-310f-40b5-9f33-1d0a2644723d@pokemon-events-calendar
 SUMMARY:BMC Weekly Game Nights
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260913T130000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -703,7 +715,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c78236f3-a816-4103-820f-f82a17633cb2@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260914T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -716,7 +728,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ab232d18-3740-4cfc-8f21-48b32d89e9ce@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260914T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -729,7 +741,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6aa71b59-ff8f-4538-9e34-90b14d27b057@pokemon-events-calendar
 SUMMARY:Europa Gaming - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260914T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5419;-0.116948
@@ -742,7 +754,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-4ec5f26c-4bb3-438b-8e13-a82c7e8e5d1f@pokemon-events-calendar
 SUMMARY:BMHR Game Nights. 024
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260914T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -759,7 +771,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2bf79d83-22d2-43a6-ba47-beb9679646b4@pokemon-events-calendar
 SUMMARY:Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260914T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -776,7 +788,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ae98d6a7-7df1-463d-a18a-56efa5dd69d5@pokemon-events-calendar
 SUMMARY:The Ludoquist Board Game Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260915T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3716;-0.100303
@@ -787,22 +799,9 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
-UID:pokedata-bd781908-e676-431b-b9bc-238282a27487@pokemon-events-calendar
-SUMMARY:Dark Sphere - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260915T180000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.5035;-0.218481
-LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
-	ondon\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
 UID:pokedata-81c99c24-d2d1-496f-a35c-e18aa422c6ce@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260915T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -815,7 +814,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-413a2178-014d-4b2f-92ca-5981879bcfbe@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260915T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -828,7 +827,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-0983690b-7788-433b-97b0-84604a1d9d0c@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260915T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -841,7 +840,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-badf92c8-bb60-448c-bb85-7b4a9111f90f@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260915T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -852,9 +851,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-d52bd1bd-5ddd-4c57-b71a-6d247988248b@pokemon-events-calendar
+SUMMARY:Dark Sphere Standard 15/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260915T180000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012463/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012463/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-dd026353-e96f-45ea-9528-9b93feab6539@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260916T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -867,7 +883,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-01351a7f-6a24-4328-a075-092c47598962@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260916T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -880,7 +896,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-69d431e0-57c3-4e8d-8559-52e0a36bacf5@pokemon-events-calendar
 SUMMARY:Dark Fire League Challenge - September
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260916T173000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -897,7 +913,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-69e1ec54-9a02-4f6a-ae44-d53688b7d08e@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -910,7 +926,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-49961916-ece5-4e47-9adb-e8c6c55c4729@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -923,7 +939,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-5c9d522a-faae-435f-a9f9-f60fc9483ed4@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -936,7 +952,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c75a8d55-a80d-4a69-bc4d-47f257b64493@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -949,7 +965,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-efb68cd3-5bd8-43e6-a546-2ee73274f363@pokemon-events-calendar
 SUMMARY:Mythic Goblin League Challenge September
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T180000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -966,7 +982,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8ea98255-1f15-4966-a623-fefbdd644f2f@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260917T174500Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -983,7 +999,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2622d85f-8f1e-4561-909c-5b31b7617daa@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260918T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -996,7 +1012,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d1e78d75-5fbe-4ef4-bdf3-85c462736f85@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260918T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1013,7 +1029,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1e06c36f-639a-4738-a04f-6fad299dffe4@pokemon-events-calendar
 SUMMARY:Retro Giant
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260918T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1030,7 +1046,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b1c42daa-5489-4d76-b4ee-5746eb2deb54@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260919T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -1043,7 +1059,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fbb4b080-5b17-43ef-a03a-a993feecf6de@pokemon-events-calendar
 SUMMARY:Badger Badger West Norwood - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260919T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4342;-0.103512
@@ -1056,7 +1072,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-27d626d1-4541-4156-9f34-0820d2f0a282@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -1069,7 +1085,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8c53cbac-2b93-4385-a5b4-4a6b7d8882cf@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -1080,9 +1096,43 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-2d3490ea-896b-4588-9608-5042604bcdee@pokemon-events-calendar
+SUMMARY:Dark Sphere September League Challenge 20/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260920T100000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-09-012421/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012421/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:pokedata-06912fe2-027a-4ceb-9fbd-6e4a5f404710@pokemon-events-calendar
+SUMMARY:Kaboom Cards September Challenge
+DTSTAMP:20260905T005125Z
+DTSTART:20260920T110000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-09-011080/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-011080/
+GEO:51.565;-0.108442
+LOCATION:Kaboom Sports Trading Cards\, 3-4 Wells Terrace\, England N4 3JU\,
+	 GB\, London\, England
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-de713e67-aaea-4c5c-bae8-46422965f698@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1099,7 +1149,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-0963e011-a6d2-4898-adba-b3051b380cef@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1112,7 +1162,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6e3b3c14-d81f-496d-a519-61a09fbf80d1@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1129,7 +1179,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a4f29589-d816-477e-81df-c003a42e06e8@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -1142,7 +1192,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-48d09141-82b2-4bd2-ba69-da3881373ac3@pokemon-events-calendar
 SUMMARY:Spellbound Games September League Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260920T133000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -1159,7 +1209,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3d71b628-5e19-4fbc-9a1c-7d24a4bc5e92@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -1172,7 +1222,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-96039fa6-a527-4a16-b791-71e8187363d9@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1185,7 +1235,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-328fc381-ea7a-4263-afcf-33cb5f340614@pokemon-events-calendar
 SUMMARY:Europa Gaming - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5419;-0.116948
@@ -1198,7 +1248,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-821a6758-db6f-413f-8d3f-2af6826e2e86@pokemon-events-calendar
 SUMMARY:Europa Pokemon Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T170000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -1215,7 +1265,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3efcd282-3886-4a3b-bd7e-712055976996@pokemon-events-calendar
 SUMMARY:BMHR Game Nights. 025
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1232,7 +1282,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f95f6857-f4a7-435f-a394-705c69be1ff1@pokemon-events-calendar
 SUMMARY:Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260921T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1247,22 +1297,9 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
-UID:pokedata-3ccb1b19-ce9a-4d0b-b11c-523049a54262@pokemon-events-calendar
-SUMMARY:Dark Sphere - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260922T180000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.5035;-0.218481
-LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
-	ondon\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
 UID:pokedata-7727bdbd-fc3e-4f6d-ba64-7aa9f1c11fb1@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260922T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -1275,7 +1312,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-32e8e3d0-5490-41dd-95c4-e3c7416b80e3@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260922T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -1288,7 +1325,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9545b10c-a372-4a4b-9782-b30280d50c1f@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260922T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -1301,7 +1338,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e583760a-a9db-44e5-b41d-bd8a5906cbe5@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260922T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -1312,9 +1349,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-7e6f58a8-ad07-4729-9595-38e7653c30ac@pokemon-events-calendar
+SUMMARY:Dark Sphere Standard 22/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260922T180000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012466/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012466/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-285a118d-64db-4720-b2ca-e25f5b60104b@pokemon-events-calendar
 SUMMARY:TCG Challenge September
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260922T180000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -1331,7 +1385,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e2f6ee24-5382-428b-b121-253598e97bc0@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260923T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -1344,7 +1398,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a4bcb554-6131-44fd-9fe7-cbfe85d38e34@pokemon-events-calendar
 SUMMARY:Dark Fire Night #120
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260923T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1361,7 +1415,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6ee3ce89-9273-4b8c-892a-d7b20baec41b@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260924T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -1374,7 +1428,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fb9e440b-4645-41a8-875a-47c4d0aa6de2@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260924T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -1387,7 +1441,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b2a3f275-a442-437e-9aae-eaa2250e85b6@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260924T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -1400,7 +1454,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f82d46e0-ebff-498c-b30b-f31b0c98f276@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260924T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -1413,7 +1467,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d67e4b76-bdff-4e0e-b5bd-3133a645957a@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260924T174500Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1430,7 +1484,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e4debee2-5636-433f-9150-66953c35a70c@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260925T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -1443,7 +1497,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2a2fbf4a-2b8f-4ef1-9a9d-0a5e67209a98@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260925T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1460,7 +1514,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-aa0ac8e3-0ac9-4b33-9e5d-7981502daa80@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260926T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -1473,7 +1527,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d3f44c8c-5f7a-486b-b7a6-cbe00abaff98@pokemon-events-calendar
 SUMMARY:P9 Autumn Cup 1
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260926T090000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -1490,7 +1544,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d809b31d-6e13-4d15-85f2-51966965c17f@pokemon-events-calendar
 SUMMARY:Badger Badger West Norwood - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260926T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4342;-0.103512
@@ -1503,7 +1557,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9cc3bbee-74eb-48f4-8239-d697d4eb8895@pokemon-events-calendar
 SUMMARY:League Challenge - September
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260926T120000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -1520,7 +1574,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6b4fb926-7f86-47fb-9e25-b72607cb15a1@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -1533,7 +1587,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ae5e168b-4934-4896-b7a3-9a89b7fb7c23@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -1546,7 +1600,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a30178a8-8d87-4e07-adf4-4c40992a5ee1@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1563,7 +1617,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d6402843-1bbe-42f4-b60e-74357bd3ef93@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1576,7 +1630,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-47961d4e-686b-4233-8e3b-c4fe268c66e1@pokemon-events-calendar
 SUMMARY:Pokémon TCG League Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1593,7 +1647,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ee40ab65-7d9e-446f-9561-eee8caa8875c@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260927T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -1604,9 +1658,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-265cbe25-a0de-4f39-af50-3b3469090d37@pokemon-events-calendar
+SUMMARY:Dark Sphere Standard 27/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260927T120000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012469/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012469/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-d134cc65-da9a-4889-a632-d8ca7d4bd5cb@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260928T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -1619,7 +1690,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dd04ce03-8bfa-4208-89ac-87db2e9492a6@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260928T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1632,7 +1703,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a86d3414-9e64-403f-941d-631646af8ace@pokemon-events-calendar
 SUMMARY:Europa Gaming - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260928T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5419;-0.116948
@@ -1645,7 +1716,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1abfa9b1-9f60-44ea-b102-17da0e5ad7f9@pokemon-events-calendar
 SUMMARY:BMHR Game Nights. 028
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260928T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1662,7 +1733,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-baedade9-31c7-4067-9cfa-0e145605c308@pokemon-events-calendar
 SUMMARY:Tournament
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260928T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1677,22 +1748,9 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
-UID:pokedata-28027d9d-f4a3-4e95-bcd6-aebc90bd80cd@pokemon-events-calendar
-SUMMARY:Dark Sphere - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
-DTSTART:20260929T180000Z
-DESCRIPTION:Type: League (Locals)
-GEO:51.5035;-0.218481
-LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
-	ondon\, England
-STATUS:CONFIRMED
-CATEGORIES:League (Locals)
-DURATION:PT3H
-END:VEVENT
-BEGIN:VEVENT
 UID:pokedata-bdca3a19-ac23-4b07-9f26-734e823e3178@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260929T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -1705,7 +1763,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3ce024a3-5662-4bff-8400-74575bf4eca4@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260929T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -1718,7 +1776,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ed5562cf-7a04-4029-8b43-b71e586c86ca@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260929T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -1731,7 +1789,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-51da3094-ebac-43dd-8884-b22d3b08ad62@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260929T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -1742,9 +1800,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-e77f77b3-bfce-4158-8069-ccfa9bdefb18@pokemon-events-calendar
+SUMMARY:Dark Sphere GLC 29/09/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20260929T180000Z
+DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
+	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
+	r-club/play-pokemon-tournaments/26-09-012472/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-09-012472/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-60d4a10e-c2a3-4299-8369-8cce0572f351@pokemon-events-calendar
 SUMMARY:Wednesday Zombie League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260930T173000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1761,7 +1836,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c2aa8466-26ca-4334-b73d-20668953d170@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260930T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -1774,7 +1849,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-35e83fe4-3fae-4c21-b619-72e52e267d10@pokemon-events-calendar
 SUMMARY:Dark Fire Night #121
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20260930T170000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1791,7 +1866,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-55af2ab3-0f56-41a7-8812-4b7e841f6a71@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261001T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -1804,7 +1879,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-71811d79-a455-413b-961d-d210c0d43cfa@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261001T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -1817,7 +1892,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-160a1ec4-92c5-4d27-8e42-850cc6bff6ea@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261001T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -1830,7 +1905,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e958001f-cd39-45ec-838a-61bf57167a79@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261001T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -1843,7 +1918,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-68ede710-9175-4b9a-bf20-b62c388dd282@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261002T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -1856,7 +1931,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f434af48-b0a9-4930-9051-8645af395d61@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261002T180000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1873,7 +1948,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d009290f-2264-40fe-9fc9-73053c59db8b@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261003T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -1886,7 +1961,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c6f00793-8970-4638-b0ac-539d197dd417@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261004T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -1899,7 +1974,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-457a2fae-42bf-4264-aafc-ff46cae9b226@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261004T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -1912,7 +1987,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6a3df6c0-d4f7-4f2d-855b-87fd33c92e5a@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261004T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -1929,7 +2004,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7040f023-56dd-4afa-81cb-14fef47af75c@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261004T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1942,7 +2017,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c5f60c55-f184-4701-bbb3-0c41cd403bae@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261004T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -1955,7 +2030,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ec0f158b-3727-4da9-aed6-53ac69cfa1fb@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261005T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -1968,7 +2043,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d0aed6ea-7317-431c-9411-0bd114689893@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261005T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -1981,7 +2056,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e754b505-ba42-4e49-95b6-00ff96b425f6@pokemon-events-calendar
 SUMMARY:League Challenge October
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261005T173000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -1998,7 +2073,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e2a57eeb-1204-49ab-9dd9-f0b6df11a9a3@pokemon-events-calendar
 SUMMARY:The Gamers Guild October 2026 League Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261005T170000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2015,7 +2090,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b12a56f2-4f6b-4286-8a65-34b0ad73d478@pokemon-events-calendar
 SUMMARY:Dark Sphere - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261006T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5035;-0.218481
@@ -2028,7 +2103,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-21a9af7f-de8b-4392-9582-9aa7fda03bd6@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261006T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -2041,7 +2116,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-887857fc-b7c9-4948-a394-5724dbb8d4d9@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261006T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -2054,7 +2129,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b970bec8-9483-4651-a6b0-918bc2f8b63b@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261006T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -2067,7 +2142,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fa7046fd-ca7f-4519-a0d2-3eac94d66a7c@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261006T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -2080,7 +2155,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2f363861-02d2-4e9a-b2a4-9841abb067c8@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261007T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2093,7 +2168,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-36490eb9-6ad0-4c77-8882-8552ff28b9c3@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261007T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -2106,7 +2181,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7232857f-b04c-48a9-85b0-cc2f33578d05@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261008T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -2119,7 +2194,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-11499806-9ba4-4bc1-9641-ded0669fe871@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261008T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -2132,7 +2207,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-4e31b4ca-bfa9-4679-8b79-0aa384c7bd4a@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261008T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -2145,7 +2220,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f96bffec-9f61-4336-ad1f-8047c714324b@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261008T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2158,7 +2233,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9846f9ee-4afe-4946-9947-8d53c7b10641@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261009T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -2171,7 +2246,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-945b1c92-7996-4ba8-b179-ecf82783bb5b@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261009T180000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2188,7 +2263,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ba7c8e85-6376-4533-8de1-c9d73a89dd24@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261010T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2201,7 +2276,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-be20dcf3-2d30-4065-8732-0446c2747a89@pokemon-events-calendar
 SUMMARY:P9 Autumn Cup
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261010T090000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -2218,7 +2293,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-277425ec-5956-4342-b10d-bb7c7ecad73f@pokemon-events-calendar
 SUMMARY:Cerulean Cave Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261010T100000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2235,7 +2310,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d8c1554d-373b-4958-9293-316431c1840f@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261011T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2248,7 +2323,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a981e561-2af8-4a2c-8c86-78648a333342@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261011T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -2259,9 +2334,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-a38605ec-52e2-4825-b091-9dfc34aca86e@pokemon-events-calendar
+SUMMARY:Dark Sphere October League Challenge 11/10/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20261011T100000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-10-005022/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-10-005022/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-74e91d07-f2fa-44ac-8574-2fcee2ead236@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261011T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2278,7 +2370,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c0c8a175-7bfb-476d-9657-9b83faafe728@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261011T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2291,7 +2383,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-be680d5b-b3e6-4639-8f91-2c899393c1cd@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261011T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -2304,7 +2396,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1dbc0b9e-8b2e-4980-acd1-171b4b221ffa@pokemon-events-calendar
 SUMMARY:Europa Pokemon Challenge (October)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261012T160000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2321,7 +2413,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c602dddf-ed30-4f9a-a8b2-0d887ae5967c@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261012T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -2334,7 +2426,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d1fc942a-129d-47ed-b172-8a855263f237@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261012T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2347,7 +2439,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-23bb17a3-b513-4e77-9966-535f561fabaa@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261013T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -2360,7 +2452,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-37371e51-8214-4544-bd10-386eaed03e5e@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261013T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -2373,7 +2465,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-df56ce2a-1d67-4bce-aa12-063a503b9f8b@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261013T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -2386,7 +2478,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7c0ee814-ef12-43c9-b562-b8dc7b6f5a70@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261013T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -2399,7 +2491,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ad57acc7-fbeb-42da-b86d-ad4b91334cf3@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261014T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2412,7 +2504,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-bf2cf8e5-8e0b-4f9a-b84f-b409c624b063@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261014T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -2425,7 +2517,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-4b84fb80-cc46-4add-8dc1-d3f0077e9499@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261015T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -2438,7 +2530,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-71bb52d2-147e-4046-8fcc-93b7a5a4b5a5@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261015T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -2451,7 +2543,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-28f0e3d0-b055-4ea8-ab29-7545e7159688@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261015T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -2464,7 +2556,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b4e6b81b-f700-4ca7-b595-aa86efcf7c52@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261015T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2475,9 +2567,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-35e52aa8-b826-4859-a600-4815f81c7018@pokemon-events-calendar
+SUMMARY:Stylecreep Challenge
+DTSTAMP:20260905T005125Z
+DTSTART:20261015T173000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-10-004917/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-10-004917/
+GEO:51.4733;-0.33789
+LOCATION:Stylecreep\, 25 St John's Rd\, England TW7 6NB\, GB\, London\, Eng
+	land
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-e0b745c9-8dcc-4786-b84a-21b0122f517e@pokemon-events-calendar
 SUMMARY:Mythic Goblin League Challenge October
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261015T180000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2494,7 +2603,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9c3e7173-6acc-4030-b6f1-cdaa553acde4@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261016T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -2507,7 +2616,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c2a03a4a-8ec9-45ca-9626-84d33c5685bb@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261016T180000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2524,7 +2633,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-33d05052-3798-47e7-abeb-bdf6fc2b6e3e@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261017T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2537,7 +2646,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ae692c67-5330-4200-babe-bb9fdfb80c9f@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261018T110000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2550,7 +2659,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-47d19603-7528-4e1f-8464-4fd5453f2b78@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261018T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -2563,7 +2672,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b8db62b3-f994-4a24-8e21-fe5b8894991f@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261018T110000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2580,7 +2689,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-01e21738-274a-4b32-ba2f-3ecf695be06e@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261018T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2593,7 +2702,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9ad3cf51-9f77-4486-9dd4-afb306777eda@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261018T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -2606,7 +2715,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-51094752-58f1-4406-ad2a-e4afb6c74213@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261019T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -2619,7 +2728,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dfdad12d-4008-4631-9670-1db577bb880b@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261019T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2632,7 +2741,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6fbda343-76c6-4436-a435-9edce44bed14@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261020T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -2645,7 +2754,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dead5aee-c3dc-471b-8b0d-924be96f01c9@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261020T154500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -2658,7 +2767,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-034a134f-c4fa-4c6a-9e01-454dae24fb92@pokemon-events-calendar
 SUMMARY:Wayland Games Centre - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261020T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.5771;0.35762
@@ -2671,7 +2780,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d2734a7f-511a-4295-af6f-d499e969787a@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261020T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -2684,7 +2793,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-73009071-25eb-47d0-8475-0c9a2699fe47@pokemon-events-calendar
 SUMMARY:TCG Challenge October
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261020T180000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2701,7 +2810,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e8cd3c2c-6a48-47e6-a648-bb610f5d6857@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261021T160000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2714,7 +2823,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-053d77f8-82af-4e2b-9763-336f6a200288@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261021T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -2727,7 +2836,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3e30b4c6-f961-4083-9650-50d9f8b4dff9@pokemon-events-calendar
 SUMMARY:Dark Fire League Challenge - October
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261021T173000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -2744,7 +2853,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-5371a22e-f28b-40ec-96ca-dfe3aac0ef55@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261022T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -2757,7 +2866,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1826d2fd-d704-41df-aa32-75dff029d3d5@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261022T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -2770,7 +2879,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-488515c8-d934-4e16-9bb0-883558194ee5@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261022T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -2783,7 +2892,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-40901fcd-46f9-4437-88f1-4923acf3f5e1@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261022T173000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2796,7 +2905,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9946bbde-3d34-43b7-a467-82ea9499d243@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261023T150000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -2809,7 +2918,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-603f27e5-781e-4433-ada4-83a4f82a241a@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261023T180000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2826,7 +2935,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-12dbb27a-5dd1-48fd-8116-7e5df94fe39c@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261024T083000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -2839,7 +2948,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b3f34096-2c9e-4481-9456-2b76198da7d2@pokemon-events-calendar
 SUMMARY:Dark Fire League Cup - October
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261024T090000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -2856,7 +2965,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-772a3792-9bc8-4f53-a1ce-e56e2ab323f1@pokemon-events-calendar
 SUMMARY:Cerulean Cave Cup
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261024T100000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -2873,7 +2982,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-19ed9bc8-8408-45a3-b853-cd1c3538fc50@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261025T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -2886,7 +2995,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-68823710-1024-490f-af89-b285fdec1a60@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261025T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -2897,9 +3006,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-619bfe93-a0a7-4e05-9f1c-dd6bf26e122a@pokemon-events-calendar
+SUMMARY:Dark Sphere October League Cup 25/10/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20261025T110000Z
+DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
+	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
+	b/play-pokemon-tournaments/26-10-005024/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-10-005024/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League Cup
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-afaff89a-39fa-455d-9442-c40fc95a494f@pokemon-events-calendar
 SUMMARY:P9 Sunday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261025T120000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -2916,7 +3042,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dafd6849-2467-4cd0-93af-b177113926a2@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261025T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2929,7 +3055,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-0fe7ed93-7c3c-4c1e-9754-f6f7256c03ae@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261025T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -2942,7 +3068,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7a111103-a428-4142-b580-1b2aa1fe1191@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261026T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -2955,7 +3081,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8c56bf77-4229-401d-8dd4-d95e2f63756d@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261026T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -2968,7 +3094,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-472c7c66-44e2-4ac7-b366-5e0705ab9228@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261027T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -2981,7 +3107,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-77324b5a-9b44-4080-980f-e41f83785b70@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261027T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -2994,7 +3120,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7dd2527b-5697-4c22-a236-2133e6f85fbf@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261027T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -3007,7 +3133,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d29449df-1d15-4547-a42e-58e143e7d055@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261028T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -3020,7 +3146,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3d37dc2c-9e29-4b31-9600-84d65a3737e6@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261028T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3033,7 +3159,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-bc572eeb-e121-4f5f-9ad4-d0c68b1222ad@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261028T193000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -3046,7 +3172,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ac485d9d-42bf-4a1a-b7a4-444efe2c0692@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261029T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -3059,7 +3185,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-bdfa17e3-9f54-4342-a744-2c28b1d21cae@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261029T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -3072,7 +3198,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-46b4a6c1-cdae-42a9-bbb3-cd62b604f01c@pokemon-events-calendar
 SUMMARY:Thunderbolt Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261029T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4045;-0.256923
@@ -3085,7 +3211,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a189145f-534d-4951-a73a-ae5f58e59704@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261029T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3098,7 +3224,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-957308a0-a33a-4287-875f-3535ef30bab4@pokemon-events-calendar
 SUMMARY:League Challenge - October (Best of One)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261029T191500Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3115,7 +3241,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c3a78e6f-5e29-4929-bdd1-6dd597220819@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261030T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -3128,7 +3254,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-bbec710a-995e-4cad-827c-07b3f50e479c@pokemon-events-calendar
 SUMMARY:P9 Friday League
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261030T190000Z
 DESCRIPTION:Type: League (Locals)\n\nFull details (admission cost\, organiz
 	er contact\, registration link): https://www.pokemon.com/us/pokemon-traine
@@ -3145,7 +3271,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d9c976a2-87be-4938-b0bd-6a34b534a74a@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261031T093000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3158,7 +3284,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-15abc504-54cc-4415-9748-878da188da65@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261101T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3171,7 +3297,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1cd43222-46ee-404d-b708-2d8d119a183b@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261101T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -3184,7 +3310,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b4221d38-4522-4336-aab9-8eb978e86d51@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261101T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3197,7 +3323,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-93252ffa-cdcd-4fd5-b02e-8555bc50e42e@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261101T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -3210,7 +3336,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-f582edd4-0553-4f63-9ca3-6edf08630b08@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261102T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -3223,7 +3349,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e3e1d511-8686-4983-8909-82cfd6fbdc1c@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261102T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3236,7 +3362,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2c2591ff-4d3f-42e8-af0a-cb79b4d5a2b9@pokemon-events-calendar
 SUMMARY:League Challenge November
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261102T183000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3253,7 +3379,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fd94f81a-68a1-4460-86af-b1ae98582c42@pokemon-events-calendar
 SUMMARY:The Gamers Guild November 2026 League Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261102T180000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3270,7 +3396,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-126aa31e-b462-4166-8d40-140350cf056a@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261103T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -3283,7 +3409,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-3b92d5c4-9b8a-4bc9-8ef1-9a01b2d54e2d@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261103T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -3296,7 +3422,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-0ce7f90a-138f-4b37-a3c0-cde225206331@pokemon-events-calendar
 SUMMARY:Only Graded - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261103T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.646;0.089053
@@ -3309,7 +3435,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-37d82a88-f901-4eef-afd4-356ff37379cd@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261104T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3322,7 +3448,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e4e7657a-fbcb-46a9-a44d-177dd81d5a0a@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261104T193000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -3335,7 +3461,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2f3298c2-fc12-4954-a372-04a187f58c76@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261105T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -3348,7 +3474,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8097cd99-5d82-40c1-a258-e23600b96825@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261105T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -3361,7 +3487,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-04e7e894-0ffe-423d-b594-9939b6614642@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261105T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3374,7 +3500,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-60675642-3e0c-4d71-a080-4c30de668bb3@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261106T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -3387,7 +3513,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2379cf77-8174-47c7-98db-8d2e0d7b8a1a@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261107T093000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3400,7 +3526,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e6592dd9-8a31-48df-b7c2-42458f8c80fd@pokemon-events-calendar
 SUMMARY:Cerulean Cave Challenge
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261107T110000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3417,7 +3543,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-0ca3227e-17c3-4ac5-8ebb-bc217088607e@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261108T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3430,7 +3556,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-de6ef6b4-7ad4-4d50-a7c3-d22009757849@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261108T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -3443,7 +3569,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7dfa5c01-0b0d-47e6-b733-7d5458a84b8d@pokemon-events-calendar
 SUMMARY:League Cup
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261108T110000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -3460,7 +3586,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1e7e2183-bb7b-421d-bd0b-65650cd55471@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261108T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3473,7 +3599,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c51bbab6-604b-4560-87d6-e39189210fbc@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261108T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -3486,7 +3612,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ee6f89c6-9c45-401a-a72a-df52878f3523@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261109T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -3499,7 +3625,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-1987abf3-e4d2-44e2-8489-4a9533118737@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261109T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3512,7 +3638,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7c32b4d0-9749-4030-b75f-8c7ee50efef4@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261110T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -3525,7 +3651,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-344e1c0e-82ab-41d0-8728-43c468dcfd4b@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261110T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -3538,7 +3664,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-64c751f6-71f7-46d7-b139-58b8fb86559f@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261111T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3551,7 +3677,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-5dcf5976-acb6-45c9-9b1b-bf1acc765327@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261111T193000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -3564,7 +3690,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-75b28b49-91e5-4360-94b9-fe5447bfd9da@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261112T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -3577,7 +3703,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-59799ecd-c7e6-4ebf-8f33-d54da2c1811b@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261112T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -3590,7 +3716,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2d91fc4d-c89a-407c-a486-1d15428ffa38@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261112T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3603,7 +3729,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-15d8aeda-beaf-4eca-886e-3b93b9fe02c4@pokemon-events-calendar
 SUMMARY:Mythic Goblin League Challenge November
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261112T190000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3620,7 +3746,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a3940a1a-b183-459d-8808-1783eddec923@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261113T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -3633,7 +3759,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b093b43e-e9c8-4e7f-abd3-b32c7b41126f@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261114T093000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3646,7 +3772,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fd8dc9da-2095-46ee-a115-f6a9ee6ebe3e@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261115T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3659,7 +3785,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dcd9df7a-b307-438b-9609-8f0912bd4ff0@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261115T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -3672,7 +3798,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-93e76b1f-9049-4251-a062-2c199bab1414@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261115T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3685,7 +3811,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9b001505-a599-4f34-ac85-35f41e4c6714@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261115T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -3698,7 +3824,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-59cc0aba-dcab-4f35-b850-e1dd918245c5@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261116T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -3711,7 +3837,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6d8bdf09-a0ec-4df4-937f-4ccd2c07016f@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261116T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3724,7 +3850,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e680d6b5-d6e2-4319-ba00-2577713d75c4@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261117T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -3737,7 +3863,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-8b9edc02-05d4-4ed1-84ee-423434813734@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261117T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -3750,7 +3876,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6bdda31d-01b7-4243-ac9b-754d702597ec@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261118T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3763,7 +3889,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-23938afe-0c8f-4a66-86e0-79680b895669@pokemon-events-calendar
 SUMMARY:Dark Fire League Challenge - November
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261118T183000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3780,7 +3906,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ad93cd3d-4881-4ade-b07c-8a623a6d737a@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261118T193000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -3793,7 +3919,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-9cd0514a-a59e-4077-a709-03525bc22857@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261119T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -3806,7 +3932,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-4a6b7d38-6c72-477d-9dd9-19d29ad71cd3@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261119T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -3819,7 +3945,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-2e78c591-29d9-423e-8445-a4175904b7be@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261119T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3832,7 +3958,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d4ff58c3-0e62-4e79-86ee-c705aa3a6dec@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261120T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -3845,7 +3971,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-92fcf455-b4a1-47d4-9a12-f761ded25a46@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261121T093000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -3858,7 +3984,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-612f23d0-b6dd-41d4-b3d8-0171fd6d2f04@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261122T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -3869,9 +3995,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-4d50e9fb-c87b-444d-8c1c-626fe0499ed5@pokemon-events-calendar
+SUMMARY:Stylecreep League Cup
+DTSTAMP:20260905T005125Z
+DTSTART:20261122T103000Z
+DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
+	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
+	b/play-pokemon-tournaments/26-11-003908/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-11-003908/
+GEO:51.4733;-0.33789
+LOCATION:Stylecreep\, 25 St John's Rd\, England TW7 6NB\, GB\, London\, Eng
+	land
+STATUS:CONFIRMED
+CATEGORIES:League Cup
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-b06494ff-7533-4162-897b-c0e535a7da3a@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261122T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -3882,9 +4025,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-6d728271-859a-478f-b799-c64c4b3df49a@pokemon-events-calendar
+SUMMARY:Dark Sphere November League Challenge 22/11/2026
+DTSTAMP:20260905T005125Z
+DTSTART:20261122T110000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-11-003976/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-11-003976/
+GEO:51.5035;-0.218481
+LOCATION:Dark Sphere\, Unit 8 W12 Shopping Centre\, London W12 8PP\, UK\, L
+	ondon\, England
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-77947cc3-ccb6-4ec1-88b1-0dc44ccd6f45@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261122T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3897,7 +4057,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a3de69f8-5505-4a56-a8a5-236d68bbba04@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261122T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -3910,7 +4070,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-a1f59bfc-e28c-497a-9a3b-1af87083272f@pokemon-events-calendar
 SUMMARY:Europa Challenge (November)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261123T170000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3927,7 +4087,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6292b01e-d513-4b08-a233-df71ce6acfe1@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261123T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -3940,7 +4100,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7a7c265e-3cd4-41d5-af21-b5b74493164b@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261123T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -3953,7 +4113,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-c9110064-9200-4485-8f88-f55807279f5f@pokemon-events-calendar
 SUMMARY:The Mug and Meeple - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261124T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4449;0.369507
@@ -3966,7 +4126,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d030f146-5202-43a8-93cc-6693da7a8d19@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261124T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -3979,7 +4139,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-616a253c-1760-4355-91ea-4b0cbb562def@pokemon-events-calendar
 SUMMARY:TCG Challenge November
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261124T190000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -3996,7 +4156,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-94c5c777-af18-433b-bad1-d3c6e5f06fae@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261125T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4009,7 +4169,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-863f7641-4508-4ea5-9ed4-0d3092d5dd94@pokemon-events-calendar
 SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261125T193000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4504;0.0124
@@ -4022,7 +4182,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7dff9b19-6cfc-493b-8ced-f7cc607f2bb7@pokemon-events-calendar
 SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261126T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4559;0.143947
@@ -4035,7 +4195,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-d78d9e63-cd0c-4c50-84f2-09353fd4658f@pokemon-events-calendar
 SUMMARY:Stylecreep - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261126T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4733;-0.33789
@@ -4046,9 +4206,26 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-a4386075-1265-45af-a2d8-472813c197dc@pokemon-events-calendar
+SUMMARY:Stylecreep Challenge
+DTSTAMP:20260905T005125Z
+DTSTART:20261126T183000Z
+DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
+	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
+	er-club/play-pokemon-tournaments/26-11-003904/
+URL:https://www.pokemon.com/us/pokemon-trainer-club/play-pokemon-tournament
+	s/26-11-003904/
+GEO:51.4733;-0.33789
+LOCATION:Stylecreep\, 25 St John's Rd\, England TW7 6NB\, GB\, London\, Eng
+	land
+STATUS:CONFIRMED
+CATEGORIES:League Challenge
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-4bdd4371-20f4-4e57-8834-e566deacc425@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261126T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -4061,7 +4238,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-be7c2168-03f6-4e2b-bdf4-5da3160b3a9f@pokemon-events-calendar
 SUMMARY:Retro Giant - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261127T170000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.578;0.181222
@@ -4074,7 +4251,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-ce71aa23-2d63-4c60-b2f6-e35a1decd9fe@pokemon-events-calendar
 SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261128T093000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.3702;-0.489522
@@ -4087,7 +4264,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fba49e5c-3eac-4bed-a04b-d7bfd45871ff@pokemon-events-calendar
 SUMMARY:Mythic Goblin Season 1 League Cup
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261128T120000Z
 DESCRIPTION:Type: League Cup\n\nFull details (admission cost\, organizer co
 	ntact\, registration link): https://www.pokemon.com/us/pokemon-trainer-clu
@@ -4104,7 +4281,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-48b03d3e-0476-4f0a-a8e8-63515380a094@pokemon-events-calendar
 SUMMARY:League Challenge - November
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261128T130000Z
 DESCRIPTION:Type: League Challenge\n\nFull details (admission cost\, organi
 	zer contact\, registration link): https://www.pokemon.com/us/pokemon-train
@@ -4121,7 +4298,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-47240866-92bd-4cd9-bdd4-bcb5489cb2a8@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261129T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4134,7 +4311,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-6aafbafd-953b-4eb2-812b-e2af42010120@pokemon-events-calendar
 SUMMARY:Marquee Models Harlow - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261129T103000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7696;0.093867
@@ -4147,7 +4324,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-836ec4a5-8928-4f7b-979d-f7b2bc57bc86@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261129T130000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -4160,7 +4337,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-7c978101-ff6f-4e90-a40a-ba31d52fd07e@pokemon-events-calendar
 SUMMARY:Bad Moon Cafe LTD. - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261129T140000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.4966;-0.088309
@@ -4173,7 +4350,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-12b6fd1c-283d-4e24-8206-2ddcacd9cc20@pokemon-events-calendar
 SUMMARY:The Gamers Guild - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261130T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.2397;-0.178108
@@ -4186,7 +4363,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e471c997-5c56-4022-a257-f8d262c9060d@pokemon-events-calendar
 SUMMARY:Troll Trader Bromley - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261130T183000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.6258;-0.1162
@@ -4199,7 +4376,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-b6581669-e5cf-4cc3-858f-a4219834e702@pokemon-events-calendar
 SUMMARY:Kaboom Sports Trading Cards - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261201T174500Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.565;-0.108442
@@ -4212,7 +4389,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-064bf33d-abd7-47c7-81c8-beb54b6cecf5@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261202T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4223,9 +4400,61 @@ CATEGORIES:League (Locals)
 DURATION:PT3H
 END:VEVENT
 BEGIN:VEVENT
+UID:pokedata-5a6e05b5-6e6c-4ccc-8040-c29ca994df98@pokemon-events-calendar
+SUMMARY:Wishlist Collectables - Pokémon TCG League (Locals)
+DTSTAMP:20260905T005125Z
+DTSTART:20261202T193000Z
+DESCRIPTION:Type: League (Locals)
+GEO:51.4504;0.0124
+LOCATION:Wishlist Collectables\, 128 Burnt Ash Rd\, England SE12 8PU\, GB\,
+	 London\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:pokedata-bb11bd8c-395c-4c41-bd85-4df7d6a52843@pokemon-events-calendar
+SUMMARY:The Movie Shack - Pokémon TCG League (Locals)
+DTSTAMP:20260905T005125Z
+DTSTART:20261203T180000Z
+DESCRIPTION:Type: League (Locals)
+GEO:51.4559;0.143947
+LOCATION:The Movie Shack\, Bexleyheath Library\, Bexleyheath DA6 7HJ\, UK\,
+	 London\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:pokedata-1f1ab5c2-a5bd-43b6-9c93-eb0a7cb244c5@pokemon-events-calendar
+SUMMARY:Stylecreep - Pokémon TCG League (Locals)
+DTSTAMP:20260905T005125Z
+DTSTART:20261203T183000Z
+DESCRIPTION:Type: League (Locals)
+GEO:51.4733;-0.33789
+LOCATION:Stylecreep\, 25 St John's Rd\, England TW7 6NB\, GB\, London\, Eng
+	land
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
+UID:pokedata-54775990-29d7-4f4f-9ce8-65919e0770bc@pokemon-events-calendar
+SUMMARY:Do Or Dice Addlestone - Pokémon TCG League (Locals)
+DTSTAMP:20260905T005125Z
+DTSTART:20261203T183000Z
+DESCRIPTION:Type: League (Locals)
+GEO:51.3702;-0.489522
+LOCATION:Do Or Dice Addlestone\, Do Or Dice\, Unit 6B Addlestone One Market
+	 Street\, Addlestone\, GB-Sry KT15 2GD\, GB\, Runnymede\, England
+STATUS:CONFIRMED
+CATEGORIES:League (Locals)
+DURATION:PT3H
+END:VEVENT
+BEGIN:VEVENT
 UID:pokedata-afcef32c-f631-4a01-a4ab-7cd5e6e9bf1a@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261206T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4238,7 +4467,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-fb27c0c3-caa1-44ce-b93d-063bb278c520@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261209T180000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4251,7 +4480,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-dd75136a-a73d-4dde-bf4e-01a77d7c2777@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261213T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4264,7 +4493,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-e2ffb490-0f83-4df4-8ab8-fdc6e3eda9e4@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261220T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
@@ -4277,7 +4506,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:pokedata-663210af-e484-422c-ae4e-a4cc83a3fc82@pokemon-events-calendar
 SUMMARY:Dark Fire Cafe - Pokémon TCG League (Locals)
-DTSTAMP:20260904T071152Z
+DTSTAMP:20260905T005125Z
 DTSTART:20261227T120000Z
 DESCRIPTION:Type: League (Locals)
 GEO:51.7705;-0.326323
